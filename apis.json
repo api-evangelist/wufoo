@@ -1,0 +1,67 @@
+{
+    "name": "Wufoo",
+    "description": "Wufoo's HTML form builder helps you create online web forms. Use our web form creator to power your contact forms, online surveys, and event registrations. Sign up free!",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/532-wufoo.jpg",
+    "tags": [
+        "have api"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/wufoo\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Wufoo",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/532-wufoo.jpg",
+            "humanURL": "http:\/\/www.wufoo.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/wufoo-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/wufoo-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Base",
+            "url": "https:\/\/*.wufoo.com\/"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/feeds.feedburner.com\/wufoo"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/www.wufoo.com\/docs\/api\/v3\/feed\/"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/infinitybox"
+        },
+        {
+            "type": "Developers",
+            "url": "http:\/\/help.wufoo.com\/articles\/en_US\/SurveyMonkeyArticleType\/Wufoo-REST-API-V3"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/wufoo"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/#!\/wufoo"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/www.wufoo.com"
+        }
+    ]
+}
