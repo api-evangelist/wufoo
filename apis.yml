@@ -1,0 +1,191 @@
+name: Wufoo
+description: |
+  Wufoo is an online form-builder owned by SurveyMonkey Inc. It lets non-developers
+  build registration forms, surveys, contact forms, application forms, and payment
+  forms through a drag-and-drop interface, then collect and report on submissions.
+  Wufoo exposes a v3 REST API (Basic Auth, JSON/XML) over Forms, Entries, Fields,
+  Users, Reports, Widgets, Comments, and Webhooks, plus push webhooks that POST
+  form data to subscriber URLs at submission time.
+url: https://github.com/api-evangelist/wufoo
+humanURL: https://www.wufoo.com
+baseURL: https://{subdomain}.wufoo.com/api/v3
+image: https://www.wufoo.com/images/wufoo-logo.png
+tags:
+  - Forms
+  - Form Builder
+  - Surveys
+  - Data Collection
+  - Webhooks
+  - Payments
+  - SurveyMonkey
+created: '2026-05-23'
+modified: '2026-05-23'
+specificationVersion: '0.18'
+type: Index
+aid: wufoo:wufoo
+access: 3rd-Party
+apis:
+  - name: Wufoo REST API v3
+    description: |
+      The Wufoo v3 REST API gives programmatic access to forms, form fields, entries,
+      reports, widgets, comments, users, and webhooks for a Wufoo account. Endpoints
+      are per-subdomain (https://{subdomain}.wufoo.com/api/v3/) and authenticate via
+      HTTP Basic Auth with the account API key as username. Responses are JSON or XML
+      depending on the .json/.xml extension on the request URL.
+    aid: wufoo:wufoo:rest-v3
+    humanURL: https://wufoo.github.io/docs/
+    baseURL: https://{subdomain}.wufoo.com/api/v3
+    image: https://www.wufoo.com/images/wufoo-logo.png
+    tags:
+      - Forms
+      - Entries
+      - Fields
+      - Reports
+      - Widgets
+      - Comments
+      - Users
+      - Webhooks
+    properties:
+      - type: Documentation
+        url: https://wufoo.github.io/docs/
+      - type: APIReference
+        url: https://wufoo.github.io/docs/
+      - type: OpenAPI
+        url: openapi/wufoo-rest-v3-openapi.yml
+      - type: Authentication
+        url: https://wufoo.github.io/docs/#authentication
+      - type: RateLimits
+        url: rate-limits/wufoo-rate-limits.yml
+      - type: GettingStarted
+        url: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
+      - type: SpectralRules
+        url: rules/wufoo-rest-v3-rules.yml
+      - type: NaftikoCapability
+        url: capabilities/rest-v3-forms.yaml
+      - type: NaftikoCapability
+        url: capabilities/rest-v3-fields.yaml
+      - type: NaftikoCapability
+        url: capabilities/rest-v3-entries.yaml
+      - type: NaftikoCapability
+        url: capabilities/rest-v3-reports.yaml
+      - type: NaftikoCapability
+        url: capabilities/rest-v3-comments.yaml
+      - type: NaftikoCapability
+        url: capabilities/rest-v3-users.yaml
+      - type: NaftikoCapability
+        url: capabilities/rest-v3-webhooks.yaml
+      - type: NaftikoCapability
+        url: capabilities/rest-v3-login.yaml
+      - type: JSONSchema
+        url: json-schema/wufoo-form-schema.json
+      - type: JSONSchema
+        url: json-schema/wufoo-field-schema.json
+      - type: JSONSchema
+        url: json-schema/wufoo-entry-schema.json
+      - type: JSONSchema
+        url: json-schema/wufoo-report-schema.json
+      - type: JSONSchema
+        url: json-schema/wufoo-user-schema.json
+      - type: JSONStructure
+        url: json-structure/wufoo-form-structure.json
+      - type: JSONStructure
+        url: json-structure/wufoo-entry-structure.json
+      - type: Example
+        url: examples/wufoo-rest-v3-list-forms-example.json
+      - type: Example
+        url: examples/wufoo-rest-v3-list-form-fields-example.json
+      - type: Example
+        url: examples/wufoo-rest-v3-list-entries-example.json
+      - type: Example
+        url: examples/wufoo-rest-v3-submit-entry-example.json
+      - type: Example
+        url: examples/wufoo-rest-v3-put-webhook-example.json
+  - name: Wufoo Webhooks
+    description: |
+      Wufoo webhooks POST form-submission payloads to a subscriber URL at the moment
+      an entry is created. Up to 10 webhooks per form, with optional handshake key
+      for verification and optional metadata for richer form/field structure.
+    aid: wufoo:wufoo:webhooks
+    humanURL: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
+    baseURL: https://{subscriber}/
+    tags:
+      - Webhooks
+      - Events
+      - Form Submissions
+    properties:
+      - type: Documentation
+        url: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
+      - type: AsyncAPI
+        url: asyncapi/wufoo-webhooks-asyncapi.yml
+      - type: JSONSchema
+        url: json-schema/wufoo-webhook-payload-schema.json
+      - type: Example
+        url: examples/wufoo-webhooks-form-submission-example.json
+common:
+  - type: Portal
+    url: https://www.wufoo.com
+  - type: DeveloperPortal
+    url: https://wufoo.github.io/docs/
+  - type: Documentation
+    url: https://wufoo.github.io/docs/
+  - type: APIReference
+    url: https://wufoo.github.io/docs/
+  - type: GettingStarted
+    url: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
+  - type: SignUp
+    url: https://www.wufoo.com/signup/
+  - type: Login
+    url: https://www.wufoo.com/login/
+  - type: Pricing
+    url: https://www.wufoo.com/pricing/
+  - type: Plans
+    url: plans/wufoo-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/wufoo-rate-limits.yml
+  - type: Features
+    url: https://www.wufoo.com/features/
+  - type: Integrations
+    url: https://www.wufoo.com/partners/
+  - type: Blog
+    url: https://www.wufoo.com/blog/
+  - type: RSS
+    url: https://www.wufoo.com/blog/feed/
+  - type: Support
+    url: https://help.surveymonkey.com/wufoo/
+  - type: StatusPage
+    url: https://status.wufoo.com/
+  - type: StatusRSS
+    url: https://status.wufoo.com/history.rss
+  - type: StatusAtom
+    url: https://status.wufoo.com/history.atom
+  - type: TermsOfService
+    url: https://www.wufoo.com/terms-of-use/
+  - type: PrivacyPolicy
+    url: https://www.wufoo.com/privacy/
+  - type: GitHubOrganization
+    url: https://github.com/wufoo
+  - type: Vocabulary
+    url: vocabulary/wufoo-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/wufoo-context.jsonld
+  - type: FinOps
+    url: finops/wufoo-finops.yml
+  - type: SDK
+    name: Wufoo PHP API Wrapper
+    url: https://github.com/wufoo/Wufoo-PHP-API-Wrapper
+  - type: SDK
+    name: Wufoo Python SDK (pyfoo)
+    url: https://github.com/wufoo/pyfoo
+  - type: SDK
+    name: Wufoo Ruby Wrapper (wuparty)
+    url: https://github.com/wufoo/wuparty
+  - type: SDK
+    name: Wufoo Java SDK (j-woo)
+    url: https://github.com/wufoo/j-woo
+  - type: SDK
+    name: Wufoo jQuery API Wrapper
+    url: https://github.com/wufoo/Wufoo-jQuery-API-Wrapper
+maintainers:
+  - FN: API Evangelist
+    email: info@apievangelist.com
+    url: https://apievangelist.com

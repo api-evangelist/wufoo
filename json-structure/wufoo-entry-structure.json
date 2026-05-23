@@ -1,0 +1,28 @@
+{
+  "$id": "https://github.com/api-evangelist/wufoo/json-structure/wufoo-entry-structure.json",
+  "title": "Wufoo Entry Structure",
+  "description": "Logical structure of a Wufoo entry (form submission). Field values are keyed by Field{N}; audit and system fields are fixed.",
+  "structure": {
+    "Entry": {
+      "EntryId": "string",
+      "Form": { "Hash": "string" },
+      "Audit": {
+        "DateCreated": "datetime",
+        "CreatedBy": "string",
+        "DateUpdated": "datetime",
+        "UpdatedBy": "string"
+      },
+      "SystemFields": {
+        "IP": "string",
+        "Status": "string",
+        "PurchaseTotal": "decimal",
+        "Currency": "string",
+        "TransactionId": "string",
+        "MerchantType": "string"
+      },
+      "FieldValues": {
+        "Field{N}": "string"
+      }
+    }
+  }
+}

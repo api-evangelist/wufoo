@@ -1,0 +1,15 @@
+{
+  "description": "Example of the form-encoded payload Wufoo POSTs to a registered webhook subscriber URL when a form entry is created.",
+  "method": "POST",
+  "contentType": "application/x-www-form-urlencoded",
+  "body": {
+    "HandshakeKey": "s3cret",
+    "FieldStructure": "{\"Fields\":[{\"ID\":\"Field1\",\"Title\":\"Your Name\",\"Type\":\"shortname\"},{\"ID\":\"Field3\",\"Title\":\"Email\",\"Type\":\"email\"}]}",
+    "FormStructure": "{\"Name\":\"Contact Us\",\"Hash\":\"z5pkt3w03lj0nv\"}",
+    "Fields": "[{\"ID\":\"Field1\",\"Value\":\"Jane\"},{\"ID\":\"Field3\",\"Value\":\"jane@example.com\"}]",
+    "IP": "203.0.113.42",
+    "CreatedBy": "public",
+    "DateCreated": "2026-05-21 11:08:01",
+    "EntryId": "42"
+  }
+}

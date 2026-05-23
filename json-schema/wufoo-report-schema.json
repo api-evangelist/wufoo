@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/wufoo/json-schema/wufoo-report-schema.json",
+  "title": "Wufoo Report",
+  "description": "A Wufoo report definition as returned by GET /reports.",
+  "type": "object",
+  "required": ["Name", "Hash"],
+  "properties": {
+    "Name": { "type": "string" },
+    "IsPublic": { "type": "string", "enum": ["0", "1"] },
+    "Url": { "type": "string" },
+    "Description": { "type": "string" },
+    "DateCreated": { "type": "string", "format": "date-time" },
+    "DateUpdated": { "type": "string", "format": "date-time" },
+    "Hash": { "type": "string" },
+    "LinkFields": { "type": "string", "format": "uri" },
+    "LinkEntries": { "type": "string", "format": "uri" },
+    "LinkEntriesCount": { "type": "string", "format": "uri" },
+    "LinkWidgets": { "type": "string", "format": "uri" }
+  }
+}

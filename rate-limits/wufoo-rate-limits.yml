@@ -1,0 +1,53 @@
+apiCommonsRateLimits: '0.1'
+provider:
+  name: Wufoo
+  url: https://wufoo.github.io/docs/
+appliesTo:
+  - Wufoo REST API v3
+  - Wufoo Webhooks (publish side)
+documentedLimits:
+  - name: Entry submission rate
+    scope: per Wufoo user
+    window: 5 minutes (sliding)
+    limit: 50 submissions
+    appliesToEndpoints:
+      - POST /forms/{identifier}/entries.{format}
+    response:
+      status: 429
+      meaning: Slow Down
+    source: https://wufoo.github.io/docs/
+  - name: List forms page size
+    scope: per request
+    limit: 1000
+    appliesToEndpoints:
+      - GET /forms.{format}
+    notes: Default 1000, max 1000 via the `limit` query parameter.
+  - name: List entries / comments page size
+    scope: per request
+    limit: 100
+    appliesToEndpoints:
+      - GET /forms/{identifier}/entries.{format}
+      - GET /forms/{identifier}/comments.{format}
+    notes: Default 25, max 100 via the `pageSize` query parameter.
+  - name: Webhook subscriptions per form
+    scope: per form
+    limit: 10
+    appliesToEndpoints:
+      - PUT /webhooks/{identifier}.{format}
+    source: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
+  - name: Plan-based API request quotas
+    scope: per account
+    limit: depends on plan tier
+    notes: |
+      "API usage is dependent on your plan." Wufoo does not publish a
+      specific requests-per-hour table; limits scale with the subscription
+      plan documented on the pricing page.
+    source: https://www.wufoo.com/pricing/
+exclusions:
+  - Webhooks pushed to subscriber URLs do not count against the account's API limit.
+transport:
+  - HTTPS required (TLSv1.0+); SSLv3 or lower is blocked.
+sources:
+  - https://wufoo.github.io/docs/
+  - https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
+  - https://www.wufoo.com/pricing/

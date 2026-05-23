@@ -1,0 +1,19 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "https://account.wufoo.com/api/v3/webhooks/z5pkt3w03lj0nv.json",
+    "headers": {
+      "Authorization": "Basic <base64(apiKey:footastic)>",
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    "body": "url=https%3A%2F%2Fexample.com%2Fwufoo%2Fwebhook&handshakeKey=s3cret&metadata=true"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "WebHookPutResult": {
+        "Hash": "wh-aD83Lk"
+      }
+    }
+  }
+}

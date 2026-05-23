@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/wufoo/json-schema/wufoo-form-schema.json",
+  "title": "Wufoo Form",
+  "description": "A Wufoo form definition as returned by GET /forms.",
+  "type": "object",
+  "required": ["Name", "Hash", "Url"],
+  "properties": {
+    "Name": { "type": "string" },
+    "Description": { "type": "string" },
+    "RedirectMessage": { "type": "string" },
+    "Url": { "type": "string" },
+    "Email": { "type": "string" },
+    "IsPublic": { "type": "string", "enum": ["0", "1"] },
+    "Language": { "type": "string" },
+    "StartDate": { "type": "string" },
+    "EndDate": { "type": "string" },
+    "EntryLimit": { "type": "string" },
+    "DateCreated": { "type": "string", "format": "date-time" },
+    "DateUpdated": { "type": "string", "format": "date-time" },
+    "Hash": { "type": "string" },
+    "LinkFields": { "type": "string", "format": "uri" },
+    "LinkEntries": { "type": "string", "format": "uri" },
+    "LinkEntriesCount": { "type": "string", "format": "uri" }
+  }
+}

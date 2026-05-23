@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/wufoo/json-schema/wufoo-entry-schema.json",
+  "title": "Wufoo Entry",
+  "description": "A form submission. Field values appear under dynamic Field{N} keys; audit fields are fixed.",
+  "type": "object",
+  "required": ["EntryId"],
+  "properties": {
+    "EntryId": { "type": "string" },
+    "DateCreated": { "type": "string", "format": "date-time" },
+    "CreatedBy": { "type": "string" },
+    "DateUpdated": { "type": "string", "format": "date-time" },
+    "UpdatedBy": { "type": "string" },
+    "IP": { "type": "string", "description": "Submitter IP (present when system=true)." },
+    "Status": { "type": "string" },
+    "PurchaseTotal": { "type": "string" },
+    "Currency": { "type": "string" },
+    "TransactionId": { "type": "string" },
+    "MerchantType": { "type": "string" }
+  },
+  "patternProperties": {
+    "^Field\\d+$": { "type": "string" }
+  },
+  "additionalProperties": true
+}

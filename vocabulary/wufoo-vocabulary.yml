@@ -1,0 +1,97 @@
+name: Wufoo Vocabulary
+description: |
+  Operational vocabulary for the Wufoo platform — the terms used in the v3 REST
+  API, webhook payloads, and the form-builder application itself. Captures the
+  core entities and the relationships between them.
+url: https://github.com/api-evangelist/wufoo/vocabulary/wufoo-vocabulary.yml
+created: '2026-05-23'
+modified: '2026-05-23'
+
+entities:
+  - name: Form
+    description: A drag-and-drop-built data-collection unit with fields, pages, settings, notifications, and confirmation behavior.
+    properties: [Name, Description, Hash, Url, Email, IsPublic, Language, StartDate, EndDate, EntryLimit, RedirectMessage]
+    related: [Field, Entry, Comment, Webhook]
+  - name: Field
+    description: A typed input element inside a form — text, address, name, money, file, multiple-choice, likert, etc.
+    properties: [ID, Title, Instructions, IsRequired, Type, DefaultVal, Page, SubFields, Choices, HasOtherField]
+    related: [Form, Entry]
+  - name: Entry
+    description: A single submission of a form. Field values are keyed by Field{N}.
+    properties: [EntryId, DateCreated, CreatedBy, DateUpdated, UpdatedBy, IP, Status, PurchaseTotal, Currency, TransactionId, MerchantType]
+    related: [Form, Comment]
+  - name: Report
+    description: A read-only view across one form's entries with widgets, filters, and aggregations.
+    properties: [Name, Hash, Url, Description, IsPublic, LinkFields, LinkEntries, LinkWidgets]
+    related: [Form, Widget, Entry]
+  - name: Widget
+    description: A visualisation tile inside a report — chart, number, table.
+    properties: [Hash, Name, Size, Type, TypeDesc, Report]
+    related: [Report]
+  - name: Comment
+    description: A discussion note attached to an entry.
+    properties: [CommentId, EntryId, Text, CommentedBy, DateCreated]
+    related: [Entry, Form]
+  - name: User
+    description: An account or sub-user. Each sub-user has their own API key for permission isolation.
+    properties: [User, Email, FirstName, LastName, Company, TimeZone, SubdomainPrefix, Hash, IsAccountOwner, ApiKey]
+    related: [Form, Report]
+  - name: Webhook
+    description: A subscriber URL that receives a form-encoded POST when a form entry is created. Up to 10 per form.
+    properties: [Hash, url, handshakeKey, metadata]
+    related: [Form, Entry]
+  - name: SystemField
+    description: Fields auto-populated by Wufoo and surfaced only when system=true.
+    properties: [IP, LastPage, CompleteSubmission, Status, PurchaseTotal, Currency, TransactionId, MerchantType]
+    related: [Entry, Form]
+  - name: PaymentIntegration
+    description: Payment gateway integration tied to entries that include money fields.
+    properties: [MerchantType, PurchaseTotal, Currency, TransactionId]
+    related: [Entry]
+
+fieldTypes:
+  - text
+  - textarea
+  - email
+  - url
+  - number
+  - money
+  - phone
+  - date
+  - time
+  - address
+  - shortname
+  - likert
+  - radio
+  - checkbox
+  - menu
+  - file
+  - rating
+  - hidden
+  - section
+  - page
+  - HTML
+
+filterOperators:
+  - Contains
+  - Does_not_contain
+  - Begins_with
+  - Ends_with
+  - Is_less_than
+  - Is_greater_than
+  - Is_on
+  - Is_before
+  - Is_after
+  - Is_not_equal_to
+  - Is_equal_to
+  - Is_not_NULL
+
+paymentGateways:
+  - Stripe
+  - PayPal
+  - Square
+  - Braintree
+  - Chargify
+  - Freshbooks
+  - USAePay
+  - Authorize.Net

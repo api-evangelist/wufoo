@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/wufoo/json-schema/wufoo-user-schema.json",
+  "title": "Wufoo User",
+  "description": "A user inside a Wufoo account.",
+  "type": "object",
+  "required": ["Hash"],
+  "properties": {
+    "User": { "type": "string" },
+    "Email": { "type": "string", "format": "email" },
+    "FirstName": { "type": "string" },
+    "LastName": { "type": "string" },
+    "Company": { "type": "string" },
+    "TimeZone": { "type": "string" },
+    "SubdomainPrefix": { "type": "string" },
+    "Hash": { "type": "string" },
+    "IsAccountOwner": { "type": "string", "enum": ["0", "1"] },
+    "ApiKey": { "type": "string" },
+    "LinkForms": { "type": "string", "format": "uri" },
+    "LinkReports": { "type": "string", "format": "uri" }
+  }
+}

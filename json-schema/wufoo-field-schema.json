@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/wufoo/json-schema/wufoo-field-schema.json",
+  "title": "Wufoo Field",
+  "description": "A single field within a Wufoo form, as returned by GET /forms/{id}/fields.",
+  "type": "object",
+  "required": ["ID", "Type"],
+  "properties": {
+    "Title": { "type": "string" },
+    "Instructions": { "type": "string" },
+    "IsRequired": { "type": "string", "enum": ["0", "1"] },
+    "ClassNames": { "type": "string" },
+    "DefaultVal": { "type": "string" },
+    "Page": { "type": "integer" },
+    "Type": {
+      "type": "string",
+      "description": "Wufoo field type.",
+      "enum": [
+        "text","textarea","email","url","number","money","phone","date","time",
+        "address","shortname","likert","radio","checkbox","menu","file",
+        "rating","hidden","section","page","HTML","subfield"
+      ]
+    },
+    "ID": { "type": "string", "pattern": "^Field\\d+$" },
+    "SubFields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "DefaultVal": { "type": "string" },
+          "Label": { "type": "string" },
+          "ID": { "type": "string" }
+        }
+      }
+    },
+    "Choices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Label": { "type": "string" },
+          "Score": { "type": "integer" }
+        }
+      }
+    },
+    "HasOtherField": { "type": "boolean" }
+  }
+}

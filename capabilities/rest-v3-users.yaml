@@ -1,0 +1,75 @@
+naftiko: "1.0.0-alpha2"
+
+info:
+  label: "Wufoo REST API — Users"
+  description: >-
+    Users surface of the Wufoo REST API v3. 1 operation. Lead operation: List
+    Account Users. Self-contained Naftiko capability covering one Wufoo business
+    surface — enumerate sub-users in an account, each of whom holds their own
+    API key.
+  tags:
+    - Wufoo
+    - Users
+    - AccountManagement
+  created: "2026-05-23"
+  modified: "2026-05-23"
+
+binds:
+  - namespace: env
+    keys:
+      WUFOO_SUBDOMAIN: WUFOO_SUBDOMAIN
+      WUFOO_API_KEY: WUFOO_API_KEY
+
+capability:
+
+  consumes:
+    - type: http
+      namespace: "rest-v3-users"
+      baseUri: "https://{{env.WUFOO_SUBDOMAIN}}.wufoo.com/api/v3"
+      description: "Wufoo REST API — Users business capability. Self-contained, no shared references."
+      authentication:
+        type: basic
+        username: "{{env.WUFOO_API_KEY}}"
+        password: "footastic"
+      resources:
+        - name: "users"
+          path: "/users.{format}"
+          operations:
+            - name: "listUsers"
+              method: GET
+              description: "List all users in the account."
+              inputParameters:
+                - { name: format, in: path, type: string, required: true, description: "json or xml" }
+                - { name: pretty, in: query, type: boolean, required: false, description: "Pretty-print." }
+              outputRawFormat: json
+              outputParameters: [{ name: result, type: object, value: "$." }]
+
+  exposes:
+    - type: rest
+      namespace: "rest-v3-users-rest"
+      port: 8080
+      description: "REST adapter for Wufoo REST API — Users."
+      resources:
+        - path: "/v1/users"
+          name: "users"
+          description: "Account users."
+          operations:
+            - method: GET
+              name: "listUsers"
+              description: "List all users."
+              call: "rest-v3-users.listUsers"
+              with: { format: "rest.format", pretty: "rest.pretty" }
+              outputParameters: [{ type: object, mapping: "$." }]
+
+    - type: mcp
+      namespace: "rest-v3-users-mcp"
+      port: 9090
+      transport: http
+      description: "MCP adapter for Wufoo REST API — Users."
+      tools:
+        - name: "list-users"
+          description: "List all account users."
+          hints: { readOnly: true, destructive: false, idempotent: true }
+          call: "rest-v3-users.listUsers"
+          with: { format: "tools.format", pretty: "tools.pretty" }
+          outputParameters: [{ type: object, mapping: "$." }]

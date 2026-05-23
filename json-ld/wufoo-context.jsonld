@@ -1,0 +1,53 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "wufoo": "https://github.com/api-evangelist/wufoo/json-ld/wufoo-context.jsonld#",
+    "Form": "wufoo:Form",
+    "Field": "wufoo:Field",
+    "Entry": "wufoo:Entry",
+    "Report": "wufoo:Report",
+    "Widget": "wufoo:Widget",
+    "Comment": "schema:Comment",
+    "User": "schema:Person",
+    "Webhook": "wufoo:Webhook",
+
+    "Hash": "schema:identifier",
+    "Name": "schema:name",
+    "Description": "schema:description",
+    "Url": "schema:url",
+    "Email": "schema:email",
+    "Language": "schema:inLanguage",
+    "DateCreated": "schema:dateCreated",
+    "DateUpdated": "schema:dateModified",
+    "CreatedBy": "schema:creator",
+    "UpdatedBy": "schema:editor",
+    "IsPublic": "schema:isAccessibleForFree",
+    "StartDate": "schema:startDate",
+    "EndDate": "schema:endDate",
+    "EntryLimit": "wufoo:entryLimit",
+    "RedirectMessage": "wufoo:redirectMessage",
+
+    "Title": "schema:name",
+    "Instructions": "schema:description",
+    "IsRequired": "schema:valueRequired",
+    "DefaultVal": "schema:defaultValue",
+    "Type": "schema:additionalType",
+    "Page": "wufoo:page",
+    "SubFields": "wufoo:subFields",
+    "Choices": "wufoo:choices",
+    "HasOtherField": "wufoo:hasOtherField",
+
+    "EntryId": "schema:identifier",
+    "PurchaseTotal": "schema:totalPaymentDue",
+    "Currency": "schema:priceCurrency",
+    "TransactionId": "schema:confirmationNumber",
+    "MerchantType": "wufoo:merchantType",
+    "IP": "wufoo:submitterIP",
+    "Status": "schema:actionStatus",
+
+    "HandshakeKey": "wufoo:handshakeKey",
+    "FieldStructure": "wufoo:fieldStructure",
+    "FormStructure": "wufoo:formStructure",
+    "Fields": "wufoo:fields"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/wufoo/json-schema/wufoo-webhook-payload-schema.json",
+  "title": "Wufoo Webhook Payload",
+  "description": "Form-encoded payload POSTed to a subscriber URL when a form is submitted.",
+  "type": "object",
+  "properties": {
+    "HandshakeKey": { "type": "string" },
+    "FieldStructure": { "type": "string", "description": "JSON-encoded field structure (when metadata=true)." },
+    "FormStructure": { "type": "string", "description": "JSON-encoded form structure (when metadata=true)." },
+    "Fields": { "type": "string", "description": "JSON-encoded array of submitted field values." },
+    "IP": { "type": "string" },
+    "CreatedBy": { "type": "string" },
+    "DateCreated": { "type": "string", "format": "date-time" },
+    "EntryId": { "type": "string" }
+  }
+}

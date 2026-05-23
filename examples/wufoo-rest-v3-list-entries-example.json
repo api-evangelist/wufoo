@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://account.wufoo.com/api/v3/forms/z5pkt3w03lj0nv/entries.json?pageSize=2&sort=EntryId&sortDirection=DESC",
+    "headers": {
+      "Authorization": "Basic <base64(apiKey:footastic)>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "Entries": [
+        {
+          "EntryId": "42",
+          "Field1": "Jane",
+          "Field2": "Doe",
+          "Field3": "jane@example.com",
+          "DateCreated": "2026-05-21 11:08:01",
+          "CreatedBy": "public",
+          "DateUpdated": "",
+          "UpdatedBy": ""
+        },
+        {
+          "EntryId": "41",
+          "Field1": "John",
+          "Field2": "Roe",
+          "Field3": "john@example.com",
+          "DateCreated": "2026-05-20 19:55:42",
+          "CreatedBy": "public",
+          "DateUpdated": "",
+          "UpdatedBy": ""
+        }
+      ]
+    }
+  }
+}

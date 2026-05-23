@@ -1,0 +1,90 @@
+apiCommonsPlans: '0.1'
+provider:
+  name: Wufoo
+  url: https://www.wufoo.com/pricing/
+  parent: SurveyMonkey Inc.
+billingModel: subscription
+currency: USD
+billingInterval: month
+notes: |
+  Sticker prices are billed annually (e.g. Starter advertised at $16.25/month is
+  billed $195/year). Monthly billing is offered at a higher rate. API access is
+  available on all plans; limits scale with the plan tier.
+plans:
+  - id: free
+    name: Free
+    price: 0.00
+    interval: month
+    description: Entry-level plan for trying Wufoo.
+    quotas:
+      forms: 5
+      fieldsPerForm: 10
+      entries: 100
+      users: 1
+    features:
+      - Unlimited reports
+      - Email support
+  - id: starter
+    name: Starter
+    price: 16.25
+    interval: month
+    billedAnnuallyTotal: 195.00
+    description: Single-user plan with custom branding and integrations.
+    quotas:
+      forms: 10
+      fieldsPerForm: max
+      entries: 1000
+      users: 1
+    features:
+      - Custom branding
+      - Confirmation emails
+      - Form rules
+      - File uploads
+      - Integrations
+  - id: professional
+    name: Professional
+    price: 33.25
+    interval: month
+    billedAnnuallyTotal: 399.00
+    description: Multi-user plan with payments, encryption, and analytics.
+    quotas:
+      forms: unlimited
+      fieldsPerForm: max
+      entries: 5000
+      users: 5
+    features:
+      - Accept payments (Stripe, PayPal, Square, Braintree, others)
+      - Field encryption
+      - Password protection
+      - Google Analytics tracking
+      - Expedited support
+  - id: advanced
+    name: Advanced
+    price: 83.25
+    interval: month
+    billedAnnuallyTotal: 999.00
+    description: Higher entry and user limits with priority support.
+    quotas:
+      forms: unlimited
+      fieldsPerForm: max
+      entries: 25000
+      users: 20
+    features:
+      - All Professional features
+      - Priority support
+  - id: ultimate
+    name: Ultimate
+    price: 210.25
+    interval: month
+    billedAnnuallyTotal: 2523.00
+    description: Maximum quota tier for high-volume teams.
+    quotas:
+      forms: unlimited
+      fieldsPerForm: max
+      entries: 200000
+      users: 60
+    features:
+      - All Advanced features
+      - Highest resource limits
+sources:
+  - https://www.wufoo.com/pricing/

@@ -1,0 +1,33 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://account.wufoo.com/api/v3/forms.json?includeTodayCount=true&pretty=true",
+    "headers": {
+      "Authorization": "Basic <base64(apiKey:footastic)>",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "Forms": [
+        {
+          "Name": "Contact Us",
+          "Description": "General inquiries from the marketing site.",
+          "RedirectMessage": "Thanks! We'll get back to you within one business day.",
+          "Url": "contact-us",
+          "Email": "leads@example.com",
+          "IsPublic": "1",
+          "Language": "english",
+          "EntryLimit": "0",
+          "DateCreated": "2026-01-12 09:14:55",
+          "DateUpdated": "2026-04-30 14:02:11",
+          "Hash": "z5pkt3w03lj0nv",
+          "LinkFields": "https://account.wufoo.com/api/v3/forms/z5pkt3w03lj0nv/fields.json",
+          "LinkEntries": "https://account.wufoo.com/api/v3/forms/z5pkt3w03lj0nv/entries.json",
+          "LinkEntriesCount": "https://account.wufoo.com/api/v3/forms/z5pkt3w03lj0nv/entries/count.json"
+        }
+      ]
+    }
+  }
+}

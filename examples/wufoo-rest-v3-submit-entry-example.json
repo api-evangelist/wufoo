@@ -1,0 +1,20 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://account.wufoo.com/api/v3/forms/z5pkt3w03lj0nv/entries.json",
+    "headers": {
+      "Authorization": "Basic <base64(apiKey:footastic)>",
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    "body": "Field1=Jane&Field2=Doe&Field3=jane%40example.com"
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "Success": 1,
+      "EntryId": 42,
+      "EntryLink": "https://account.wufoo.com/api/v3/forms/z5pkt3w03lj0nv/entries.json?Filter1=EntryId+Is_equal_to+42",
+      "RedirectUrl": ""
+    }
+  }
+}

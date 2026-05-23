@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://account.wufoo.com/api/v3/forms/z5pkt3w03lj0nv/fields.json",
+    "headers": {
+      "Authorization": "Basic <base64(apiKey:footastic)>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "Fields": [
+        {
+          "Title": "Your Name",
+          "Instructions": "",
+          "IsRequired": "1",
+          "ClassNames": "",
+          "DefaultVal": "",
+          "Page": 1,
+          "Type": "shortname",
+          "ID": "Field1",
+          "SubFields": [
+            { "DefaultVal": "", "Label": "First", "ID": "Field1" },
+            { "DefaultVal": "", "Label": "Last",  "ID": "Field2" }
+          ]
+        },
+        {
+          "Title": "Email",
+          "IsRequired": "1",
+          "Type": "email",
+          "ID": "Field3"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,77 @@
+focusVersion: '1.0'
+provider:
+  name: Wufoo
+  url: https://www.wufoo.com/pricing/
+  parent: SurveyMonkey Inc.
+
+billingSurface:
+  pricingModel: tiered-subscription
+  currency: USD
+  billingInterval: month
+  billingPeriods:
+    - monthly
+    - annual
+  invoicingChannel: self-serve via account billing portal
+  consumptionMetered: false
+  notes: |
+    Wufoo prices on a fixed-tier monthly subscription. Each tier (Free, Starter,
+    Professional, Advanced, Ultimate) bundles entry, form, field, and user
+    quotas. There is no metered overage line item — exceeding entry counts
+    requires upgrading to the next tier.
+
+focusColumns:
+  ServiceName: Wufoo
+  ServiceCategory: Software-as-a-Service
+  ChargeCategory: Usage
+  ChargeFrequency: Recurring
+  PricingCategory: Standard
+  PricingUnit: subscription
+  CommitmentDiscountType: None
+  BillingPeriodStart: monthly anchor
+  BillingPeriodEnd: monthly anchor
+  Region: Global (single SaaS instance)
+
+costDrivers:
+  - dimension: plan tier
+    drives: monthly recurring cost
+    increments:
+      - Free → Starter
+      - Starter → Professional
+      - Professional → Advanced
+      - Advanced → Ultimate
+  - dimension: entries per month
+    drives: when to upgrade tier
+    notes: Each tier has a hard cap. Hitting the cap blocks new submissions.
+  - dimension: users
+    drives: when to upgrade tier
+    notes: Tiers cap user seats (1, 1, 5, 20, 60).
+
+invoiceLineExamples:
+  - chargeType: Subscription
+    description: Wufoo Professional — annual
+    unitPrice: 399.00
+    units: 1
+    period: annual
+
+discounts:
+  - type: annual prepay
+    description: Sticker prices on the pricing page are quoted at the annual-prepaid monthly equivalent (e.g. $16.25/mo billed $195/yr).
+
+paymentProcessing:
+  acceptedGateways:
+    - Stripe
+    - PayPal
+    - Square
+    - Braintree
+    - Chargify
+    - Freshbooks
+    - USAePay
+    - Authorize.Net
+  notes: |
+    These gateways apply to payments collected through Wufoo payment-enabled
+    forms (Professional plan and above), not to Wufoo's own subscription
+    billing.
+
+sources:
+  - https://www.wufoo.com/pricing/
+  - https://wufoo.github.io/docs/

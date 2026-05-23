@@ -1,0 +1,63 @@
+asyncapi: 2.6.0
+info:
+  title: Wufoo Webhooks
+  version: '1.0'
+  description: |
+    Wufoo webhooks POST a form-submission payload to a subscriber URL the moment
+    an entry is created. Each form supports up to 10 active webhooks. When the
+    subscription is created with `metadata=true`, the payload includes
+    `FieldStructure` and `FormStructure` JSON describing the originating form.
+    When a `handshakeKey` was supplied at subscription time, it is echoed back
+    in every payload as `HandshakeKey`.
+  contact:
+    name: Wufoo Support
+    url: https://help.surveymonkey.com/wufoo/
+servers:
+  subscriber:
+    url: '{subscriber_url}'
+    protocol: https
+    description: Customer-hosted HTTPS endpoint registered via PUT /webhooks.
+    variables:
+      subscriber_url:
+        default: https://example.com/wufoo/webhook
+defaultContentType: application/x-www-form-urlencoded
+channels:
+  form.entry.created:
+    description: A form submission was created and pushed to the subscriber URL.
+    subscribe:
+      operationId: receiveFormEntryCreated
+      summary: Receive Form Entry Created
+      message:
+        $ref: '#/components/messages/FormSubmission'
+components:
+  messages:
+    FormSubmission:
+      name: FormSubmission
+      title: Form Submission
+      summary: Payload Wufoo POSTs to a registered webhook URL when a form entry is created.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        type: object
+        properties:
+          HandshakeKey:
+            type: string
+            description: Optional shared secret echoed back to the subscriber.
+          FieldStructure:
+            type: string
+            description: JSON-encoded field structure (included when metadata=true).
+          FormStructure:
+            type: string
+            description: JSON-encoded form structure (included when metadata=true).
+          Fields:
+            type: string
+            description: JSON-encoded array of submitted field values.
+          IP:
+            type: string
+            description: IP address of the submitter.
+          CreatedBy:
+            type: string
+          DateCreated:
+            type: string
+            format: date-time
+          EntryId:
+            type: string

@@ -1,0 +1,71 @@
+extends:
+  - spectral:oas
+
+rules:
+  wufoo-info-contact:
+    description: Info object MUST include contact name and url.
+    given: $.info
+    severity: error
+    then:
+      - field: contact.name
+        function: truthy
+      - field: contact.url
+        function: truthy
+
+  wufoo-operation-id-camelcase:
+    description: operationId MUST be camelCase.
+    given: $.paths.*.*.operationId
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]+$'
+
+  wufoo-summary-title-case:
+    description: Operation summary SHOULD be Title Case (each word capitalized).
+    given: $.paths.*.*.summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: '^([A-Z][a-zA-Z0-9]*)(\s+(For|And|Or|To|Of|In|On|By|A|An|The|[A-Z][a-zA-Z0-9]*))*$'
+
+  wufoo-tags-title-case:
+    description: Tags MUST be Title Case.
+    given: $.tags[*].name
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[A-Z][a-zA-Z]*$'
+
+  wufoo-format-path-param:
+    description: Every path MUST end in a {format} extension parameter.
+    given: $.paths
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: '\.\{format\}$'
+        field: '@key'
+
+  wufoo-basic-auth-only:
+    description: Security scheme MUST be HTTP Basic Auth.
+    given: $.components.securitySchemes.*
+    severity: error
+    then:
+      - field: type
+        function: enumeration
+        functionOptions:
+          values: [http]
+      - field: scheme
+        function: enumeration
+        functionOptions:
+          values: [basic]
+
+  wufoo-response-envelope:
+    description: GET list responses SHOULD wrap collections in a top-level envelope (Forms/Entries/Reports/etc).
+    given: $.paths.*.get.responses.200.content.application/json.schema
+    severity: info
+    then:
+      function: truthy
