@@ -1,0 +1,86 @@
+arazzo: 1.0.1
+info:
+  title: Wufoo Rotate a Form Webhook
+  summary: Add a fresh webhook subscription, then delete the prior one by hash.
+  description: >-
+    Rotates a form's webhook subscriber endpoint without dropping events. The
+    workflow first adds the new subscription so the replacement endpoint is
+    live, then deletes the previously registered webhook by its hash. Ordering
+    the create before the delete keeps a subscriber active throughout the swap.
+    Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: wufooApi
+  url: ../openapi/wufoo-rest-v3-openapi.yml
+  type: openapi
+workflows:
+- workflowId: rotate-form-webhook
+  summary: Replace a Wufoo form webhook by creating the new one before deleting the old.
+  description: >-
+    Adds a new webhook subscription pointing at the replacement URL, then
+    deletes the old webhook identified by its hash, leaving exactly one active
+    subscriber.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - formIdentifier
+    - newUrl
+    - oldHash
+    properties:
+      apiKey:
+        type: string
+        description: Wufoo account API key, used as the HTTP Basic Auth username.
+      formIdentifier:
+        type: string
+        description: Form hash (preferred) or title that owns the webhook.
+      newUrl:
+        type: string
+        description: Replacement subscriber endpoint to POST submissions to.
+      handshakeKey:
+        type: string
+        description: Shared secret echoed back as HandshakeKey in payloads.
+      oldHash:
+        type: string
+        description: Hash of the existing webhook to remove after the new one is live.
+  steps:
+  - stepId: addNewWebhook
+    description: Create the replacement webhook subscription first so a subscriber stays live.
+    operationId: putFormWebhook
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.formIdentifier
+    - name: format
+      in: path
+      value: json
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        url: $inputs.newUrl
+        handshakeKey: $inputs.handshakeKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      newHash: $response.body#/WebHookPutResult/Hash
+  - stepId: deleteOldWebhook
+    description: Delete the previous webhook now that the replacement is registered.
+    operationId: deleteFormWebhook
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.formIdentifier
+    - name: hash
+      in: path
+      value: $inputs.oldHash
+    - name: format
+      in: path
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deleteResult: $response.body#/WebHookDeleteResult
+  outputs:
+    newHash: $steps.addNewWebhook.outputs.newHash
+    deleteResult: $steps.deleteOldWebhook.outputs.deleteResult

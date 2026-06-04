@@ -1,0 +1,108 @@
+arazzo: 1.0.1
+info:
+  title: Wufoo Submit a Form Entry
+  summary: Discover a form, read its field structure, then submit a new entry.
+  description: >-
+    The core Wufoo write pattern. The workflow lists the account's forms to
+    confirm the target form exists, reads that form's field structure so the
+    caller knows which Field{N} keys to populate, and then submits a new entry
+    using form-encoded Field values. It branches on the submission result so a
+    validation failure (Success == 0) is handled distinctly from a successful
+    submission. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: wufooApi
+  url: ../openapi/wufoo-rest-v3-openapi.yml
+  type: openapi
+workflows:
+- workflowId: submit-form-entry
+  summary: Submit a new entry to a Wufoo form after resolving its field structure.
+  description: >-
+    Lists forms, reads the field structure for the target form, and submits a
+    new entry, branching on whether the submission succeeded or failed
+    validation.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - formIdentifier
+    - fields
+    properties:
+      apiKey:
+        type: string
+        description: Wufoo account API key, used as the HTTP Basic Auth username.
+      formIdentifier:
+        type: string
+        description: Form hash (preferred) or title to submit the entry to.
+      fields:
+        type: object
+        description: >-
+          Map of Field{N} keys to string values, form-encoded into the entry
+          submission (e.g. {"Field1":"Jane","Field3":"jane@example.com"}).
+  steps:
+  - stepId: listForms
+    description: List all forms accessible to the API key to confirm the target form exists.
+    operationId: listForms
+    parameters:
+    - name: format
+      in: path
+      value: json
+    - name: limit
+      in: query
+      value: 1000
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      forms: $response.body#/Forms
+  - stepId: readFields
+    description: Read the field structure of the target form so the caller knows which Field IDs to populate.
+    operationId: listFormFields
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.formIdentifier
+    - name: format
+      in: path
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      fields: $response.body#/Fields
+  - stepId: submitEntry
+    description: Submit the new entry to the form as form-encoded Field values.
+    operationId: submitFormEntry
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.formIdentifier
+    - name: format
+      in: path
+      value: json
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload: $inputs.fields
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      success: $response.body#/Success
+      entryId: $response.body#/EntryId
+      entryLink: $response.body#/EntryLink
+    onSuccess:
+    - name: submissionAccepted
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.Success == 1
+        type: jsonpath
+    onFailure:
+    - name: validationFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.Success == 0
+        type: jsonpath
+  outputs:
+    entryId: $steps.submitEntry.outputs.entryId
+    entryLink: $steps.submitEntry.outputs.entryLink
+    success: $steps.submitEntry.outputs.success

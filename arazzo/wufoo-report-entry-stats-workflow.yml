@@ -1,0 +1,91 @@
+arazzo: 1.0.1
+info:
+  title: Wufoo Report Entry Stats
+  summary: List reports, count a report's entries, then fetch them when non-empty.
+  description: >-
+    Summarizes activity behind a Wufoo report before pulling data. The workflow
+    lists all reports to confirm the target, counts the report's entries, and
+    branches: when the report has entries it retrieves them, and when it is
+    empty it ends without a wasted fetch. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: wufooApi
+  url: ../openapi/wufoo-rest-v3-openapi.yml
+  type: openapi
+workflows:
+- workflowId: report-entry-stats
+  summary: Count a Wufoo report's entries and fetch them only when the report is non-empty.
+  description: >-
+    Lists reports, counts the target report's entries, and branches to fetch
+    the entries when the count is non-zero or end when the report is empty.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - reportIdentifier
+    properties:
+      apiKey:
+        type: string
+        description: Wufoo account API key, used as the HTTP Basic Auth username.
+      reportIdentifier:
+        type: string
+        description: Report hash (preferred) or title to count and read entries from.
+  steps:
+  - stepId: listReports
+    description: List all reports to confirm the target report is accessible to the API key.
+    operationId: listReports
+    parameters:
+    - name: format
+      in: path
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      reports: $response.body#/Reports
+  - stepId: countReportEntries
+    description: Count the report's entries to decide whether there are any to retrieve.
+    operationId: countReportEntries
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.reportIdentifier
+    - name: format
+      in: path
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      entryCount: $response.body#/EntryCount
+    onSuccess:
+    - name: hasEntries
+      type: goto
+      stepId: listReportEntries
+      criteria:
+      - context: $response.body
+        condition: $.EntryCount != '0'
+        type: jsonpath
+    - name: noEntries
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.EntryCount == '0'
+        type: jsonpath
+  - stepId: listReportEntries
+    description: Retrieve the report's entries now that the count confirms there are some.
+    operationId: listReportEntries
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.reportIdentifier
+    - name: format
+      in: path
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      entries: $response.body#/Entries
+  outputs:
+    entryCount: $steps.countReportEntries.outputs.entryCount
+    entries: $steps.listReportEntries.outputs.entries

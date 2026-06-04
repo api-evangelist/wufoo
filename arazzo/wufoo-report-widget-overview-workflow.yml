@@ -1,0 +1,81 @@
+arazzo: 1.0.1
+info:
+  title: Wufoo Report Widget Overview
+  summary: Resolve a report, list its widgets, then read its underlying field structure.
+  description: >-
+    Builds a dashboard-style overview of a Wufoo report. The workflow fetches
+    the single target report for its metadata, lists the widgets that compose
+    the report (charts, counters, and the like), and reads the report's
+    underlying field structure so each widget can be related back to the fields
+    it summarizes. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: wufooApi
+  url: ../openapi/wufoo-rest-v3-openapi.yml
+  type: openapi
+workflows:
+- workflowId: report-widget-overview
+  summary: Resolve a Wufoo report and assemble its widgets alongside its field structure.
+  description: >-
+    Gets the target report, lists the widgets that compose it, and reads the
+    report's field structure so widgets can be mapped back to their fields.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - reportIdentifier
+    properties:
+      apiKey:
+        type: string
+        description: Wufoo account API key, used as the HTTP Basic Auth username.
+      reportIdentifier:
+        type: string
+        description: Report hash (preferred) or title to summarize.
+  steps:
+  - stepId: getReport
+    description: Fetch the single target report to confirm it exists and capture its hash.
+    operationId: getReport
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.reportIdentifier
+    - name: format
+      in: path
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      report: $response.body#/Reports/0
+      hash: $response.body#/Reports/0/Hash
+  - stepId: listWidgets
+    description: List the widgets that compose the report.
+    operationId: listReportWidgets
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.reportIdentifier
+    - name: format
+      in: path
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      widgets: $response.body#/Widgets
+  - stepId: readReportFields
+    description: Read the report's field structure so each widget can be mapped to its fields.
+    operationId: listReportFields
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.reportIdentifier
+    - name: format
+      in: path
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      fields: $response.body#/Fields
+  outputs:
+    widgets: $steps.listWidgets.outputs.widgets
+    fields: $steps.readReportFields.outputs.fields

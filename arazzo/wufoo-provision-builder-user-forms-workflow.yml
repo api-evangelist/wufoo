@@ -1,0 +1,81 @@
+arazzo: 1.0.1
+info:
+  title: Wufoo Provision Builder User Forms
+  summary: Exchange a user's credentials for their API key, then list that user's forms.
+  description: >-
+    The builder onboarding pattern. Integrators embedding Wufoo for third-party
+    customers exchange a user's email and password (plus the builder's
+    integration key) for that user's own API key, then immediately use the
+    returned key and subdomain to list the forms that user can access. The first
+    step authenticates with no credential, while the second uses the freshly
+    issued API key. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: wufooApi
+  url: ../openapi/wufoo-rest-v3-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-builder-user-forms
+  summary: Exchange a Wufoo user's login for an API key and list their forms.
+  description: >-
+    Exchanges a user's credentials and the builder integration key for the
+    user's API key and subdomain, then lists the forms accessible with that
+    newly issued key.
+  inputs:
+    type: object
+    required:
+    - email
+    - password
+    - integrationKey
+    properties:
+      email:
+        type: string
+        description: The end user's Wufoo account email address.
+      password:
+        type: string
+        description: The end user's Wufoo account password.
+      integrationKey:
+        type: string
+        description: The builder's Wufoo integration key.
+      subdomain:
+        type: string
+        description: Optional account subdomain to scope the login to.
+  steps:
+  - stepId: exchangeCredentials
+    description: Exchange the user's credentials and integration key for their API key and subdomain.
+    operationId: login
+    parameters:
+    - name: format
+      in: path
+      value: json
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        email: $inputs.email
+        password: $inputs.password
+        integrationKey: $inputs.integrationKey
+        subdomain: $inputs.subdomain
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      apiKey: $response.body#/ApiKey
+      subdomain: $response.body#/Subdomain
+  - stepId: listUserForms
+    description: List the forms accessible with the user's newly issued API key.
+    operationId: listForms
+    parameters:
+    - name: format
+      in: path
+      value: json
+    - name: limit
+      in: query
+      value: 1000
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      forms: $response.body#/Forms
+  outputs:
+    apiKey: $steps.exchangeCredentials.outputs.apiKey
+    subdomain: $steps.exchangeCredentials.outputs.subdomain
+    forms: $steps.listUserForms.outputs.forms

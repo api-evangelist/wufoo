@@ -1,0 +1,114 @@
+arazzo: 1.0.1
+info:
+  title: Wufoo Moderate Form Comments
+  summary: Resolve a form, count its comments, then list them when any exist.
+  description: >-
+    Surfaces the comments left on a form's entries for moderation. The workflow
+    fetches the single target form to confirm it exists, counts the comments,
+    and branches: when comments are present it lists them (optionally scoped to
+    a single entry), and when there are none it ends without a wasted fetch.
+    Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: wufooApi
+  url: ../openapi/wufoo-rest-v3-openapi.yml
+  type: openapi
+workflows:
+- workflowId: moderate-form-comments
+  summary: Count a Wufoo form's comments and list them only when any exist.
+  description: >-
+    Gets the target form, counts its comments, and branches to list the
+    comments when the count is non-zero or end when there are none.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - formIdentifier
+    properties:
+      apiKey:
+        type: string
+        description: Wufoo account API key, used as the HTTP Basic Auth username.
+      formIdentifier:
+        type: string
+        description: Form hash (preferred) or title whose comments are moderated.
+      entryId:
+        type: integer
+        description: Optional entry id to scope the comment listing to a single entry.
+      pageStart:
+        type: integer
+        description: Zero-based index of the first comment to return.
+        default: 0
+      pageSize:
+        type: integer
+        description: Number of comments to return per page (max 100).
+        default: 25
+  steps:
+  - stepId: getForm
+    description: Fetch the target form to confirm it exists before reading comments.
+    operationId: getForm
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.formIdentifier
+    - name: format
+      in: path
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      hash: $response.body#/Forms/0/Hash
+  - stepId: countComments
+    description: Count the form's comments to decide whether there are any to moderate.
+    operationId: countFormComments
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.formIdentifier
+    - name: format
+      in: path
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      commentCount: $response.body#/Count
+    onSuccess:
+    - name: hasComments
+      type: goto
+      stepId: listComments
+      criteria:
+      - context: $response.body
+        condition: $.Count > 0
+        type: jsonpath
+    - name: noComments
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.Count == 0
+        type: jsonpath
+  - stepId: listComments
+    description: List the form's comments, optionally scoped to a single entry, for moderation.
+    operationId: listFormComments
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.formIdentifier
+    - name: format
+      in: path
+      value: json
+    - name: entryId
+      in: query
+      value: $inputs.entryId
+    - name: pageStart
+      in: query
+      value: $inputs.pageStart
+    - name: pageSize
+      in: query
+      value: $inputs.pageSize
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      comments: $response.body#/Comments
+  outputs:
+    commentCount: $steps.countComments.outputs.commentCount
+    comments: $steps.listComments.outputs.comments

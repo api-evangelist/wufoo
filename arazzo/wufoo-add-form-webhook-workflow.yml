@@ -1,0 +1,85 @@
+arazzo: 1.0.1
+info:
+  title: Wufoo Add a Form Webhook
+  summary: Confirm a form exists, then subscribe a URL to its submission webhook.
+  description: >-
+    Wires a Wufoo form up to an external endpoint. The workflow fetches the
+    single target form to confirm it exists and to capture its hash, then adds
+    a webhook subscription so the supplied URL receives a POST on every new
+    submission, optionally echoing a handshake key and including form and field
+    structure metadata. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: wufooApi
+  url: ../openapi/wufoo-rest-v3-openapi.yml
+  type: openapi
+workflows:
+- workflowId: add-form-webhook
+  summary: Subscribe an endpoint to a Wufoo form's submission webhook.
+  description: >-
+    Gets the target form to confirm it exists, then creates a webhook
+    subscription pointing at the supplied URL and returns the new webhook hash.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - formIdentifier
+    - url
+    properties:
+      apiKey:
+        type: string
+        description: Wufoo account API key, used as the HTTP Basic Auth username.
+      formIdentifier:
+        type: string
+        description: Form hash (preferred) or title to attach the webhook to.
+      url:
+        type: string
+        description: Subscriber endpoint that Wufoo will POST submissions to.
+      handshakeKey:
+        type: string
+        description: Shared secret echoed back as HandshakeKey in payloads.
+      metadata:
+        type: boolean
+        description: When true, include FormStructure and FieldStructure in the payload.
+        default: false
+  steps:
+  - stepId: getForm
+    description: Fetch the target form to confirm it exists and capture its hash.
+    operationId: getForm
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.formIdentifier
+    - name: format
+      in: path
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      hash: $response.body#/Forms/0/Hash
+      name: $response.body#/Forms/0/Name
+  - stepId: addWebhook
+    description: Subscribe the supplied URL to the form's submission webhook.
+    operationId: putFormWebhook
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.formIdentifier
+    - name: format
+      in: path
+      value: json
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        url: $inputs.url
+        handshakeKey: $inputs.handshakeKey
+        metadata: $inputs.metadata
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      webhookHash: $response.body#/WebHookPutResult/Hash
+  outputs:
+    formHash: $steps.getForm.outputs.hash
+    webhookHash: $steps.addWebhook.outputs.webhookHash

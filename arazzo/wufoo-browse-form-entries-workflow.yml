@@ -1,0 +1,134 @@
+arazzo: 1.0.1
+info:
+  title: Wufoo Browse Form Entries
+  summary: Resolve a form, check its entry count, then page through its entries.
+  description: >-
+    A read pattern for pulling submissions out of a Wufoo form. The workflow
+    confirms the target form by listing all forms and fetching the single form,
+    counts the entries so the caller can decide whether there is anything to
+    retrieve, and then pages through the entries with sorting and paging
+    controls. It branches so an empty form short-circuits before the entry
+    fetch. Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: wufooApi
+  url: ../openapi/wufoo-rest-v3-openapi.yml
+  type: openapi
+workflows:
+- workflowId: browse-form-entries
+  summary: Resolve a Wufoo form and retrieve a page of its entries.
+  description: >-
+    Lists forms, gets the single form, counts its entries, and pages through
+    the entries, branching to skip the fetch when the form has no entries.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - formIdentifier
+    properties:
+      apiKey:
+        type: string
+        description: Wufoo account API key, used as the HTTP Basic Auth username.
+      formIdentifier:
+        type: string
+        description: Form hash (preferred) or title to read entries from.
+      pageStart:
+        type: integer
+        description: Zero-based index of the first entry to return.
+        default: 0
+      pageSize:
+        type: integer
+        description: Number of entries to return per page (max 100).
+        default: 25
+      sort:
+        type: string
+        description: Field ID to sort the entries by.
+      sortDirection:
+        type: string
+        description: Sort direction, ASC or DESC.
+        default: DESC
+  steps:
+  - stepId: listForms
+    description: List all forms to confirm the target form is accessible to the API key.
+    operationId: listForms
+    parameters:
+    - name: format
+      in: path
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      forms: $response.body#/Forms
+  - stepId: getForm
+    description: Fetch the single target form to read its hash and entry links.
+    operationId: getForm
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.formIdentifier
+    - name: format
+      in: path
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      form: $response.body#/Forms/0
+      hash: $response.body#/Forms/0/Hash
+  - stepId: countEntries
+    description: Count the form's entries to decide whether there are any to retrieve.
+    operationId: countFormEntries
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.formIdentifier
+    - name: format
+      in: path
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      entryCount: $response.body#/EntryCount
+    onSuccess:
+    - name: hasEntries
+      type: goto
+      stepId: listEntries
+      criteria:
+      - context: $response.body
+        condition: $.EntryCount != '0'
+        type: jsonpath
+    - name: noEntries
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.EntryCount == '0'
+        type: jsonpath
+  - stepId: listEntries
+    description: Retrieve a sorted, paged set of entries for the form.
+    operationId: listFormEntries
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.formIdentifier
+    - name: format
+      in: path
+      value: json
+    - name: pageStart
+      in: query
+      value: $inputs.pageStart
+    - name: pageSize
+      in: query
+      value: $inputs.pageSize
+    - name: sort
+      in: query
+      value: $inputs.sort
+    - name: sortDirection
+      in: query
+      value: $inputs.sortDirection
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      entries: $response.body#/Entries
+  outputs:
+    entryCount: $steps.countEntries.outputs.entryCount
+    entries: $steps.listEntries.outputs.entries

@@ -1,0 +1,102 @@
+arazzo: 1.0.1
+info:
+  title: Wufoo Export Report Entries
+  summary: Resolve a report, read its field structure, then pull its filtered entries.
+  description: >-
+    Pulls the filtered submission set behind a Wufoo report. The workflow lists
+    all reports to confirm the target report exists, fetches the single report
+    for its metadata, reads the report's field structure so columns can be
+    mapped, and then retrieves the entries that satisfy the report's filter
+    criteria. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: wufooApi
+  url: ../openapi/wufoo-rest-v3-openapi.yml
+  type: openapi
+workflows:
+- workflowId: report-entries-export
+  summary: Resolve a Wufoo report and export the entries that match its filters.
+  description: >-
+    Lists reports, gets the single report, reads its field structure, and
+    retrieves the report's filtered entries for export.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - reportIdentifier
+    properties:
+      apiKey:
+        type: string
+        description: Wufoo account API key, used as the HTTP Basic Auth username.
+      reportIdentifier:
+        type: string
+        description: Report hash (preferred) or title to export entries from.
+      system:
+        type: boolean
+        description: Include system fields and entry audit columns.
+        default: false
+  steps:
+  - stepId: listReports
+    description: List all reports to confirm the target report is accessible to the API key.
+    operationId: listReports
+    parameters:
+    - name: format
+      in: path
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      reports: $response.body#/Reports
+  - stepId: getReport
+    description: Fetch the single target report to read its hash and entry links.
+    operationId: getReport
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.reportIdentifier
+    - name: format
+      in: path
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      report: $response.body#/Reports/0
+      hash: $response.body#/Reports/0/Hash
+  - stepId: readReportFields
+    description: Read the report's field structure so entry columns can be mapped.
+    operationId: listReportFields
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.reportIdentifier
+    - name: format
+      in: path
+      value: json
+    - name: system
+      in: query
+      value: $inputs.system
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      fields: $response.body#/Fields
+  - stepId: listReportEntries
+    description: Retrieve the entries that satisfy the report's filter criteria.
+    operationId: listReportEntries
+    parameters:
+    - name: identifier
+      in: path
+      value: $inputs.reportIdentifier
+    - name: format
+      in: path
+      value: json
+    - name: system
+      in: query
+      value: $inputs.system
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      entries: $response.body#/Entries
+  outputs:
+    fields: $steps.readReportFields.outputs.fields
+    entries: $steps.listReportEntries.outputs.entries
