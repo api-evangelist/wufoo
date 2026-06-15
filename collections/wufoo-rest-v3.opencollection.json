@@ -1,0 +1,716 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wufoo REST API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Forms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/forms.:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeTodayCount",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all forms accessible to the authenticated API key."
+        },
+        {
+          "info": {
+            "name": "Get Single Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/forms/:identifier.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "includeTodayCount",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns one form by its hash or title."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Form Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/forms/:identifier/fields.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "system",
+                "value": "",
+                "type": "query",
+                "description": "Include system fields (IP, LastPage, CompleteSubmission, Status, PurchaseTotal, Currency, TransactionId, MerchantType)."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the field structure for the given form."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Entries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Form Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/forms/:identifier/entries.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "system",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field ID to sort by."
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "match",
+                "value": "",
+                "type": "query",
+                "description": "AND or OR when combining multiple Filter parameters."
+              }
+            ]
+          },
+          "docs": "Returns entries (submissions) for a form, with filtering and paging."
+        },
+        {
+          "info": {
+            "name": "Submit Form Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.wufoo.com/api/v3/forms/:identifier/entries.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Submits a new entry to the form. Body is form-encoded `Field{N}=value` pairs."
+        },
+        {
+          "info": {
+            "name": "Count Form Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/forms/:identifier/entries/count.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the number of entries for a form."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Comments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Form Comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/forms/:identifier/comments.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "entryId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns comments left on entries for a form."
+        },
+        {
+          "info": {
+            "name": "Count Form Comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/forms/:identifier/comments/count.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the count of comments for a form."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/reports.:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all reports in the account."
+        },
+        {
+          "info": {
+            "name": "Get Single Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/reports/:identifier.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns one report by hash or title."
+        },
+        {
+          "info": {
+            "name": "List Report Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/reports/:identifier/entries.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "system",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns entries filtered by report criteria."
+        },
+        {
+          "info": {
+            "name": "Count Report Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/reports/:identifier/entries/count.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the number of entries in the report."
+        },
+        {
+          "info": {
+            "name": "List Report Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/reports/:identifier/fields.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "system",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the field structure of the underlying report."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Widgets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Report Widgets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/reports/:identifier/widgets.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the widgets that compose a report."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Account Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/users.:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all users in the account, including sub-users (each holds their own API key)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add Form Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{subdomain}.wufoo.com/api/v3/webhooks/:identifier.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "url",
+                  "value": ""
+                },
+                {
+                  "name": "handshakeKey",
+                  "value": ""
+                },
+                {
+                  "name": "metadata",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Subscribes a URL to receive webhook POSTs when the form is submitted. Up to 10 per form."
+        },
+        {
+          "info": {
+            "name": "Delete Form Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{subdomain}.wufoo.com/api/v3/webhooks/:identifier/:hash.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "Webhook hash returned at creation time."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              }
+            ]
+          },
+          "docs": "Unsubscribes a previously created webhook."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Login",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Exchange Credentials For API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.wufoo.com/api/v3/login.:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "email",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "value": ""
+                },
+                {
+                  "name": "integrationKey",
+                  "value": ""
+                },
+                {
+                  "name": "subdomain",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Builders integrating Wufoo for third-party customers can exchange a user's\nemail/password for that user's API key.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

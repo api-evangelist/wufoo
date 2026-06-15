@@ -60,22 +60,6 @@ apis:
         url: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
       - type: SpectralRules
         url: rules/wufoo-rest-v3-rules.yml
-      - type: NaftikoCapability
-        url: capabilities/rest-v3-forms.yaml
-      - type: NaftikoCapability
-        url: capabilities/rest-v3-fields.yaml
-      - type: NaftikoCapability
-        url: capabilities/rest-v3-entries.yaml
-      - type: NaftikoCapability
-        url: capabilities/rest-v3-reports.yaml
-      - type: NaftikoCapability
-        url: capabilities/rest-v3-comments.yaml
-      - type: NaftikoCapability
-        url: capabilities/rest-v3-users.yaml
-      - type: NaftikoCapability
-        url: capabilities/rest-v3-webhooks.yaml
-      - type: NaftikoCapability
-        url: capabilities/rest-v3-login.yaml
       - type: JSONSchema
         url: json-schema/wufoo-form-schema.json
       - type: JSONSchema
@@ -125,33 +109,33 @@ common:
   - type: ArazzoWorkflows
     url: arazzo/
     workflows:
-    - url: arazzo/wufoo-add-form-webhook-workflow.yml
-      name: Wufoo Add a Form Webhook
-      summary: Confirm a form exists, then subscribe a URL to its submission webhook.
-    - url: arazzo/wufoo-browse-form-entries-workflow.yml
-      name: Wufoo Browse Form Entries
-      summary: Resolve a form, check its entry count, then page through its entries.
-    - url: arazzo/wufoo-moderate-form-comments-workflow.yml
-      name: Wufoo Moderate Form Comments
-      summary: Resolve a form, count its comments, then list them when any exist.
-    - url: arazzo/wufoo-provision-builder-user-forms-workflow.yml
-      name: Wufoo Provision Builder User Forms
-      summary: Exchange a user's credentials for their API key, then list that user's forms.
-    - url: arazzo/wufoo-report-entries-export-workflow.yml
-      name: Wufoo Export Report Entries
-      summary: Resolve a report, read its field structure, then pull its filtered entries.
-    - url: arazzo/wufoo-report-entry-stats-workflow.yml
-      name: Wufoo Report Entry Stats
-      summary: List reports, count a report's entries, then fetch them when non-empty.
-    - url: arazzo/wufoo-report-widget-overview-workflow.yml
-      name: Wufoo Report Widget Overview
-      summary: Resolve a report, list its widgets, then read its underlying field structure.
-    - url: arazzo/wufoo-rotate-form-webhook-workflow.yml
-      name: Wufoo Rotate a Form Webhook
-      summary: Add a fresh webhook subscription, then delete the prior one by hash.
-    - url: arazzo/wufoo-submit-form-entry-workflow.yml
-      name: Wufoo Submit a Form Entry
-      summary: Discover a form, read its field structure, then submit a new entry.
+      - url: arazzo/wufoo-add-form-webhook-workflow.yml
+        name: Wufoo Add a Form Webhook
+        summary: Confirm a form exists, then subscribe a URL to its submission webhook.
+      - url: arazzo/wufoo-browse-form-entries-workflow.yml
+        name: Wufoo Browse Form Entries
+        summary: Resolve a form, check its entry count, then page through its entries.
+      - url: arazzo/wufoo-moderate-form-comments-workflow.yml
+        name: Wufoo Moderate Form Comments
+        summary: Resolve a form, count its comments, then list them when any exist.
+      - url: arazzo/wufoo-provision-builder-user-forms-workflow.yml
+        name: Wufoo Provision Builder User Forms
+        summary: Exchange a user's credentials for their API key, then list that user's forms.
+      - url: arazzo/wufoo-report-entries-export-workflow.yml
+        name: Wufoo Export Report Entries
+        summary: Resolve a report, read its field structure, then pull its filtered entries.
+      - url: arazzo/wufoo-report-entry-stats-workflow.yml
+        name: Wufoo Report Entry Stats
+        summary: List reports, count a report's entries, then fetch them when non-empty.
+      - url: arazzo/wufoo-report-widget-overview-workflow.yml
+        name: Wufoo Report Widget Overview
+        summary: Resolve a report, list its widgets, then read its underlying field structure.
+      - url: arazzo/wufoo-rotate-form-webhook-workflow.yml
+        name: Wufoo Rotate a Form Webhook
+        summary: Add a fresh webhook subscription, then delete the prior one by hash.
+      - url: arazzo/wufoo-submit-form-entry-workflow.yml
+        name: Wufoo Submit a Form Entry
+        summary: Discover a form, read its field structure, then submit a new entry.
   - type: Portal
     url: https://www.wufoo.com
   - type: DeveloperPortal

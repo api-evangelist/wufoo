@@ -1,99 +1,141 @@
-# Wufoo
+# Wufoo (wufoo:wufoo)
 
-Wufoo is a cloud-based form-builder owned by SurveyMonkey Inc. It lets non-developers
+Wufoo is an online form-builder owned by SurveyMonkey Inc. It lets non-developers
 build registration forms, surveys, contact forms, application forms, and payment
 forms through a drag-and-drop interface, then collect and report on submissions.
-This repository profiles Wufoo's developer surface: the v3 REST API, push
-webhooks, official SDKs, pricing, rate limits, and the shared vocabulary of the
-platform.
+Wufoo exposes a v3 REST API (Basic Auth, JSON/XML) over Forms, Entries, Fields,
+Users, Reports, Widgets, Comments, and Webhooks, plus push webhooks that POST
+form data to subscriber URLs at submission time.
 
-- Homepage: https://www.wufoo.com
-- API documentation: https://wufoo.github.io/docs/
-- API help article: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
-- Status: https://status.wufoo.com/ (Atom: https://status.wufoo.com/history.atom, RSS: https://status.wufoo.com/history.rss)
-- Blog: https://www.wufoo.com/blog/ (RSS: https://www.wufoo.com/blog/feed/)
-- GitHub: https://github.com/wufoo
+**APIs.json:** [https://github.com/api-evangelist/wufoo](https://github.com/api-evangelist/wufoo)
+
+## Scope
+
+- **Type:** Index
+- **Access:** 3rd-Party
+
+## Tags
+
+- Forms
+- Form Builder
+- Surveys
+- Data Collection
+- Webhooks
+- Payments
+- SurveyMonkey
+
+## Timestamps
+
+- **Created:** 2026-05-23
+- **Modified:** 2026-05-23
 
 ## APIs
 
 ### Wufoo REST API v3
 
-The v3 REST API exposes Forms, Fields, Entries, Reports, Widgets, Comments, Users,
-Webhooks, and Login. It uses HTTP Basic Auth with the account API key as username
-(password can be any non-empty string) and returns JSON or XML depending on the
-`.json` / `.xml` extension on the request path. Endpoints live under
-`https://{subdomain}.wufoo.com/api/v3/`.
+The Wufoo v3 REST API gives programmatic access to forms, form fields, entries,
+reports, widgets, comments, users, and webhooks for a Wufoo account. Endpoints
+are per-subdomain (https://{subdomain}.wufoo.com/api/v3/) and authenticate via
+HTTP Basic Auth with the account API key as username. Responses are JSON or XML
+depending on the .json/.xml extension on the request URL.
 
-- OpenAPI: [openapi/wufoo-rest-v3-openapi.yml](openapi/wufoo-rest-v3-openapi.yml)
-- Spectral rules: [rules/wufoo-rest-v3-rules.yml](rules/wufoo-rest-v3-rules.yml)
-- Naftiko capabilities (8, one per business surface):
-  - [capabilities/rest-v3-forms.yaml](capabilities/rest-v3-forms.yaml)
-  - [capabilities/rest-v3-fields.yaml](capabilities/rest-v3-fields.yaml)
-  - [capabilities/rest-v3-entries.yaml](capabilities/rest-v3-entries.yaml)
-  - [capabilities/rest-v3-reports.yaml](capabilities/rest-v3-reports.yaml)
-  - [capabilities/rest-v3-comments.yaml](capabilities/rest-v3-comments.yaml)
-  - [capabilities/rest-v3-users.yaml](capabilities/rest-v3-users.yaml)
-  - [capabilities/rest-v3-webhooks.yaml](capabilities/rest-v3-webhooks.yaml)
-  - [capabilities/rest-v3-login.yaml](capabilities/rest-v3-login.yaml)
-- JSON Schema: Form, Field, Entry, Report, User (under [json-schema/](json-schema/))
-- JSON Structure: Form, Entry (under [json-structure/](json-structure/))
-- Examples: list forms, list fields, list entries, submit entry, put webhook (under [examples/](examples/))
+- **Human URL:** [https://wufoo.github.io/docs/](https://wufoo.github.io/docs/)
+- **Base URL:** `https://{subdomain}.wufoo.com/api/v3`
+
+#### Tags
+
+- Forms
+- Entries
+- Fields
+- Reports
+- Widgets
+- Comments
+- Users
+- Webhooks
+
+#### Properties
+
+- [Documentation](https://wufoo.github.io/docs/)
+- [API Reference](https://wufoo.github.io/docs/)
+- [OpenAPI](openapi/wufoo-rest-v3-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/wufoo-rest-v3.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/wufoo-rest-v3.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Authentication](https://wufoo.github.io/docs/#authentication)
+- [Rate Limits](rate-limits/wufoo-rate-limits.yml)
+- [Getting Started](https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/)
+- [Spectral Rules](rules/wufoo-rest-v3-rules.yml)
+- [JSON Schema](json-schema/wufoo-form-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/wufoo-field-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/wufoo-entry-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/wufoo-report-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/wufoo-user-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Structure](json-structure/wufoo-form-structure.json)
+- [JSON Structure](json-structure/wufoo-entry-structure.json)
+- [Example](examples/wufoo-rest-v3-list-forms-example.json)
+- [Example](examples/wufoo-rest-v3-list-form-fields-example.json)
+- [Example](examples/wufoo-rest-v3-list-entries-example.json)
+- [Example](examples/wufoo-rest-v3-submit-entry-example.json)
+- [Example](examples/wufoo-rest-v3-put-webhook-example.json)
 
 ### Wufoo Webhooks
 
-Each form supports up to 10 webhook subscribers. When an entry is submitted, Wufoo
-POSTs a form-encoded payload to each subscriber URL. When `metadata=true` is set
-at subscription time, the payload includes JSON-encoded `FormStructure` and
-`FieldStructure`. When a `handshakeKey` was provided, it is echoed back as
-`HandshakeKey` in every payload.
+Wufoo webhooks POST form-submission payloads to a subscriber URL at the moment
+an entry is created. Up to 10 webhooks per form, with optional handshake key
+for verification and optional metadata for richer form/field structure.
 
-- AsyncAPI: [asyncapi/wufoo-webhooks-asyncapi.yml](asyncapi/wufoo-webhooks-asyncapi.yml)
-- Webhook payload schema: [json-schema/wufoo-webhook-payload-schema.json](json-schema/wufoo-webhook-payload-schema.json)
-- Example payload: [examples/wufoo-webhooks-form-submission-example.json](examples/wufoo-webhooks-form-submission-example.json)
+- **Human URL:** [https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/](https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/)
+- **Base URL:** `https://{subscriber}/`
 
-## Commercial surface
+#### Tags
 
-- Plans & pricing: [plans/wufoo-plans-pricing.yml](plans/wufoo-plans-pricing.yml) — Free, Starter ($16.25/mo annual), Professional ($33.25/mo), Advanced ($83.25/mo), Ultimate ($210.25/mo).
-- Rate limits: [rate-limits/wufoo-rate-limits.yml](rate-limits/wufoo-rate-limits.yml) — entry submission capped at 50 per user per 5-minute sliding window (HTTP 429 when exceeded); list-forms `limit` max 1000; entries/comments `pageSize` max 100; 10 webhooks per form.
-- FinOps: [finops/wufoo-finops.yml](finops/wufoo-finops.yml) — fixed-tier subscription, no metered overage line.
+- Webhooks
+- Events
+- Form Submissions
 
-## SDKs (community / former first-party)
+#### Properties
 
-| Language | Repo |
-|---|---|
-| PHP | https://github.com/wufoo/Wufoo-PHP-API-Wrapper |
-| Python | https://github.com/wufoo/pyfoo |
-| Ruby | https://github.com/wufoo/wuparty |
-| Java | https://github.com/wufoo/j-woo |
-| jQuery | https://github.com/wufoo/Wufoo-jQuery-API-Wrapper |
+- [Documentation](https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/)
+- [AsyncAPI](asyncapi/wufoo-webhooks-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
+- [JSON Schema](json-schema/wufoo-webhook-payload-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Example](examples/wufoo-webhooks-form-submission-example.json)
+- [Postman Collection](collections/wufoo-rest-v3.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/wufoo-rest-v3.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-## Semantic layer
+## Common Properties
 
-- Vocabulary: [vocabulary/wufoo-vocabulary.yml](vocabulary/wufoo-vocabulary.yml)
-- JSON-LD context: [json-ld/wufoo-context.jsonld](json-ld/wufoo-context.jsonld)
+- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
+- [Portal](https://www.wufoo.com)
+- [Developer Portal](https://wufoo.github.io/docs/)
+- [Documentation](https://wufoo.github.io/docs/)
+- [API Reference](https://wufoo.github.io/docs/)
+- [Getting Started](https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/)
+- [Sign Up](https://www.wufoo.com/signup/)
+- [Login](https://www.wufoo.com/login/)
+- [Pricing](https://www.wufoo.com/pricing/)
+- [Plans](plans/wufoo-plans-pricing.yml)
+- [Rate Limits](rate-limits/wufoo-rate-limits.yml)
+- [Features](https://www.wufoo.com/features/)
+- [Integrations](https://www.wufoo.com/partners/)
+- [Blog](https://www.wufoo.com/blog/)
+- [R S S](https://www.wufoo.com/blog/feed/)
+- [Support](https://help.surveymonkey.com/wufoo/)
+- [Status Page](https://status.wufoo.com/)
+- [Status R S S](https://status.wufoo.com/history.rss)
+- [Status Atom](https://status.wufoo.com/history.atom)
+- [Terms of Service](https://www.wufoo.com/terms-of-use/)
+- [Privacy Policy](https://www.wufoo.com/privacy/)
+- [GitHub Organization](https://github.com/wufoo)
+- [Vocabulary](vocabulary/wufoo-vocabulary.yml)
+- [JSON-LD](json-ld/wufoo-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Fin Ops](finops/wufoo-finops.yml)
+- [SDK](https://github.com/wufoo/Wufoo-PHP-API-Wrapper)
+- [SDK](https://github.com/wufoo/pyfoo)
+- [SDK](https://github.com/wufoo/wuparty)
+- [SDK](https://github.com/wufoo/j-woo)
+- [SDK](https://github.com/wufoo/Wufoo-jQuery-API-Wrapper)
 
-## Authentication summary
+## Maintainers
 
-```
-Authorization: Basic base64(API_KEY:any_password)
-```
-
-Each sub-user holds their own API key for permission isolation. HTTPS is required
-— SSLv3 and lower are blocked.
-
-## Inventory
-
-| Artifact | Count |
-|---|---|
-| OpenAPI specs | 1 |
-| AsyncAPI specs | 1 |
-| Naftiko capabilities | 8 |
-| JSON Schemas | 6 |
-| JSON Structures | 2 |
-| JSON-LD contexts | 1 |
-| Vocabulary files | 1 |
-| Spectral rulesets | 1 |
-| Examples | 6 |
-| Plans | 1 |
-| Rate-limit files | 1 |
-| FinOps files | 1 |
+**FN:** API Evangelist
+**Email:** info@apievangelist.com
+**URL:** https://apievangelist.com
