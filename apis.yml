@@ -74,15 +74,15 @@ apis:
         url: json-structure/wufoo-form-structure.json
       - type: JSONStructure
         url: json-structure/wufoo-entry-structure.json
-      - type: Example
+      - type: Examples
         url: examples/wufoo-rest-v3-list-forms-example.json
-      - type: Example
+      - type: Examples
         url: examples/wufoo-rest-v3-list-form-fields-example.json
-      - type: Example
+      - type: Examples
         url: examples/wufoo-rest-v3-list-entries-example.json
-      - type: Example
+      - type: Examples
         url: examples/wufoo-rest-v3-submit-entry-example.json
-      - type: Example
+      - type: Examples
         url: examples/wufoo-rest-v3-put-webhook-example.json
   - name: Wufoo Webhooks
     description: |
@@ -103,39 +103,36 @@ apis:
         url: asyncapi/wufoo-webhooks-asyncapi.yml
       - type: JSONSchema
         url: json-schema/wufoo-webhook-payload-schema.json
-      - type: Example
+      - type: Examples
         url: examples/wufoo-webhooks-form-submission-example.json
 common:
-  - type: ArazzoWorkflows
-    url: arazzo/
-    workflows:
-      - url: arazzo/wufoo-add-form-webhook-workflow.yml
-        name: Wufoo Add a Form Webhook
-        summary: Confirm a form exists, then subscribe a URL to its submission webhook.
-      - url: arazzo/wufoo-browse-form-entries-workflow.yml
-        name: Wufoo Browse Form Entries
-        summary: Resolve a form, check its entry count, then page through its entries.
-      - url: arazzo/wufoo-moderate-form-comments-workflow.yml
-        name: Wufoo Moderate Form Comments
-        summary: Resolve a form, count its comments, then list them when any exist.
-      - url: arazzo/wufoo-provision-builder-user-forms-workflow.yml
-        name: Wufoo Provision Builder User Forms
-        summary: Exchange a user's credentials for their API key, then list that user's forms.
-      - url: arazzo/wufoo-report-entries-export-workflow.yml
-        name: Wufoo Export Report Entries
-        summary: Resolve a report, read its field structure, then pull its filtered entries.
-      - url: arazzo/wufoo-report-entry-stats-workflow.yml
-        name: Wufoo Report Entry Stats
-        summary: List reports, count a report's entries, then fetch them when non-empty.
-      - url: arazzo/wufoo-report-widget-overview-workflow.yml
-        name: Wufoo Report Widget Overview
-        summary: Resolve a report, list its widgets, then read its underlying field structure.
-      - url: arazzo/wufoo-rotate-form-webhook-workflow.yml
-        name: Wufoo Rotate a Form Webhook
-        summary: Add a fresh webhook subscription, then delete the prior one by hash.
-      - url: arazzo/wufoo-submit-form-entry-workflow.yml
-        name: Wufoo Submit a Form Entry
-        summary: Discover a form, read its field structure, then submit a new entry.
+  - type: Arazzo
+    url: arazzo/wufoo-add-form-webhook-workflow.yml
+    name: Wufoo Add a Form Webhook
+  - type: Arazzo
+    url: arazzo/wufoo-browse-form-entries-workflow.yml
+    name: Wufoo Browse Form Entries
+  - type: Arazzo
+    url: arazzo/wufoo-moderate-form-comments-workflow.yml
+    name: Wufoo Moderate Form Comments
+  - type: Arazzo
+    url: arazzo/wufoo-provision-builder-user-forms-workflow.yml
+    name: Wufoo Provision Builder User Forms
+  - type: Arazzo
+    url: arazzo/wufoo-report-entries-export-workflow.yml
+    name: Wufoo Export Report Entries
+  - type: Arazzo
+    url: arazzo/wufoo-report-entry-stats-workflow.yml
+    name: Wufoo Report Entry Stats
+  - type: Arazzo
+    url: arazzo/wufoo-report-widget-overview-workflow.yml
+    name: Wufoo Report Widget Overview
+  - type: Arazzo
+    url: arazzo/wufoo-rotate-form-webhook-workflow.yml
+    name: Wufoo Rotate a Form Webhook
+  - type: Arazzo
+    url: arazzo/wufoo-submit-form-entry-workflow.yml
+    name: Wufoo Submit a Form Entry
   - type: Portal
     url: https://www.wufoo.com
   - type: DeveloperPortal
@@ -146,7 +143,7 @@ common:
     url: https://wufoo.github.io/docs/
   - type: GettingStarted
     url: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
-  - type: SignUp
+  - type: Signup
     url: https://www.wufoo.com/signup/
   - type: Login
     url: https://www.wufoo.com/login/
@@ -184,19 +181,19 @@ common:
     url: json-ld/wufoo-context.jsonld
   - type: FinOps
     url: finops/wufoo-finops.yml
-  - type: SDK
+  - type: SDKs
     name: Wufoo PHP API Wrapper
     url: https://github.com/wufoo/Wufoo-PHP-API-Wrapper
-  - type: SDK
+  - type: SDKs
     name: Wufoo Python SDK (pyfoo)
     url: https://github.com/wufoo/pyfoo
-  - type: SDK
+  - type: SDKs
     name: Wufoo Ruby Wrapper (wuparty)
     url: https://github.com/wufoo/wuparty
-  - type: SDK
+  - type: SDKs
     name: Wufoo Java SDK (j-woo)
     url: https://github.com/wufoo/j-woo
-  - type: SDK
+  - type: SDKs
     name: Wufoo jQuery API Wrapper
     url: https://github.com/wufoo/Wufoo-jQuery-API-Wrapper
 maintainers:
