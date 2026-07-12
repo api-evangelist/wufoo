@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/wufoo-rest-v3-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: |-
+    HTTP Basic Auth. Use your Wufoo API key as the username and any non-empty
+    string as the password. Servers require TLS v1.0 or higher; SSLv3 and lower
+    are blocked.
+  sources:
+  - openapi/wufoo-rest-v3-openapi.yml

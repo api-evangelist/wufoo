@@ -106,6 +106,10 @@ apis:
       - type: Examples
         url: examples/wufoo-webhooks-form-submission-example.json
 common:
+  - type: DomainSecurity
+    url: security/wufoo-domain-security.yml
+  - type: Authentication
+    url: authentication/wufoo-authentication.yml
   - type: Arazzo
     url: arazzo/wufoo-add-form-webhook-workflow.yml
     name: Wufoo Add a Form Webhook
