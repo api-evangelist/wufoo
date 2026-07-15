@@ -106,6 +106,8 @@ apis:
       - type: Examples
         url: examples/wufoo-webhooks-form-submission-example.json
 common:
+  - type: AgenticAccess
+    url: agentic-access/wufoo-agentic-access.yml
   - type: DomainSecurity
     url: security/wufoo-domain-security.yml
   - type: Authentication
