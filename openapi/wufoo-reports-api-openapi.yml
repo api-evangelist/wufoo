@@ -1,0 +1,290 @@
+openapi: 3.0.3
+info:
+  title: Wufoo REST Comments Reports API
+  description: 'The Wufoo REST API v3 provides programmatic read and write access to a Wufoo
+
+    account: Forms, Fields, Entries, Reports, Widgets, Comments, Users, and
+
+    Webhooks. Every request is per-subdomain and authenticates with the account
+
+    API key over HTTP Basic Auth. Endpoints support `.json` or `.xml` response
+
+    formats by appending the extension to the URL.
+
+    '
+  version: '3.0'
+  contact:
+    name: Wufoo Support
+    url: https://help.surveymonkey.com/wufoo/
+  license:
+    name: Wufoo Terms of Use
+    url: https://www.wufoo.com/terms-of-use/
+servers:
+- url: https://{subdomain}.wufoo.com/api/v3
+  description: Wufoo account subdomain
+  variables:
+    subdomain:
+      default: account
+      description: Your Wufoo account subdomain.
+security:
+- basicAuth: []
+tags:
+- name: Reports
+  description: Read reports built on top of forms.
+paths:
+  /reports.{format}:
+    get:
+      tags:
+      - Reports
+      summary: List All Reports
+      description: Returns all reports in the account.
+      operationId: listReports
+      parameters:
+      - $ref: '#/components/parameters/Format'
+      - name: pretty
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Report list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Reports:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Report'
+  /reports/{identifier}.{format}:
+    get:
+      tags:
+      - Reports
+      summary: Get Single Report
+      description: Returns one report by hash or title.
+      operationId: getReport
+      parameters:
+      - $ref: '#/components/parameters/Identifier'
+      - $ref: '#/components/parameters/Format'
+      - name: pretty
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: The requested report.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Reports:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Report'
+  /reports/{identifier}/entries.{format}:
+    get:
+      tags:
+      - Reports
+      summary: List Report Entries
+      description: Returns entries filtered by report criteria.
+      operationId: listReportEntries
+      parameters:
+      - $ref: '#/components/parameters/Identifier'
+      - $ref: '#/components/parameters/Format'
+      - name: system
+        in: query
+        schema:
+          type: boolean
+      - name: pretty
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Entry list for the report.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Entries:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Entry'
+  /reports/{identifier}/entries/count.{format}:
+    get:
+      tags:
+      - Reports
+      summary: Count Report Entries
+      description: Returns the number of entries in the report.
+      operationId: countReportEntries
+      parameters:
+      - $ref: '#/components/parameters/Identifier'
+      - $ref: '#/components/parameters/Format'
+      - name: pretty
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Report entry count.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  EntryCount:
+                    type: string
+  /reports/{identifier}/fields.{format}:
+    get:
+      tags:
+      - Reports
+      summary: List Report Fields
+      description: Returns the field structure of the underlying report.
+      operationId: listReportFields
+      parameters:
+      - $ref: '#/components/parameters/Identifier'
+      - $ref: '#/components/parameters/Format'
+      - name: system
+        in: query
+        schema:
+          type: boolean
+      - name: pretty
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Report field list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Fields:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Field'
+components:
+  parameters:
+    Identifier:
+      name: identifier
+      in: path
+      required: true
+      description: Form or report hash (preferred) or its title.
+      schema:
+        type: string
+    Format:
+      name: format
+      in: path
+      required: true
+      description: Response serialization format.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+  schemas:
+    Report:
+      type: object
+      properties:
+        Name:
+          type: string
+        IsPublic:
+          type: string
+        Url:
+          type: string
+        Description:
+          type: string
+        DateCreated:
+          type: string
+          format: date-time
+        DateUpdated:
+          type: string
+          format: date-time
+        Hash:
+          type: string
+        LinkFields:
+          type: string
+          format: uri
+        LinkEntries:
+          type: string
+          format: uri
+        LinkEntriesCount:
+          type: string
+          format: uri
+        LinkWidgets:
+          type: string
+          format: uri
+    Entry:
+      type: object
+      description: Submission keyed by `Field{ID}` plus audit fields.
+      additionalProperties: true
+      properties:
+        EntryId:
+          type: string
+        DateCreated:
+          type: string
+          format: date-time
+        CreatedBy:
+          type: string
+        DateUpdated:
+          type: string
+          format: date-time
+        UpdatedBy:
+          type: string
+    Field:
+      type: object
+      properties:
+        Title:
+          type: string
+        Instructions:
+          type: string
+        IsRequired:
+          type: string
+        ClassNames:
+          type: string
+        DefaultVal:
+          type: string
+        Page:
+          type: integer
+        Type:
+          type: string
+        ID:
+          type: string
+        SubFields:
+          type: array
+          items:
+            type: object
+            properties:
+              DefaultVal:
+                type: string
+              Label:
+                type: string
+              ID:
+                type: string
+        Choices:
+          type: array
+          items:
+            type: object
+            properties:
+              Label:
+                type: string
+              Score:
+                type: integer
+        HasOtherField:
+          type: boolean
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic Auth. Use your Wufoo API key as the username and any non-empty
+
+        string as the password. Servers require TLS v1.0 or higher; SSLv3 and lower
+
+        are blocked.
+
+        '

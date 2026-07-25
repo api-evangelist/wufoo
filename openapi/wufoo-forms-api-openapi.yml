@@ -1,0 +1,177 @@
+openapi: 3.0.3
+info:
+  title: Wufoo REST Comments Forms API
+  description: 'The Wufoo REST API v3 provides programmatic read and write access to a Wufoo
+
+    account: Forms, Fields, Entries, Reports, Widgets, Comments, Users, and
+
+    Webhooks. Every request is per-subdomain and authenticates with the account
+
+    API key over HTTP Basic Auth. Endpoints support `.json` or `.xml` response
+
+    formats by appending the extension to the URL.
+
+    '
+  version: '3.0'
+  contact:
+    name: Wufoo Support
+    url: https://help.surveymonkey.com/wufoo/
+  license:
+    name: Wufoo Terms of Use
+    url: https://www.wufoo.com/terms-of-use/
+servers:
+- url: https://{subdomain}.wufoo.com/api/v3
+  description: Wufoo account subdomain
+  variables:
+    subdomain:
+      default: account
+      description: Your Wufoo account subdomain.
+security:
+- basicAuth: []
+tags:
+- name: Forms
+  description: Read forms and their metadata.
+paths:
+  /forms.{format}:
+    get:
+      tags:
+      - Forms
+      summary: List All Forms
+      description: Returns all forms accessible to the authenticated API key.
+      operationId: listForms
+      parameters:
+      - $ref: '#/components/parameters/Format'
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 1000
+          maximum: 1000
+      - name: includeTodayCount
+        in: query
+        schema:
+          type: boolean
+      - name: pretty
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: A list of forms.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Forms:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Form'
+  /forms/{identifier}.{format}:
+    get:
+      tags:
+      - Forms
+      summary: Get Single Form
+      description: Returns one form by its hash or title.
+      operationId: getForm
+      parameters:
+      - $ref: '#/components/parameters/Identifier'
+      - $ref: '#/components/parameters/Format'
+      - name: includeTodayCount
+        in: query
+        schema:
+          type: boolean
+      - name: pretty
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: The requested form.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Forms:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Form'
+components:
+  parameters:
+    Format:
+      name: format
+      in: path
+      required: true
+      description: Response serialization format.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+    Identifier:
+      name: identifier
+      in: path
+      required: true
+      description: Form or report hash (preferred) or its title.
+      schema:
+        type: string
+  schemas:
+    Form:
+      type: object
+      properties:
+        Name:
+          type: string
+        Description:
+          type: string
+        RedirectMessage:
+          type: string
+        Url:
+          type: string
+        Email:
+          type: string
+        IsPublic:
+          type: string
+        Language:
+          type: string
+        StartDate:
+          type: string
+        EndDate:
+          type: string
+        EntryLimit:
+          type: string
+        DateCreated:
+          type: string
+          format: date-time
+        DateUpdated:
+          type: string
+          format: date-time
+        Hash:
+          type: string
+        LinkFields:
+          type: string
+          format: uri
+        LinkEntries:
+          type: string
+          format: uri
+        LinkEntriesCount:
+          type: string
+          format: uri
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic Auth. Use your Wufoo API key as the username and any non-empty
+
+        string as the password. Servers require TLS v1.0 or higher; SSLv3 and lower
+
+        are blocked.
+
+        '

@@ -1,0 +1,145 @@
+openapi: 3.0.3
+info:
+  title: Wufoo REST Comments API
+  description: 'The Wufoo REST API v3 provides programmatic read and write access to a Wufoo
+
+    account: Forms, Fields, Entries, Reports, Widgets, Comments, Users, and
+
+    Webhooks. Every request is per-subdomain and authenticates with the account
+
+    API key over HTTP Basic Auth. Endpoints support `.json` or `.xml` response
+
+    formats by appending the extension to the URL.
+
+    '
+  version: '3.0'
+  contact:
+    name: Wufoo Support
+    url: https://help.surveymonkey.com/wufoo/
+  license:
+    name: Wufoo Terms of Use
+    url: https://www.wufoo.com/terms-of-use/
+servers:
+- url: https://{subdomain}.wufoo.com/api/v3
+  description: Wufoo account subdomain
+  variables:
+    subdomain:
+      default: account
+      description: Your Wufoo account subdomain.
+security:
+- basicAuth: []
+tags:
+- name: Comments
+  description: Read comments attached to entries.
+paths:
+  /forms/{identifier}/comments.{format}:
+    get:
+      tags:
+      - Comments
+      summary: List Form Comments
+      description: Returns comments left on entries for a form.
+      operationId: listFormComments
+      parameters:
+      - $ref: '#/components/parameters/Identifier'
+      - $ref: '#/components/parameters/Format'
+      - name: entryId
+        in: query
+        schema:
+          type: integer
+      - name: pageStart
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          default: 25
+          maximum: 100
+      - name: pretty
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Comment list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Comments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Comment'
+  /forms/{identifier}/comments/count.{format}:
+    get:
+      tags:
+      - Comments
+      summary: Count Form Comments
+      description: Returns the count of comments for a form.
+      operationId: countFormComments
+      parameters:
+      - $ref: '#/components/parameters/Identifier'
+      - $ref: '#/components/parameters/Format'
+      - name: pretty
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Comment count.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Count:
+                    type: integer
+components:
+  parameters:
+    Format:
+      name: format
+      in: path
+      required: true
+      description: Response serialization format.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+    Identifier:
+      name: identifier
+      in: path
+      required: true
+      description: Form or report hash (preferred) or its title.
+      schema:
+        type: string
+  schemas:
+    Comment:
+      type: object
+      properties:
+        CommentId:
+          type: string
+        EntryId:
+          type: string
+        Text:
+          type: string
+        CommentedBy:
+          type: string
+        DateCreated:
+          type: string
+          format: date-time
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic Auth. Use your Wufoo API key as the username and any non-empty
+
+        string as the password. Servers require TLS v1.0 or higher; SSLv3 and lower
+
+        are blocked.
+
+        '
