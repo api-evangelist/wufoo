@@ -9,6 +9,19 @@ description: |
 url: https://github.com/api-evangelist/wufoo
 humanURL: https://www.wufoo.com
 baseURL: https://{subdomain}.wufoo.com/api/v3
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://www.wufoo.com/images/wufoo-logo.png
 tags:
   - Forms
@@ -25,87 +38,446 @@ type: Index
 aid: wufoo:wufoo
 access: 3rd-Party
 apis:
-  - name: Wufoo REST API v3
-    description: |
-      The Wufoo v3 REST API gives programmatic access to forms, form fields, entries,
-      reports, widgets, comments, users, and webhooks for a Wufoo account. Endpoints
-      are per-subdomain (https://{subdomain}.wufoo.com/api/v3/) and authenticate via
-      HTTP Basic Auth with the account API key as username. Responses are JSON or XML
-      depending on the .json/.xml extension on the request URL.
-    aid: wufoo:wufoo:rest-v3
-    humanURL: https://wufoo.github.io/docs/
-    baseURL: https://{subdomain}.wufoo.com/api/v3
-    image: https://www.wufoo.com/images/wufoo-logo.png
-    tags:
-      - Forms
-      - Entries
-      - Fields
-      - Reports
-      - Widgets
-      - Comments
-      - Users
-      - Webhooks
-    properties:
-      - type: Documentation
-        url: https://wufoo.github.io/docs/
-      - type: APIReference
-        url: https://wufoo.github.io/docs/
-      - type: OpenAPI
-        url: openapi/wufoo-rest-v3-openapi.yml
-      - type: Authentication
-        url: https://wufoo.github.io/docs/#authentication
-      - type: RateLimits
-        url: rate-limits/wufoo-rate-limits.yml
-      - type: GettingStarted
-        url: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
-      - type: SpectralRules
-        url: rules/wufoo-rest-v3-rules.yml
-      - type: JSONSchema
-        url: json-schema/wufoo-form-schema.json
-      - type: JSONSchema
-        url: json-schema/wufoo-field-schema.json
-      - type: JSONSchema
-        url: json-schema/wufoo-entry-schema.json
-      - type: JSONSchema
-        url: json-schema/wufoo-report-schema.json
-      - type: JSONSchema
-        url: json-schema/wufoo-user-schema.json
-      - type: JSONStructure
-        url: json-structure/wufoo-form-structure.json
-      - type: JSONStructure
-        url: json-structure/wufoo-entry-structure.json
-      - type: Examples
-        url: examples/wufoo-rest-v3-list-forms-example.json
-      - type: Examples
-        url: examples/wufoo-rest-v3-list-form-fields-example.json
-      - type: Examples
-        url: examples/wufoo-rest-v3-list-entries-example.json
-      - type: Examples
-        url: examples/wufoo-rest-v3-submit-entry-example.json
-      - type: Examples
-        url: examples/wufoo-rest-v3-put-webhook-example.json
-  - name: Wufoo Webhooks
-    description: |
-      Wufoo webhooks POST form-submission payloads to a subscriber URL at the moment
-      an entry is created. Up to 10 webhooks per form, with optional handshake key
-      for verification and optional metadata for richer form/field structure.
-    aid: wufoo:wufoo:webhooks
-    humanURL: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
-    baseURL: https://{subscriber}/
-    tags:
-      - Webhooks
-      - Events
-      - Form Submissions
-    properties:
-      - type: Documentation
-        url: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
-      - type: AsyncAPI
-        url: asyncapi/wufoo-webhooks-asyncapi.yml
-      - type: JSONSchema
-        url: json-schema/wufoo-webhook-payload-schema.json
-      - type: Examples
-        url: examples/wufoo-webhooks-form-submission-example.json
+- name: Wufoo Webhooks
+  description: >
+    Wufoo webhooks POST form-submission payloads to a subscriber URL at the moment
+
+    an entry is created. Up to 10 webhooks per form, with optional handshake key
+
+    for verification and optional metadata for richer form/field structure.
+  aid: wufoo:wufoo:webhooks
+  humanURL: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
+  baseURL: https://{subscriber}/
+  tags:
+  - Webhooks
+  - Events
+  - Form Submissions
+  properties:
+  - type: Documentation
+    url: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
+  - type: AsyncAPI
+    url: asyncapi/wufoo-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/wufoo-webhook-payload-schema.json
+  - type: Examples
+    url: examples/wufoo-webhooks-form-submission-example.json
+- aid: wufoo:wufoo-comments-api
+  name: Wufoo Comments API
+  description: Read comments attached to entries.
+  humanURL: https://wufoo.github.io/docs/
+  baseURL: https://{subdomain}.wufoo.com/api/v3
+  tags:
+  - Comments
+  properties:
+  - type: OpenAPI
+    url: openapi/wufoo-comments-api-openapi.yml
+  - type: Documentation
+    url: https://wufoo.github.io/docs/
+  - type: APIReference
+    url: https://wufoo.github.io/docs/
+  - type: Authentication
+    url: https://wufoo.github.io/docs/#authentication
+  - type: RateLimits
+    url: rate-limits/wufoo-rate-limits.yml
+  - type: GettingStarted
+    url: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
+  - type: SpectralRules
+    url: rules/wufoo-rest-v3-rules.yml
+  - type: JSONSchema
+    url: json-schema/wufoo-form-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-field-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-report-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-user-schema.json
+  - type: JSONStructure
+    url: json-structure/wufoo-form-structure.json
+  - type: JSONStructure
+    url: json-structure/wufoo-entry-structure.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-forms-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-form-fields-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-entries-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-submit-entry-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-put-webhook-example.json
+- aid: wufoo:wufoo-entries-api
+  name: Wufoo Entries API
+  description: Read and create form submissions.
+  humanURL: https://wufoo.github.io/docs/
+  baseURL: https://{subdomain}.wufoo.com/api/v3
+  tags:
+  - Entries
+  properties:
+  - type: OpenAPI
+    url: openapi/wufoo-entries-api-openapi.yml
+  - type: Documentation
+    url: https://wufoo.github.io/docs/
+  - type: APIReference
+    url: https://wufoo.github.io/docs/
+  - type: Authentication
+    url: https://wufoo.github.io/docs/#authentication
+  - type: RateLimits
+    url: rate-limits/wufoo-rate-limits.yml
+  - type: GettingStarted
+    url: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
+  - type: SpectralRules
+    url: rules/wufoo-rest-v3-rules.yml
+  - type: JSONSchema
+    url: json-schema/wufoo-form-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-field-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-report-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-user-schema.json
+  - type: JSONStructure
+    url: json-structure/wufoo-form-structure.json
+  - type: JSONStructure
+    url: json-structure/wufoo-entry-structure.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-forms-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-form-fields-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-entries-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-submit-entry-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-put-webhook-example.json
+- aid: wufoo:wufoo-fields-api
+  name: Wufoo Fields API
+  description: Read the field structure of a form or report.
+  humanURL: https://wufoo.github.io/docs/
+  baseURL: https://{subdomain}.wufoo.com/api/v3
+  tags:
+  - Fields
+  properties:
+  - type: OpenAPI
+    url: openapi/wufoo-fields-api-openapi.yml
+  - type: Documentation
+    url: https://wufoo.github.io/docs/
+  - type: APIReference
+    url: https://wufoo.github.io/docs/
+  - type: Authentication
+    url: https://wufoo.github.io/docs/#authentication
+  - type: RateLimits
+    url: rate-limits/wufoo-rate-limits.yml
+  - type: GettingStarted
+    url: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
+  - type: SpectralRules
+    url: rules/wufoo-rest-v3-rules.yml
+  - type: JSONSchema
+    url: json-schema/wufoo-form-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-field-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-report-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-user-schema.json
+  - type: JSONStructure
+    url: json-structure/wufoo-form-structure.json
+  - type: JSONStructure
+    url: json-structure/wufoo-entry-structure.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-forms-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-form-fields-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-entries-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-submit-entry-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-put-webhook-example.json
+- aid: wufoo:wufoo-forms-api
+  name: Wufoo Forms API
+  description: Read forms and their metadata.
+  humanURL: https://wufoo.github.io/docs/
+  baseURL: https://{subdomain}.wufoo.com/api/v3
+  tags:
+  - Forms
+  properties:
+  - type: OpenAPI
+    url: openapi/wufoo-forms-api-openapi.yml
+  - type: Documentation
+    url: https://wufoo.github.io/docs/
+  - type: APIReference
+    url: https://wufoo.github.io/docs/
+  - type: Authentication
+    url: https://wufoo.github.io/docs/#authentication
+  - type: RateLimits
+    url: rate-limits/wufoo-rate-limits.yml
+  - type: GettingStarted
+    url: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
+  - type: SpectralRules
+    url: rules/wufoo-rest-v3-rules.yml
+  - type: JSONSchema
+    url: json-schema/wufoo-form-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-field-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-report-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-user-schema.json
+  - type: JSONStructure
+    url: json-structure/wufoo-form-structure.json
+  - type: JSONStructure
+    url: json-structure/wufoo-entry-structure.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-forms-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-form-fields-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-entries-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-submit-entry-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-put-webhook-example.json
+- aid: wufoo:wufoo-login-api
+  name: Wufoo Login API
+  description: Exchange credentials for an API key.
+  humanURL: https://wufoo.github.io/docs/
+  baseURL: https://{subdomain}.wufoo.com/api/v3
+  tags:
+  - Login
+  properties:
+  - type: OpenAPI
+    url: openapi/wufoo-login-api-openapi.yml
+  - type: Documentation
+    url: https://wufoo.github.io/docs/
+  - type: APIReference
+    url: https://wufoo.github.io/docs/
+  - type: Authentication
+    url: https://wufoo.github.io/docs/#authentication
+  - type: RateLimits
+    url: rate-limits/wufoo-rate-limits.yml
+  - type: GettingStarted
+    url: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
+  - type: SpectralRules
+    url: rules/wufoo-rest-v3-rules.yml
+  - type: JSONSchema
+    url: json-schema/wufoo-form-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-field-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-report-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-user-schema.json
+  - type: JSONStructure
+    url: json-structure/wufoo-form-structure.json
+  - type: JSONStructure
+    url: json-structure/wufoo-entry-structure.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-forms-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-form-fields-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-entries-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-submit-entry-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-put-webhook-example.json
+- aid: wufoo:wufoo-reports-api
+  name: Wufoo Reports API
+  description: Read reports built on top of forms.
+  humanURL: https://wufoo.github.io/docs/
+  baseURL: https://{subdomain}.wufoo.com/api/v3
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/wufoo-reports-api-openapi.yml
+  - type: Documentation
+    url: https://wufoo.github.io/docs/
+  - type: APIReference
+    url: https://wufoo.github.io/docs/
+  - type: Authentication
+    url: https://wufoo.github.io/docs/#authentication
+  - type: RateLimits
+    url: rate-limits/wufoo-rate-limits.yml
+  - type: GettingStarted
+    url: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
+  - type: SpectralRules
+    url: rules/wufoo-rest-v3-rules.yml
+  - type: JSONSchema
+    url: json-schema/wufoo-form-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-field-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-report-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-user-schema.json
+  - type: JSONStructure
+    url: json-structure/wufoo-form-structure.json
+  - type: JSONStructure
+    url: json-structure/wufoo-entry-structure.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-forms-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-form-fields-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-entries-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-submit-entry-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-put-webhook-example.json
+- aid: wufoo:wufoo-users-api
+  name: Wufoo Users API
+  description: Read account user information.
+  humanURL: https://wufoo.github.io/docs/
+  baseURL: https://{subdomain}.wufoo.com/api/v3
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/wufoo-users-api-openapi.yml
+  - type: Documentation
+    url: https://wufoo.github.io/docs/
+  - type: APIReference
+    url: https://wufoo.github.io/docs/
+  - type: Authentication
+    url: https://wufoo.github.io/docs/#authentication
+  - type: RateLimits
+    url: rate-limits/wufoo-rate-limits.yml
+  - type: GettingStarted
+    url: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
+  - type: SpectralRules
+    url: rules/wufoo-rest-v3-rules.yml
+  - type: JSONSchema
+    url: json-schema/wufoo-form-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-field-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-report-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-user-schema.json
+  - type: JSONStructure
+    url: json-structure/wufoo-form-structure.json
+  - type: JSONStructure
+    url: json-structure/wufoo-entry-structure.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-forms-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-form-fields-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-entries-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-submit-entry-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-put-webhook-example.json
+- aid: wufoo:wufoo-webhooks-api
+  name: Wufoo Webhooks API
+  description: Subscribe to and unsubscribe from form submission webhooks.
+  humanURL: https://wufoo.github.io/docs/
+  baseURL: https://{subdomain}.wufoo.com/api/v3
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/wufoo-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://wufoo.github.io/docs/
+  - type: APIReference
+    url: https://wufoo.github.io/docs/
+  - type: Authentication
+    url: https://wufoo.github.io/docs/#authentication
+  - type: RateLimits
+    url: rate-limits/wufoo-rate-limits.yml
+  - type: GettingStarted
+    url: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
+  - type: SpectralRules
+    url: rules/wufoo-rest-v3-rules.yml
+  - type: JSONSchema
+    url: json-schema/wufoo-form-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-field-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-report-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-user-schema.json
+  - type: JSONStructure
+    url: json-structure/wufoo-form-structure.json
+  - type: JSONStructure
+    url: json-structure/wufoo-entry-structure.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-forms-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-form-fields-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-entries-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-submit-entry-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-put-webhook-example.json
+- aid: wufoo:wufoo-widgets-api
+  name: Wufoo Widgets API
+  description: Read widgets inside reports.
+  humanURL: https://wufoo.github.io/docs/
+  baseURL: https://{subdomain}.wufoo.com/api/v3
+  tags:
+  - Widgets
+  properties:
+  - type: OpenAPI
+    url: openapi/wufoo-widgets-api-openapi.yml
+  - type: Documentation
+    url: https://wufoo.github.io/docs/
+  - type: APIReference
+    url: https://wufoo.github.io/docs/
+  - type: Authentication
+    url: https://wufoo.github.io/docs/#authentication
+  - type: RateLimits
+    url: rate-limits/wufoo-rate-limits.yml
+  - type: GettingStarted
+    url: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
+  - type: SpectralRules
+    url: rules/wufoo-rest-v3-rules.yml
+  - type: JSONSchema
+    url: json-schema/wufoo-form-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-field-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-report-schema.json
+  - type: JSONSchema
+    url: json-schema/wufoo-user-schema.json
+  - type: JSONStructure
+    url: json-structure/wufoo-form-structure.json
+  - type: JSONStructure
+    url: json-structure/wufoo-entry-structure.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-forms-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-form-fields-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-list-entries-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-submit-entry-example.json
+  - type: Examples
+    url: examples/wufoo-rest-v3-put-webhook-example.json
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/wufoo/overview
   - type: AgenticAccess
     url: agentic-access/wufoo-agentic-access.yml
   - type: DomainSecurity
