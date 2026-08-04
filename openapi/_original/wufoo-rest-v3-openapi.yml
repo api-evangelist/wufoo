@@ -1,0 +1,673 @@
+openapi: 3.0.3
+info:
+  title: Wufoo REST API
+  description: |
+    The Wufoo REST API v3 provides programmatic read and write access to a Wufoo
+    account: Forms, Fields, Entries, Reports, Widgets, Comments, Users, and
+    Webhooks. Every request is per-subdomain and authenticates with the account
+    API key over HTTP Basic Auth. Endpoints support `.json` or `.xml` response
+    formats by appending the extension to the URL.
+  version: '3.0'
+  contact:
+    name: Wufoo Support
+    url: https://help.surveymonkey.com/wufoo/
+  license:
+    name: Wufoo Terms of Use
+    url: https://www.wufoo.com/terms-of-use/
+servers:
+  - url: https://{subdomain}.wufoo.com/api/v3
+    description: Wufoo account subdomain
+    variables:
+      subdomain:
+        default: account
+        description: Your Wufoo account subdomain.
+security:
+  - basicAuth: []
+tags:
+  - name: Forms
+    description: Read forms and their metadata.
+  - name: Fields
+    description: Read the field structure of a form or report.
+  - name: Entries
+    description: Read and create form submissions.
+  - name: Reports
+    description: Read reports built on top of forms.
+  - name: Widgets
+    description: Read widgets inside reports.
+  - name: Comments
+    description: Read comments attached to entries.
+  - name: Users
+    description: Read account user information.
+  - name: Webhooks
+    description: Subscribe to and unsubscribe from form submission webhooks.
+  - name: Login
+    description: Exchange credentials for an API key.
+paths:
+  /forms.{format}:
+    get:
+      tags: [Forms]
+      summary: List All Forms
+      description: Returns all forms accessible to the authenticated API key.
+      operationId: listForms
+      parameters:
+        - $ref: '#/components/parameters/Format'
+        - name: page
+          in: query
+          schema: { type: integer, default: 1, minimum: 1 }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 1000, maximum: 1000 }
+        - name: includeTodayCount
+          in: query
+          schema: { type: boolean }
+        - name: pretty
+          in: query
+          schema: { type: boolean }
+      responses:
+        '200':
+          description: A list of forms.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Forms:
+                    type: array
+                    items: { $ref: '#/components/schemas/Form' }
+  /forms/{identifier}.{format}:
+    get:
+      tags: [Forms]
+      summary: Get Single Form
+      description: Returns one form by its hash or title.
+      operationId: getForm
+      parameters:
+        - $ref: '#/components/parameters/Identifier'
+        - $ref: '#/components/parameters/Format'
+        - name: includeTodayCount
+          in: query
+          schema: { type: boolean }
+        - name: pretty
+          in: query
+          schema: { type: boolean }
+      responses:
+        '200':
+          description: The requested form.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Forms:
+                    type: array
+                    items: { $ref: '#/components/schemas/Form' }
+  /forms/{identifier}/fields.{format}:
+    get:
+      tags: [Fields]
+      summary: List Form Fields
+      description: Returns the field structure for the given form.
+      operationId: listFormFields
+      parameters:
+        - $ref: '#/components/parameters/Identifier'
+        - $ref: '#/components/parameters/Format'
+        - name: system
+          in: query
+          description: Include system fields (IP, LastPage, CompleteSubmission, Status, PurchaseTotal, Currency, TransactionId, MerchantType).
+          schema: { type: boolean }
+        - name: pretty
+          in: query
+          schema: { type: boolean }
+      responses:
+        '200':
+          description: Field list for the form.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Fields:
+                    type: array
+                    items: { $ref: '#/components/schemas/Field' }
+  /forms/{identifier}/entries.{format}:
+    get:
+      tags: [Entries]
+      summary: List Form Entries
+      description: Returns entries (submissions) for a form, with filtering and paging.
+      operationId: listFormEntries
+      parameters:
+        - $ref: '#/components/parameters/Identifier'
+        - $ref: '#/components/parameters/Format'
+        - name: system
+          in: query
+          schema: { type: boolean }
+        - name: pretty
+          in: query
+          schema: { type: boolean }
+        - name: pageStart
+          in: query
+          schema: { type: integer, default: 0 }
+        - name: pageSize
+          in: query
+          schema: { type: integer, default: 25, maximum: 100 }
+        - name: sort
+          in: query
+          description: Field ID to sort by.
+          schema: { type: string }
+        - name: sortDirection
+          in: query
+          schema: { type: string, enum: [ASC, DESC] }
+        - name: match
+          in: query
+          description: AND or OR when combining multiple Filter parameters.
+          schema: { type: string, enum: [AND, OR] }
+      responses:
+        '200':
+          description: Entries list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Entries:
+                    type: array
+                    items: { $ref: '#/components/schemas/Entry' }
+    post:
+      tags: [Entries]
+      summary: Submit Form Entry
+      description: Submits a new entry to the form. Body is form-encoded `Field{N}=value` pairs.
+      operationId: submitFormEntry
+      parameters:
+        - $ref: '#/components/parameters/Identifier'
+        - $ref: '#/components/parameters/Format'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: { type: string }
+              example:
+                Field1: Jane
+                Field2: Doe
+                Field3: jane@example.com
+      responses:
+        '200':
+          description: Submission result.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SubmitResult' }
+        '429':
+          description: Slow Down — submission rate limit exceeded (50 per user per 5 minute sliding window).
+  /forms/{identifier}/entries/count.{format}:
+    get:
+      tags: [Entries]
+      summary: Count Form Entries
+      description: Returns the number of entries for a form.
+      operationId: countFormEntries
+      parameters:
+        - $ref: '#/components/parameters/Identifier'
+        - $ref: '#/components/parameters/Format'
+        - name: pretty
+          in: query
+          schema: { type: boolean }
+      responses:
+        '200':
+          description: Entry count for the form.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  EntryCount: { type: string }
+  /forms/{identifier}/comments.{format}:
+    get:
+      tags: [Comments]
+      summary: List Form Comments
+      description: Returns comments left on entries for a form.
+      operationId: listFormComments
+      parameters:
+        - $ref: '#/components/parameters/Identifier'
+        - $ref: '#/components/parameters/Format'
+        - name: entryId
+          in: query
+          schema: { type: integer }
+        - name: pageStart
+          in: query
+          schema: { type: integer, default: 0 }
+        - name: pageSize
+          in: query
+          schema: { type: integer, default: 25, maximum: 100 }
+        - name: pretty
+          in: query
+          schema: { type: boolean }
+      responses:
+        '200':
+          description: Comment list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Comments:
+                    type: array
+                    items: { $ref: '#/components/schemas/Comment' }
+  /forms/{identifier}/comments/count.{format}:
+    get:
+      tags: [Comments]
+      summary: Count Form Comments
+      description: Returns the count of comments for a form.
+      operationId: countFormComments
+      parameters:
+        - $ref: '#/components/parameters/Identifier'
+        - $ref: '#/components/parameters/Format'
+        - name: pretty
+          in: query
+          schema: { type: boolean }
+      responses:
+        '200':
+          description: Comment count.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Count: { type: integer }
+  /reports.{format}:
+    get:
+      tags: [Reports]
+      summary: List All Reports
+      description: Returns all reports in the account.
+      operationId: listReports
+      parameters:
+        - $ref: '#/components/parameters/Format'
+        - name: pretty
+          in: query
+          schema: { type: boolean }
+      responses:
+        '200':
+          description: Report list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Reports:
+                    type: array
+                    items: { $ref: '#/components/schemas/Report' }
+  /reports/{identifier}.{format}:
+    get:
+      tags: [Reports]
+      summary: Get Single Report
+      description: Returns one report by hash or title.
+      operationId: getReport
+      parameters:
+        - $ref: '#/components/parameters/Identifier'
+        - $ref: '#/components/parameters/Format'
+        - name: pretty
+          in: query
+          schema: { type: boolean }
+      responses:
+        '200':
+          description: The requested report.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Reports:
+                    type: array
+                    items: { $ref: '#/components/schemas/Report' }
+  /reports/{identifier}/widgets.{format}:
+    get:
+      tags: [Widgets]
+      summary: List Report Widgets
+      description: Returns the widgets that compose a report.
+      operationId: listReportWidgets
+      parameters:
+        - $ref: '#/components/parameters/Identifier'
+        - $ref: '#/components/parameters/Format'
+        - name: pretty
+          in: query
+          schema: { type: boolean }
+      responses:
+        '200':
+          description: Widget list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Widgets:
+                    type: array
+                    items: { $ref: '#/components/schemas/Widget' }
+  /reports/{identifier}/entries.{format}:
+    get:
+      tags: [Reports, Entries]
+      summary: List Report Entries
+      description: Returns entries filtered by report criteria.
+      operationId: listReportEntries
+      parameters:
+        - $ref: '#/components/parameters/Identifier'
+        - $ref: '#/components/parameters/Format'
+        - name: system
+          in: query
+          schema: { type: boolean }
+        - name: pretty
+          in: query
+          schema: { type: boolean }
+      responses:
+        '200':
+          description: Entry list for the report.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Entries:
+                    type: array
+                    items: { $ref: '#/components/schemas/Entry' }
+  /reports/{identifier}/entries/count.{format}:
+    get:
+      tags: [Reports, Entries]
+      summary: Count Report Entries
+      description: Returns the number of entries in the report.
+      operationId: countReportEntries
+      parameters:
+        - $ref: '#/components/parameters/Identifier'
+        - $ref: '#/components/parameters/Format'
+        - name: pretty
+          in: query
+          schema: { type: boolean }
+      responses:
+        '200':
+          description: Report entry count.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  EntryCount: { type: string }
+  /reports/{identifier}/fields.{format}:
+    get:
+      tags: [Reports, Fields]
+      summary: List Report Fields
+      description: Returns the field structure of the underlying report.
+      operationId: listReportFields
+      parameters:
+        - $ref: '#/components/parameters/Identifier'
+        - $ref: '#/components/parameters/Format'
+        - name: system
+          in: query
+          schema: { type: boolean }
+        - name: pretty
+          in: query
+          schema: { type: boolean }
+      responses:
+        '200':
+          description: Report field list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Fields:
+                    type: array
+                    items: { $ref: '#/components/schemas/Field' }
+  /users.{format}:
+    get:
+      tags: [Users]
+      summary: List Account Users
+      description: Returns all users in the account, including sub-users (each holds their own API key).
+      operationId: listUsers
+      parameters:
+        - $ref: '#/components/parameters/Format'
+        - name: pretty
+          in: query
+          schema: { type: boolean }
+      responses:
+        '200':
+          description: User list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Users:
+                    type: array
+                    items: { $ref: '#/components/schemas/User' }
+  /webhooks/{identifier}.{format}:
+    put:
+      tags: [Webhooks]
+      summary: Add Form Webhook
+      description: Subscribes a URL to receive webhook POSTs when the form is submitted. Up to 10 per form.
+      operationId: putFormWebhook
+      parameters:
+        - $ref: '#/components/parameters/Identifier'
+        - $ref: '#/components/parameters/Format'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [url]
+              properties:
+                url:
+                  type: string
+                  format: uri
+                  description: Subscriber endpoint to POST submissions to.
+                handshakeKey:
+                  type: string
+                  description: Shared secret echoed back as `HandshakeKey` in payloads.
+                metadata:
+                  type: boolean
+                  description: When true, include FormStructure and FieldStructure in payload.
+      responses:
+        '200':
+          description: Webhook subscription created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  WebHookPutResult:
+                    type: object
+                    properties:
+                      Hash: { type: string }
+  /webhooks/{identifier}/{hash}.{format}:
+    delete:
+      tags: [Webhooks]
+      summary: Delete Form Webhook
+      description: Unsubscribes a previously created webhook.
+      operationId: deleteFormWebhook
+      parameters:
+        - $ref: '#/components/parameters/Identifier'
+        - name: hash
+          in: path
+          required: true
+          description: Webhook hash returned at creation time.
+          schema: { type: string }
+        - $ref: '#/components/parameters/Format'
+      responses:
+        '200':
+          description: Webhook deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  WebHookDeleteResult: { type: integer }
+  /login.{format}:
+    post:
+      tags: [Login]
+      summary: Exchange Credentials For API Key
+      description: |
+        Builders integrating Wufoo for third-party customers can exchange a user's
+        email/password for that user's API key.
+      operationId: login
+      parameters:
+        - $ref: '#/components/parameters/Format'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [email, password, integrationKey]
+              properties:
+                email: { type: string, format: email }
+                password: { type: string, format: password }
+                integrationKey: { type: string }
+                subdomain: { type: string }
+      responses:
+        '200':
+          description: API key and subdomain for the user.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ApiKey: { type: string }
+                  Subdomain: { type: string }
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: |
+        HTTP Basic Auth. Use your Wufoo API key as the username and any non-empty
+        string as the password. Servers require TLS v1.0 or higher; SSLv3 and lower
+        are blocked.
+  parameters:
+    Identifier:
+      name: identifier
+      in: path
+      required: true
+      description: Form or report hash (preferred) or its title.
+      schema: { type: string }
+    Format:
+      name: format
+      in: path
+      required: true
+      description: Response serialization format.
+      schema:
+        type: string
+        enum: [json, xml]
+        default: json
+  schemas:
+    Form:
+      type: object
+      properties:
+        Name: { type: string }
+        Description: { type: string }
+        RedirectMessage: { type: string }
+        Url: { type: string }
+        Email: { type: string }
+        IsPublic: { type: string }
+        Language: { type: string }
+        StartDate: { type: string }
+        EndDate: { type: string }
+        EntryLimit: { type: string }
+        DateCreated: { type: string, format: date-time }
+        DateUpdated: { type: string, format: date-time }
+        Hash: { type: string }
+        LinkFields: { type: string, format: uri }
+        LinkEntries: { type: string, format: uri }
+        LinkEntriesCount: { type: string, format: uri }
+    Field:
+      type: object
+      properties:
+        Title: { type: string }
+        Instructions: { type: string }
+        IsRequired: { type: string }
+        ClassNames: { type: string }
+        DefaultVal: { type: string }
+        Page: { type: integer }
+        Type: { type: string }
+        ID: { type: string }
+        SubFields:
+          type: array
+          items:
+            type: object
+            properties:
+              DefaultVal: { type: string }
+              Label: { type: string }
+              ID: { type: string }
+        Choices:
+          type: array
+          items:
+            type: object
+            properties:
+              Label: { type: string }
+              Score: { type: integer }
+        HasOtherField: { type: boolean }
+    Entry:
+      type: object
+      description: Submission keyed by `Field{ID}` plus audit fields.
+      additionalProperties: true
+      properties:
+        EntryId: { type: string }
+        DateCreated: { type: string, format: date-time }
+        CreatedBy: { type: string }
+        DateUpdated: { type: string, format: date-time }
+        UpdatedBy: { type: string }
+    SubmitResult:
+      type: object
+      properties:
+        Success: { type: integer, enum: [0, 1] }
+        EntryId: { type: integer }
+        EntryLink: { type: string, format: uri }
+        RedirectUrl: { type: string, format: uri }
+        ErrorText: { type: string }
+        FieldErrors:
+          type: array
+          items:
+            type: object
+            properties:
+              ID: { type: string }
+              ErrorText: { type: string }
+    Report:
+      type: object
+      properties:
+        Name: { type: string }
+        IsPublic: { type: string }
+        Url: { type: string }
+        Description: { type: string }
+        DateCreated: { type: string, format: date-time }
+        DateUpdated: { type: string, format: date-time }
+        Hash: { type: string }
+        LinkFields: { type: string, format: uri }
+        LinkEntries: { type: string, format: uri }
+        LinkEntriesCount: { type: string, format: uri }
+        LinkWidgets: { type: string, format: uri }
+    Widget:
+      type: object
+      properties:
+        Hash: { type: string }
+        Name: { type: string }
+        Size: { type: string }
+        Type: { type: string }
+        TypeDesc: { type: string }
+        Report: { type: string }
+    Comment:
+      type: object
+      properties:
+        CommentId: { type: string }
+        EntryId: { type: string }
+        Text: { type: string }
+        CommentedBy: { type: string }
+        DateCreated: { type: string, format: date-time }
+    User:
+      type: object
+      properties:
+        User: { type: string }
+        Email: { type: string }
+        FirstName: { type: string }
+        LastName: { type: string }
+        Company: { type: string }
+        TimeZone: { type: string }
+        SubdomainPrefix: { type: string }
+        Hash: { type: string }
+        IsAccountOwner: { type: string }
+        ApiKey: { type: string }
+        LinkForms: { type: string, format: uri }
+        LinkReports: { type: string, format: uri }

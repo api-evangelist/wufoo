@@ -1,0 +1,786 @@
+{
+  "info": {
+    "_postman_id": "b008da66-23d0-4e21-a39b-0d4e0a863d41",
+    "name": "Wufoo REST Comments Entries API",
+    "description": "The Wufoo REST API v3 provides programmatic read and write access to a Wufoo\naccount: Forms, Fields, Entries, Reports, Widgets, Comments, Users, and\nWebhooks. Every request is per-subdomain and authenticates with the account\nAPI key over HTTP Basic Auth. Endpoints support `.json` or `.xml` response\nformats by appending the extension to the URL.\n\n\nContact Support:\n Name: Wufoo Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:34:59.000Z",
+    "updatedAt": "2026-07-28T03:34:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b008da66-23d0-4e21-a39b-0d4e0a863d41"
+  },
+  "item": [
+    {
+      "name": "forms",
+      "item": [
+        {
+          "name": "{identifier}",
+          "item": [
+            {
+              "name": "entries.{format}",
+              "item": [
+                {
+                  "name": "List Form Entries",
+                  "id": "48b0d6d4-f2c7-463a-8b3e-eefb73b53c5a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/forms/:identifier/entries.{{format}}?system=<boolean>&pretty=<boolean>&pageStart=0&pageSize=25&sort=<string>&sortDirection=DESC&match=AND",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "forms",
+                        ":identifier",
+                        "entries.{{format}}"
+                      ],
+                      "query": [
+                        {
+                          "key": "system",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "key": "pretty",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "key": "pageStart",
+                          "value": "0"
+                        },
+                        {
+                          "key": "pageSize",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Field ID to sort by.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "sortDirection",
+                          "value": "DESC"
+                        },
+                        {
+                          "description": "AND or OR when combining multiple Filter parameters.",
+                          "key": "match",
+                          "value": "AND"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "a67462d3-e4b4-4769-a907-8b047aa0c332",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Form or report hash (preferred) or its title."
+                        }
+                      ]
+                    },
+                    "description": "Returns entries (submissions) for a form, with filtering and paging."
+                  },
+                  "response": [
+                    {
+                      "id": "e03413cb-d64a-4e57-953e-c955801a9329",
+                      "name": "Entries list.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/forms/:identifier/entries.{{format}}?system=<boolean>&pretty=<boolean>&pageStart=0&pageSize=25&sort=<string>&sortDirection=DESC&match=AND",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "forms",
+                            ":identifier",
+                            "entries.{{format}}"
+                          ],
+                          "query": [
+                            {
+                              "key": "system",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "key": "pretty",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "key": "pageStart",
+                              "value": "0"
+                            },
+                            {
+                              "key": "pageSize",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Field ID to sort by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "sortDirection",
+                              "value": "DESC"
+                            },
+                            {
+                              "description": "AND or OR when combining multiple Filter parameters.",
+                              "key": "match",
+                              "value": "AND"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"Entries\": [\n    {\n      \"EntryId\": \"<string>\",\n      \"DateCreated\": \"<dateTime>\",\n      \"CreatedBy\": \"<string>\",\n      \"DateUpdated\": \"<dateTime>\",\n      \"UpdatedBy\": \"<string>\",\n      \"mollitf01\": false,\n      \"sed9\": 92197535,\n      \"Ut_2d\": \"laborum dolor\"\n    },\n    {\n      \"EntryId\": \"<string>\",\n      \"DateCreated\": \"<dateTime>\",\n      \"CreatedBy\": \"<string>\",\n      \"DateUpdated\": \"<dateTime>\",\n      \"UpdatedBy\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:34:59.000Z",
+                      "updatedAt": "2026-07-28T03:34:59.000Z",
+                      "uid": "35240-e03413cb-d64a-4e57-953e-c955801a9329"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:59.000Z",
+                  "updatedAt": "2026-07-28T03:34:59.000Z",
+                  "uid": "35240-48b0d6d4-f2c7-463a-8b3e-eefb73b53c5a"
+                },
+                {
+                  "name": "Submit Form Entry",
+                  "id": "0ba2c415-5071-44b1-bc98-0a559f18c4e8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "sed_bf",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "dolor__7",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/forms/:identifier/entries.{{format}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "forms",
+                        ":identifier",
+                        "entries.{{format}}"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9574e215-0256-49b4-83ca-0540db15fd31",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Form or report hash (preferred) or its title."
+                        }
+                      ]
+                    },
+                    "description": "Submits a new entry to the form. Body is form-encoded `Field{N}=value` pairs."
+                  },
+                  "response": [
+                    {
+                      "id": "9c350181-faf3-48de-bb1b-d5aa125ed3ab",
+                      "name": "Submission result.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "key": "sed_bf",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "dolor__7",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/forms/:identifier/entries.{{format}}",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "forms",
+                            ":identifier",
+                            "entries.{{format}}"
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"Success\": 1,\n  \"EntryId\": \"<integer>\",\n  \"EntryLink\": \"<uri>\",\n  \"RedirectUrl\": \"<uri>\",\n  \"ErrorText\": \"<string>\",\n  \"FieldErrors\": [\n    {\n      \"ID\": \"<string>\",\n      \"ErrorText\": \"<string>\"\n    },\n    {\n      \"ID\": \"<string>\",\n      \"ErrorText\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:34:59.000Z",
+                      "updatedAt": "2026-07-28T03:34:59.000Z",
+                      "uid": "35240-9c350181-faf3-48de-bb1b-d5aa125ed3ab"
+                    },
+                    {
+                      "id": "c0047488-a911-43e0-b9ca-c0b19ce67776",
+                      "name": "Slow Down \u2014 submission rate limit exceeded (50 per user per 5 minute sliding window).",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "key": "sed_bf",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "dolor__7",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/forms/:identifier/entries.{{format}}",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "forms",
+                            ":identifier",
+                            "entries.{{format}}"
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:34:59.000Z",
+                      "updatedAt": "2026-07-28T03:34:59.000Z",
+                      "uid": "35240-c0047488-a911-43e0-b9ca-c0b19ce67776"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:59.000Z",
+                  "updatedAt": "2026-07-28T03:34:59.000Z",
+                  "uid": "35240-0ba2c415-5071-44b1-bc98-0a559f18c4e8"
+                }
+              ],
+              "id": "dd302059-3cc8-4483-88e9-c52a12b5cfcf",
+              "createdAt": "2026-07-28T03:34:59.000Z",
+              "updatedAt": "2026-07-28T03:34:59.000Z",
+              "uid": "35240-dd302059-3cc8-4483-88e9-c52a12b5cfcf"
+            },
+            {
+              "name": "entries",
+              "item": [
+                {
+                  "name": "count.{format}",
+                  "item": [
+                    {
+                      "name": "Count Form Entries",
+                      "id": "43debbad-c08b-4ce4-8d76-523c6fe47f30",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/forms/:identifier/entries/count.{{format}}?pretty=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "forms",
+                            ":identifier",
+                            "entries",
+                            "count.{{format}}"
+                          ],
+                          "query": [
+                            {
+                              "key": "pretty",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "4f1da60f-4af1-4f9d-be35-75032a38545c",
+                              "key": "identifier",
+                              "value": "<string>",
+                              "description": "(Required) Form or report hash (preferred) or its title."
+                            }
+                          ]
+                        },
+                        "description": "Returns the number of entries for a form."
+                      },
+                      "response": [
+                        {
+                          "id": "fa2cf47a-5aa8-4255-8857-e29ca5de4023",
+                          "name": "Entry count for the form.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/forms/:identifier/entries/count.{{format}}?pretty=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "forms",
+                                ":identifier",
+                                "entries",
+                                "count.{{format}}"
+                              ],
+                              "query": [
+                                {
+                                  "key": "pretty",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"EntryCount\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:59.000Z",
+                          "updatedAt": "2026-07-28T03:34:59.000Z",
+                          "uid": "35240-fa2cf47a-5aa8-4255-8857-e29ca5de4023"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:34:59.000Z",
+                      "updatedAt": "2026-07-28T03:34:59.000Z",
+                      "uid": "35240-43debbad-c08b-4ce4-8d76-523c6fe47f30"
+                    }
+                  ],
+                  "id": "2f282120-ba4c-42e4-85e7-faa050c8d858",
+                  "createdAt": "2026-07-28T03:34:59.000Z",
+                  "updatedAt": "2026-07-28T03:34:59.000Z",
+                  "uid": "35240-2f282120-ba4c-42e4-85e7-faa050c8d858"
+                }
+              ],
+              "id": "ea9f22ea-0676-43a9-84ef-d95a40a69a7c",
+              "createdAt": "2026-07-28T03:34:59.000Z",
+              "updatedAt": "2026-07-28T03:34:59.000Z",
+              "uid": "35240-ea9f22ea-0676-43a9-84ef-d95a40a69a7c"
+            }
+          ],
+          "id": "9ddf3f34-34d3-4336-9d61-533b5ac00fa4",
+          "createdAt": "2026-07-28T03:34:59.000Z",
+          "updatedAt": "2026-07-28T03:34:59.000Z",
+          "uid": "35240-9ddf3f34-34d3-4336-9d61-533b5ac00fa4"
+        }
+      ],
+      "id": "3c1c1920-9884-4ed4-9a0d-8059308e07f5",
+      "createdAt": "2026-07-28T03:34:59.000Z",
+      "updatedAt": "2026-07-28T03:34:59.000Z",
+      "uid": "35240-3c1c1920-9884-4ed4-9a0d-8059308e07f5"
+    },
+    {
+      "name": "reports",
+      "item": [
+        {
+          "name": "{identifier}",
+          "item": [
+            {
+              "name": "entries.{format}",
+              "item": [
+                {
+                  "name": "List Report Entries",
+                  "id": "6b326923-3df7-4a39-9f6f-cc20b1f60274",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:identifier/entries.{{format}}?system=<boolean>&pretty=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":identifier",
+                        "entries.{{format}}"
+                      ],
+                      "query": [
+                        {
+                          "key": "system",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "key": "pretty",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "fe8bc8bb-1689-4381-a5af-b044d11d2402",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Form or report hash (preferred) or its title."
+                        }
+                      ]
+                    },
+                    "description": "Returns entries filtered by report criteria."
+                  },
+                  "response": [
+                    {
+                      "id": "3a2b0ca5-2b4d-4596-b28b-e5691aea28cb",
+                      "name": "Entry list for the report.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/:identifier/entries.{{format}}?system=<boolean>&pretty=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            ":identifier",
+                            "entries.{{format}}"
+                          ],
+                          "query": [
+                            {
+                              "key": "system",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "key": "pretty",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"Entries\": [\n    {\n      \"EntryId\": \"<string>\",\n      \"DateCreated\": \"<dateTime>\",\n      \"CreatedBy\": \"<string>\",\n      \"DateUpdated\": \"<dateTime>\",\n      \"UpdatedBy\": \"<string>\",\n      \"mollitf01\": false,\n      \"sed9\": 92197535,\n      \"Ut_2d\": \"laborum dolor\"\n    },\n    {\n      \"EntryId\": \"<string>\",\n      \"DateCreated\": \"<dateTime>\",\n      \"CreatedBy\": \"<string>\",\n      \"DateUpdated\": \"<dateTime>\",\n      \"UpdatedBy\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:34:59.000Z",
+                      "updatedAt": "2026-07-28T03:34:59.000Z",
+                      "uid": "35240-3a2b0ca5-2b4d-4596-b28b-e5691aea28cb"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:59.000Z",
+                  "updatedAt": "2026-07-28T03:34:59.000Z",
+                  "uid": "35240-6b326923-3df7-4a39-9f6f-cc20b1f60274"
+                }
+              ],
+              "id": "ea6879e4-aa0c-4544-b82b-ffa56c5e769c",
+              "createdAt": "2026-07-28T03:34:59.000Z",
+              "updatedAt": "2026-07-28T03:34:59.000Z",
+              "uid": "35240-ea6879e4-aa0c-4544-b82b-ffa56c5e769c"
+            },
+            {
+              "name": "entries",
+              "item": [
+                {
+                  "name": "count.{format}",
+                  "item": [
+                    {
+                      "name": "Count Report Entries",
+                      "id": "acfcefda-4cfb-4938-8e49-82bba5d35dbd",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/:identifier/entries/count.{{format}}?pretty=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            ":identifier",
+                            "entries",
+                            "count.{{format}}"
+                          ],
+                          "query": [
+                            {
+                              "key": "pretty",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "c8fd5822-dd8d-414e-82ca-810df9f28025",
+                              "key": "identifier",
+                              "value": "<string>",
+                              "description": "(Required) Form or report hash (preferred) or its title."
+                            }
+                          ]
+                        },
+                        "description": "Returns the number of entries in the report."
+                      },
+                      "response": [
+                        {
+                          "id": "07b8405f-31de-469f-8adc-01d7a33a2d09",
+                          "name": "Report entry count.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/reports/:identifier/entries/count.{{format}}?pretty=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "reports",
+                                ":identifier",
+                                "entries",
+                                "count.{{format}}"
+                              ],
+                              "query": [
+                                {
+                                  "key": "pretty",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"EntryCount\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:59.000Z",
+                          "updatedAt": "2026-07-28T03:34:59.000Z",
+                          "uid": "35240-07b8405f-31de-469f-8adc-01d7a33a2d09"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:34:59.000Z",
+                      "updatedAt": "2026-07-28T03:34:59.000Z",
+                      "uid": "35240-acfcefda-4cfb-4938-8e49-82bba5d35dbd"
+                    }
+                  ],
+                  "id": "765fb15c-a51d-4b23-b66a-97f638ec475e",
+                  "createdAt": "2026-07-28T03:34:59.000Z",
+                  "updatedAt": "2026-07-28T03:34:59.000Z",
+                  "uid": "35240-765fb15c-a51d-4b23-b66a-97f638ec475e"
+                }
+              ],
+              "id": "5f84d7d6-ef1a-49c3-a54d-869cba597da8",
+              "createdAt": "2026-07-28T03:34:59.000Z",
+              "updatedAt": "2026-07-28T03:34:59.000Z",
+              "uid": "35240-5f84d7d6-ef1a-49c3-a54d-869cba597da8"
+            }
+          ],
+          "id": "c8390529-3181-4946-8905-b8da5acddd7d",
+          "createdAt": "2026-07-28T03:34:59.000Z",
+          "updatedAt": "2026-07-28T03:34:59.000Z",
+          "uid": "35240-c8390529-3181-4946-8905-b8da5acddd7d"
+        }
+      ],
+      "id": "88578e50-0fb2-4107-ad8a-445ca435552a",
+      "createdAt": "2026-07-28T03:34:59.000Z",
+      "updatedAt": "2026-07-28T03:34:59.000Z",
+      "uid": "35240-88578e50-0fb2-4107-ad8a-445ca435552a"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "subdomain",
+      "value": "account"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{subdomain}}.wufoo.com/api/v3"
+    },
+    {
+      "key": "format",
+      "value": "json"
+    }
+  ]
+}

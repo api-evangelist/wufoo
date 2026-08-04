@@ -1,0 +1,319 @@
+{
+  "info": {
+    "_postman_id": "94a08df2-350f-4899-b72c-b605c5b0a637",
+    "name": "Wufoo REST Comments Fields API",
+    "description": "The Wufoo REST API v3 provides programmatic read and write access to a Wufoo\naccount: Forms, Fields, Entries, Reports, Widgets, Comments, Users, and\nWebhooks. Every request is per-subdomain and authenticates with the account\nAPI key over HTTP Basic Auth. Endpoints support `.json` or `.xml` response\nformats by appending the extension to the URL.\n\n\nContact Support:\n Name: Wufoo Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:35:00.000Z",
+    "updatedAt": "2026-07-28T03:35:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-94a08df2-350f-4899-b72c-b605c5b0a637"
+  },
+  "item": [
+    {
+      "name": "forms",
+      "item": [
+        {
+          "name": "{identifier}",
+          "item": [
+            {
+              "name": "fields.{format}",
+              "item": [
+                {
+                  "name": "List Form Fields",
+                  "id": "4bd09580-5a43-4a1c-beeb-74474099f788",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/forms/:identifier/fields.{{format}}?system=<boolean>&pretty=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "forms",
+                        ":identifier",
+                        "fields.{{format}}"
+                      ],
+                      "query": [
+                        {
+                          "description": "Include system fields (IP, LastPage, CompleteSubmission, Status, PurchaseTotal, Currency, TransactionId, MerchantType).",
+                          "key": "system",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "key": "pretty",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "a7403f65-5dd6-4c93-89c9-7113a6e1e45f",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Form or report hash (preferred) or its title."
+                        }
+                      ]
+                    },
+                    "description": "Returns the field structure for the given form."
+                  },
+                  "response": [
+                    {
+                      "id": "fb24bd5b-cd2e-45b1-9f59-60567d5babb9",
+                      "name": "Field list for the form.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/forms/:identifier/fields.{{format}}?system=<boolean>&pretty=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "forms",
+                            ":identifier",
+                            "fields.{{format}}"
+                          ],
+                          "query": [
+                            {
+                              "description": "Include system fields (IP, LastPage, CompleteSubmission, Status, PurchaseTotal, Currency, TransactionId, MerchantType).",
+                              "key": "system",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "key": "pretty",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"Fields\": [\n    {\n      \"Title\": \"<string>\",\n      \"Instructions\": \"<string>\",\n      \"IsRequired\": \"<string>\",\n      \"ClassNames\": \"<string>\",\n      \"DefaultVal\": \"<string>\",\n      \"Page\": \"<integer>\",\n      \"Type\": \"<string>\",\n      \"ID\": \"<string>\",\n      \"SubFields\": [\n        {\n          \"DefaultVal\": \"<string>\",\n          \"Label\": \"<string>\",\n          \"ID\": \"<string>\"\n        },\n        {\n          \"DefaultVal\": \"<string>\",\n          \"Label\": \"<string>\",\n          \"ID\": \"<string>\"\n        }\n      ],\n      \"Choices\": [\n        {\n          \"Label\": \"<string>\",\n          \"Score\": \"<integer>\"\n        },\n        {\n          \"Label\": \"<string>\",\n          \"Score\": \"<integer>\"\n        }\n      ],\n      \"HasOtherField\": \"<boolean>\"\n    },\n    {\n      \"Title\": \"<string>\",\n      \"Instructions\": \"<string>\",\n      \"IsRequired\": \"<string>\",\n      \"ClassNames\": \"<string>\",\n      \"DefaultVal\": \"<string>\",\n      \"Page\": \"<integer>\",\n      \"Type\": \"<string>\",\n      \"ID\": \"<string>\",\n      \"SubFields\": [\n        {\n          \"DefaultVal\": \"<string>\",\n          \"Label\": \"<string>\",\n          \"ID\": \"<string>\"\n        },\n        {\n          \"DefaultVal\": \"<string>\",\n          \"Label\": \"<string>\",\n          \"ID\": \"<string>\"\n        }\n      ],\n      \"Choices\": [\n        {\n          \"Label\": \"<string>\",\n          \"Score\": \"<integer>\"\n        },\n        {\n          \"Label\": \"<string>\",\n          \"Score\": \"<integer>\"\n        }\n      ],\n      \"HasOtherField\": \"<boolean>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:35:01.000Z",
+                      "updatedAt": "2026-07-28T03:35:01.000Z",
+                      "uid": "35240-fb24bd5b-cd2e-45b1-9f59-60567d5babb9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:35:01.000Z",
+                  "updatedAt": "2026-07-28T03:35:01.000Z",
+                  "uid": "35240-4bd09580-5a43-4a1c-beeb-74474099f788"
+                }
+              ],
+              "id": "c0774234-8958-43dc-914d-02ecb570a7b8",
+              "createdAt": "2026-07-28T03:35:01.000Z",
+              "updatedAt": "2026-07-28T03:35:01.000Z",
+              "uid": "35240-c0774234-8958-43dc-914d-02ecb570a7b8"
+            }
+          ],
+          "id": "beca8824-9038-4f54-be7f-773344dc391d",
+          "createdAt": "2026-07-28T03:35:01.000Z",
+          "updatedAt": "2026-07-28T03:35:01.000Z",
+          "uid": "35240-beca8824-9038-4f54-be7f-773344dc391d"
+        }
+      ],
+      "id": "05b16216-89c1-4dd9-8519-fac48130724a",
+      "createdAt": "2026-07-28T03:35:01.000Z",
+      "updatedAt": "2026-07-28T03:35:01.000Z",
+      "uid": "35240-05b16216-89c1-4dd9-8519-fac48130724a"
+    },
+    {
+      "name": "reports",
+      "item": [
+        {
+          "name": "{identifier}",
+          "item": [
+            {
+              "name": "fields.{format}",
+              "item": [
+                {
+                  "name": "List Report Fields",
+                  "id": "b7a150b9-a2f0-4b91-836a-c259a42ec493",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:identifier/fields.{{format}}?system=<boolean>&pretty=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":identifier",
+                        "fields.{{format}}"
+                      ],
+                      "query": [
+                        {
+                          "key": "system",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "key": "pretty",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "0e62d127-8005-4548-8b7c-611f6344e37f",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Form or report hash (preferred) or its title."
+                        }
+                      ]
+                    },
+                    "description": "Returns the field structure of the underlying report."
+                  },
+                  "response": [
+                    {
+                      "id": "46adf10a-8fd3-4e2b-b939-10483716ed39",
+                      "name": "Report field list.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/:identifier/fields.{{format}}?system=<boolean>&pretty=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            ":identifier",
+                            "fields.{{format}}"
+                          ],
+                          "query": [
+                            {
+                              "key": "system",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "key": "pretty",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"Fields\": [\n    {\n      \"Title\": \"<string>\",\n      \"Instructions\": \"<string>\",\n      \"IsRequired\": \"<string>\",\n      \"ClassNames\": \"<string>\",\n      \"DefaultVal\": \"<string>\",\n      \"Page\": \"<integer>\",\n      \"Type\": \"<string>\",\n      \"ID\": \"<string>\",\n      \"SubFields\": [\n        {\n          \"DefaultVal\": \"<string>\",\n          \"Label\": \"<string>\",\n          \"ID\": \"<string>\"\n        },\n        {\n          \"DefaultVal\": \"<string>\",\n          \"Label\": \"<string>\",\n          \"ID\": \"<string>\"\n        }\n      ],\n      \"Choices\": [\n        {\n          \"Label\": \"<string>\",\n          \"Score\": \"<integer>\"\n        },\n        {\n          \"Label\": \"<string>\",\n          \"Score\": \"<integer>\"\n        }\n      ],\n      \"HasOtherField\": \"<boolean>\"\n    },\n    {\n      \"Title\": \"<string>\",\n      \"Instructions\": \"<string>\",\n      \"IsRequired\": \"<string>\",\n      \"ClassNames\": \"<string>\",\n      \"DefaultVal\": \"<string>\",\n      \"Page\": \"<integer>\",\n      \"Type\": \"<string>\",\n      \"ID\": \"<string>\",\n      \"SubFields\": [\n        {\n          \"DefaultVal\": \"<string>\",\n          \"Label\": \"<string>\",\n          \"ID\": \"<string>\"\n        },\n        {\n          \"DefaultVal\": \"<string>\",\n          \"Label\": \"<string>\",\n          \"ID\": \"<string>\"\n        }\n      ],\n      \"Choices\": [\n        {\n          \"Label\": \"<string>\",\n          \"Score\": \"<integer>\"\n        },\n        {\n          \"Label\": \"<string>\",\n          \"Score\": \"<integer>\"\n        }\n      ],\n      \"HasOtherField\": \"<boolean>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:35:01.000Z",
+                      "updatedAt": "2026-07-28T03:35:01.000Z",
+                      "uid": "35240-46adf10a-8fd3-4e2b-b939-10483716ed39"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:35:01.000Z",
+                  "updatedAt": "2026-07-28T03:35:01.000Z",
+                  "uid": "35240-b7a150b9-a2f0-4b91-836a-c259a42ec493"
+                }
+              ],
+              "id": "a34523d0-16f7-44f2-9562-1dc1d7026fac",
+              "createdAt": "2026-07-28T03:35:01.000Z",
+              "updatedAt": "2026-07-28T03:35:01.000Z",
+              "uid": "35240-a34523d0-16f7-44f2-9562-1dc1d7026fac"
+            }
+          ],
+          "id": "99f8816a-48e1-490c-adbc-9e6f72c5ed1e",
+          "createdAt": "2026-07-28T03:35:01.000Z",
+          "updatedAt": "2026-07-28T03:35:01.000Z",
+          "uid": "35240-99f8816a-48e1-490c-adbc-9e6f72c5ed1e"
+        }
+      ],
+      "id": "82f7b57d-358f-4040-96e5-fdf35ab8394f",
+      "createdAt": "2026-07-28T03:35:01.000Z",
+      "updatedAt": "2026-07-28T03:35:01.000Z",
+      "uid": "35240-82f7b57d-358f-4040-96e5-fdf35ab8394f"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "subdomain",
+      "value": "account"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{subdomain}}.wufoo.com/api/v3"
+    },
+    {
+      "key": "format",
+      "value": "json"
+    }
+  ]
+}

@@ -1,0 +1,318 @@
+{
+  "info": {
+    "_postman_id": "4db47dd1-7434-4057-9c93-2c9f9680a465",
+    "name": "Wufoo REST Comments API",
+    "description": "The Wufoo REST API v3 provides programmatic read and write access to a Wufoo\naccount: Forms, Fields, Entries, Reports, Widgets, Comments, Users, and\nWebhooks. Every request is per-subdomain and authenticates with the account\nAPI key over HTTP Basic Auth. Endpoints support `.json` or `.xml` response\nformats by appending the extension to the URL.\n\n\nContact Support:\n Name: Wufoo Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:34:58.000Z",
+    "updatedAt": "2026-07-28T03:34:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4db47dd1-7434-4057-9c93-2c9f9680a465"
+  },
+  "item": [
+    {
+      "name": "forms",
+      "item": [
+        {
+          "name": "{identifier}",
+          "item": [
+            {
+              "name": "comments.{format}",
+              "item": [
+                {
+                  "name": "List Form Comments",
+                  "id": "490e1227-ef06-4470-aaae-318332328efe",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/forms/:identifier/comments.{{format}}?entryId=<integer>&pageStart=0&pageSize=25&pretty=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "forms",
+                        ":identifier",
+                        "comments.{{format}}"
+                      ],
+                      "query": [
+                        {
+                          "key": "entryId",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "pageStart",
+                          "value": "0"
+                        },
+                        {
+                          "key": "pageSize",
+                          "value": "25"
+                        },
+                        {
+                          "key": "pretty",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "b8fda7dd-ce57-435a-972c-500c7b925809",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Form or report hash (preferred) or its title."
+                        }
+                      ]
+                    },
+                    "description": "Returns comments left on entries for a form."
+                  },
+                  "response": [
+                    {
+                      "id": "75ea4266-8835-4313-91aa-eef91c312443",
+                      "name": "Comment list.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/forms/:identifier/comments.{{format}}?entryId=<integer>&pageStart=0&pageSize=25&pretty=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "forms",
+                            ":identifier",
+                            "comments.{{format}}"
+                          ],
+                          "query": [
+                            {
+                              "key": "entryId",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "pageStart",
+                              "value": "0"
+                            },
+                            {
+                              "key": "pageSize",
+                              "value": "25"
+                            },
+                            {
+                              "key": "pretty",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"Comments\": [\n    {\n      \"CommentId\": \"<string>\",\n      \"EntryId\": \"<string>\",\n      \"Text\": \"<string>\",\n      \"CommentedBy\": \"<string>\",\n      \"DateCreated\": \"<dateTime>\"\n    },\n    {\n      \"CommentId\": \"<string>\",\n      \"EntryId\": \"<string>\",\n      \"Text\": \"<string>\",\n      \"CommentedBy\": \"<string>\",\n      \"DateCreated\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:34:58.000Z",
+                      "updatedAt": "2026-07-28T03:34:58.000Z",
+                      "uid": "35240-75ea4266-8835-4313-91aa-eef91c312443"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:58.000Z",
+                  "updatedAt": "2026-07-28T03:34:58.000Z",
+                  "uid": "35240-490e1227-ef06-4470-aaae-318332328efe"
+                }
+              ],
+              "id": "157caa3e-3bd8-46cc-8489-a7d01ff193d2",
+              "createdAt": "2026-07-28T03:34:58.000Z",
+              "updatedAt": "2026-07-28T03:34:58.000Z",
+              "uid": "35240-157caa3e-3bd8-46cc-8489-a7d01ff193d2"
+            },
+            {
+              "name": "comments",
+              "item": [
+                {
+                  "name": "count.{format}",
+                  "item": [
+                    {
+                      "name": "Count Form Comments",
+                      "id": "ee7726ad-a5d1-4cff-ae4a-3d2aa1eab72d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/forms/:identifier/comments/count.{{format}}?pretty=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "forms",
+                            ":identifier",
+                            "comments",
+                            "count.{{format}}"
+                          ],
+                          "query": [
+                            {
+                              "key": "pretty",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "a09fc128-97e4-4386-be2e-e48c7d9cc3ea",
+                              "key": "identifier",
+                              "value": "<string>",
+                              "description": "(Required) Form or report hash (preferred) or its title."
+                            }
+                          ]
+                        },
+                        "description": "Returns the count of comments for a form."
+                      },
+                      "response": [
+                        {
+                          "id": "d348a1c8-f35c-4608-b77d-ba3cb61136e8",
+                          "name": "Comment count.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/forms/:identifier/comments/count.{{format}}?pretty=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "forms",
+                                ":identifier",
+                                "comments",
+                                "count.{{format}}"
+                              ],
+                              "query": [
+                                {
+                                  "key": "pretty",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identifier"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"Count\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T03:34:58.000Z",
+                          "updatedAt": "2026-07-28T03:34:58.000Z",
+                          "uid": "35240-d348a1c8-f35c-4608-b77d-ba3cb61136e8"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:34:58.000Z",
+                      "updatedAt": "2026-07-28T03:34:58.000Z",
+                      "uid": "35240-ee7726ad-a5d1-4cff-ae4a-3d2aa1eab72d"
+                    }
+                  ],
+                  "id": "2501e729-804f-43ef-93eb-fd25aea36cd5",
+                  "createdAt": "2026-07-28T03:34:58.000Z",
+                  "updatedAt": "2026-07-28T03:34:58.000Z",
+                  "uid": "35240-2501e729-804f-43ef-93eb-fd25aea36cd5"
+                }
+              ],
+              "id": "6d7c3ed8-ec94-4e70-8b28-a75cc247f4ea",
+              "createdAt": "2026-07-28T03:34:58.000Z",
+              "updatedAt": "2026-07-28T03:34:58.000Z",
+              "uid": "35240-6d7c3ed8-ec94-4e70-8b28-a75cc247f4ea"
+            }
+          ],
+          "id": "c897a523-a697-4a7b-8c78-9f9639614d6b",
+          "createdAt": "2026-07-28T03:34:58.000Z",
+          "updatedAt": "2026-07-28T03:34:58.000Z",
+          "uid": "35240-c897a523-a697-4a7b-8c78-9f9639614d6b"
+        }
+      ],
+      "id": "aff22b66-26f5-4c13-9778-7531db4eb024",
+      "createdAt": "2026-07-28T03:34:58.000Z",
+      "updatedAt": "2026-07-28T03:34:58.000Z",
+      "uid": "35240-aff22b66-26f5-4c13-9778-7531db4eb024"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "subdomain",
+      "value": "account"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{subdomain}}.wufoo.com/api/v3"
+    },
+    {
+      "key": "format",
+      "value": "json"
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "info": {
+    "_postman_id": "6a92d0e6-4d77-4ba0-9966-efebf92f1b28",
+    "name": "Wufoo REST Comments Users API",
+    "description": "The Wufoo REST API v3 provides programmatic read and write access to a Wufoo\naccount: Forms, Fields, Entries, Reports, Widgets, Comments, Users, and\nWebhooks. Every request is per-subdomain and authenticates with the account\nAPI key over HTTP Basic Auth. Endpoints support `.json` or `.xml` response\nformats by appending the extension to the URL.\n\n\nContact Support:\n Name: Wufoo Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:35:22.000Z",
+    "updatedAt": "2026-07-28T03:35:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6a92d0e6-4d77-4ba0-9966-efebf92f1b28"
+  },
+  "item": [
+    {
+      "name": "users.{format}",
+      "item": [
+        {
+          "name": "List Account Users",
+          "id": "42ae9ed9-08f6-4242-bda2-4e24ee028434",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users.{{format}}?pretty=<boolean>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users.{{format}}"
+              ],
+              "query": [
+                {
+                  "key": "pretty",
+                  "value": "<boolean>"
+                }
+              ]
+            },
+            "description": "Returns all users in the account, including sub-users (each holds their own API key)."
+          },
+          "response": [
+            {
+              "id": "688ca0d0-6f01-45a4-91ac-a39d3632cb62",
+              "name": "User list.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users.{{format}}?pretty=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users.{{format}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"Users\": [\n    {\n      \"User\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Company\": \"<string>\",\n      \"TimeZone\": \"<string>\",\n      \"SubdomainPrefix\": \"<string>\",\n      \"Hash\": \"<string>\",\n      \"IsAccountOwner\": \"<string>\",\n      \"ApiKey\": \"<string>\",\n      \"LinkForms\": \"<uri>\",\n      \"LinkReports\": \"<uri>\"\n    },\n    {\n      \"User\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Company\": \"<string>\",\n      \"TimeZone\": \"<string>\",\n      \"SubdomainPrefix\": \"<string>\",\n      \"Hash\": \"<string>\",\n      \"IsAccountOwner\": \"<string>\",\n      \"ApiKey\": \"<string>\",\n      \"LinkForms\": \"<uri>\",\n      \"LinkReports\": \"<uri>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:35:23.000Z",
+              "updatedAt": "2026-07-28T03:35:23.000Z",
+              "uid": "35240-688ca0d0-6f01-45a4-91ac-a39d3632cb62"
+            }
+          ],
+          "createdAt": "2026-07-28T03:35:23.000Z",
+          "updatedAt": "2026-07-28T03:35:23.000Z",
+          "uid": "35240-42ae9ed9-08f6-4242-bda2-4e24ee028434"
+        }
+      ],
+      "id": "424686fa-4b30-4534-91d9-0af640b69ead",
+      "createdAt": "2026-07-28T03:35:23.000Z",
+      "updatedAt": "2026-07-28T03:35:23.000Z",
+      "uid": "35240-424686fa-4b30-4534-91d9-0af640b69ead"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "subdomain",
+      "value": "account"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{subdomain}}.wufoo.com/api/v3"
+    },
+    {
+      "key": "format",
+      "value": "json"
+    }
+  ]
+}

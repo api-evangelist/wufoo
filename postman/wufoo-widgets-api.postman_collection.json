@@ -1,0 +1,172 @@
+{
+  "info": {
+    "_postman_id": "1c17c83c-0993-4272-bcfd-6b38986e931a",
+    "name": "Wufoo REST Comments Widgets API",
+    "description": "The Wufoo REST API v3 provides programmatic read and write access to a Wufoo\naccount: Forms, Fields, Entries, Reports, Widgets, Comments, Users, and\nWebhooks. Every request is per-subdomain and authenticates with the account\nAPI key over HTTP Basic Auth. Endpoints support `.json` or `.xml` response\nformats by appending the extension to the URL.\n\n\nContact Support:\n Name: Wufoo Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:35:31.000Z",
+    "updatedAt": "2026-07-28T03:35:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1c17c83c-0993-4272-bcfd-6b38986e931a"
+  },
+  "item": [
+    {
+      "name": "reports",
+      "item": [
+        {
+          "name": "{identifier}",
+          "item": [
+            {
+              "name": "widgets.{format}",
+              "item": [
+                {
+                  "name": "List Report Widgets",
+                  "id": "68efcb3b-2ce6-4a80-965c-6c1359caf990",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:identifier/widgets.{{format}}?pretty=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":identifier",
+                        "widgets.{{format}}"
+                      ],
+                      "query": [
+                        {
+                          "key": "pretty",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "d5b7d4c1-5047-401e-9d7b-00979fed2ed2",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Form or report hash (preferred) or its title."
+                        }
+                      ]
+                    },
+                    "description": "Returns the widgets that compose a report."
+                  },
+                  "response": [
+                    {
+                      "id": "457ab4ba-4b10-45a4-9d9d-00c7aeed30dc",
+                      "name": "Widget list.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/:identifier/widgets.{{format}}?pretty=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            ":identifier",
+                            "widgets.{{format}}"
+                          ],
+                          "query": [
+                            {
+                              "key": "pretty",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"Widgets\": [\n    {\n      \"Hash\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Size\": \"<string>\",\n      \"Type\": \"<string>\",\n      \"TypeDesc\": \"<string>\",\n      \"Report\": \"<string>\"\n    },\n    {\n      \"Hash\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Size\": \"<string>\",\n      \"Type\": \"<string>\",\n      \"TypeDesc\": \"<string>\",\n      \"Report\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:35:32.000Z",
+                      "updatedAt": "2026-07-28T03:35:32.000Z",
+                      "uid": "35240-457ab4ba-4b10-45a4-9d9d-00c7aeed30dc"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:35:32.000Z",
+                  "updatedAt": "2026-07-28T03:35:32.000Z",
+                  "uid": "35240-68efcb3b-2ce6-4a80-965c-6c1359caf990"
+                }
+              ],
+              "id": "0794e7c3-9340-410f-9584-0859722b4956",
+              "createdAt": "2026-07-28T03:35:32.000Z",
+              "updatedAt": "2026-07-28T03:35:32.000Z",
+              "uid": "35240-0794e7c3-9340-410f-9584-0859722b4956"
+            }
+          ],
+          "id": "44153cf0-f5ae-41e4-bce1-658ed4b02913",
+          "createdAt": "2026-07-28T03:35:32.000Z",
+          "updatedAt": "2026-07-28T03:35:32.000Z",
+          "uid": "35240-44153cf0-f5ae-41e4-bce1-658ed4b02913"
+        }
+      ],
+      "id": "edbd28fe-b0ad-4323-9953-fa06dd452387",
+      "createdAt": "2026-07-28T03:35:32.000Z",
+      "updatedAt": "2026-07-28T03:35:32.000Z",
+      "uid": "35240-edbd28fe-b0ad-4323-9953-fa06dd452387"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "subdomain",
+      "value": "account"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{subdomain}}.wufoo.com/api/v3"
+    },
+    {
+      "key": "format",
+      "value": "json"
+    }
+  ]
+}

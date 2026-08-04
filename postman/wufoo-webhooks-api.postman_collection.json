@@ -1,0 +1,300 @@
+{
+  "info": {
+    "_postman_id": "1822cfe1-dbe9-4589-bee5-d37a3f414d48",
+    "name": "Wufoo REST Comments Webhooks API",
+    "description": "The Wufoo REST API v3 provides programmatic read and write access to a Wufoo\naccount: Forms, Fields, Entries, Reports, Widgets, Comments, Users, and\nWebhooks. Every request is per-subdomain and authenticates with the account\nAPI key over HTTP Basic Auth. Endpoints support `.json` or `.xml` response\nformats by appending the extension to the URL.\n\n\nContact Support:\n Name: Wufoo Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:35:31.000Z",
+    "updatedAt": "2026-07-28T03:35:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1822cfe1-dbe9-4589-bee5-d37a3f414d48"
+  },
+  "item": [
+    {
+      "name": "webhooks",
+      "item": [
+        {
+          "name": "{identifier}.{format}",
+          "item": [
+            {
+              "name": "Add Form Webhook",
+              "id": "61495594-0456-45bb-b5ea-7d0c4f0be605",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) Subscriber endpoint to POST submissions to.",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "Shared secret echoed back as `HandshakeKey` in payloads.",
+                      "key": "handshakeKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "When true, include FormStructure and FieldStructure in payload.",
+                      "key": "metadata",
+                      "value": "<boolean>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks/{{identifier}}.{{format}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks",
+                    "{{identifier}}.{{format}}"
+                  ]
+                },
+                "description": "Subscribes a URL to receive webhook POSTs when the form is submitted. Up to 10 per form."
+              },
+              "response": [
+                {
+                  "id": "67dab657-6485-49b3-ada1-e55ca2a81c8e",
+                  "name": "Webhook subscription created.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) Subscriber endpoint to POST submissions to.",
+                          "key": "url",
+                          "value": "<uri>"
+                        },
+                        {
+                          "description": "Shared secret echoed back as `HandshakeKey` in payloads.",
+                          "key": "handshakeKey",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "When true, include FormStructure and FieldStructure in payload.",
+                          "key": "metadata",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/{{identifier}}.{{format}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        "{{identifier}}.{{format}}"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"WebHookPutResult\": {\n    \"Hash\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:35:31.000Z",
+                  "updatedAt": "2026-07-28T03:35:31.000Z",
+                  "uid": "35240-67dab657-6485-49b3-ada1-e55ca2a81c8e"
+                }
+              ],
+              "createdAt": "2026-07-28T03:35:31.000Z",
+              "updatedAt": "2026-07-28T03:35:31.000Z",
+              "uid": "35240-61495594-0456-45bb-b5ea-7d0c4f0be605"
+            }
+          ],
+          "id": "6449801c-289b-4c6b-949c-684dd97d25a7",
+          "createdAt": "2026-07-28T03:35:31.000Z",
+          "updatedAt": "2026-07-28T03:35:31.000Z",
+          "uid": "35240-6449801c-289b-4c6b-949c-684dd97d25a7"
+        },
+        {
+          "name": "{identifier}",
+          "item": [
+            {
+              "name": "{hash}.{format}",
+              "item": [
+                {
+                  "name": "Delete Form Webhook",
+                  "id": "3ba81f14-e1b5-40ee-be15-c768e321a153",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:identifier/{{hash}}.{{format}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":identifier",
+                        "{{hash}}.{{format}}"
+                      ],
+                      "variable": [
+                        {
+                          "id": "91380fbc-5cb9-4c7a-a01f-56f808257f75",
+                          "key": "identifier",
+                          "value": "<string>",
+                          "description": "(Required) Form or report hash (preferred) or its title."
+                        }
+                      ]
+                    },
+                    "description": "Unsubscribes a previously created webhook."
+                  },
+                  "response": [
+                    {
+                      "id": "87279525-f187-49a4-a0bc-864b8d489da0",
+                      "name": "Webhook deleted.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webhooks/:identifier/{{hash}}.{{format}}",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhooks",
+                            ":identifier",
+                            "{{hash}}.{{format}}"
+                          ],
+                          "variable": [
+                            {
+                              "key": "identifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"WebHookDeleteResult\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:35:31.000Z",
+                      "updatedAt": "2026-07-28T03:35:31.000Z",
+                      "uid": "35240-87279525-f187-49a4-a0bc-864b8d489da0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:35:31.000Z",
+                  "updatedAt": "2026-07-28T03:35:31.000Z",
+                  "uid": "35240-3ba81f14-e1b5-40ee-be15-c768e321a153"
+                }
+              ],
+              "id": "b9252bf8-6127-44a0-802e-33d32981be09",
+              "createdAt": "2026-07-28T03:35:31.000Z",
+              "updatedAt": "2026-07-28T03:35:31.000Z",
+              "uid": "35240-b9252bf8-6127-44a0-802e-33d32981be09"
+            }
+          ],
+          "id": "c5f7a126-cc0a-4207-8676-e76e78b2ab73",
+          "createdAt": "2026-07-28T03:35:31.000Z",
+          "updatedAt": "2026-07-28T03:35:31.000Z",
+          "uid": "35240-c5f7a126-cc0a-4207-8676-e76e78b2ab73"
+        }
+      ],
+      "id": "70ebe38b-292e-4a9b-9372-7cd3922ba786",
+      "createdAt": "2026-07-28T03:35:31.000Z",
+      "updatedAt": "2026-07-28T03:35:31.000Z",
+      "uid": "35240-70ebe38b-292e-4a9b-9372-7cd3922ba786"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "subdomain",
+      "value": "account"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{subdomain}}.wufoo.com/api/v3"
+    },
+    {
+      "key": "identifier",
+      "value": "<string>"
+    },
+    {
+      "key": "format",
+      "value": "json"
+    },
+    {
+      "key": "hash",
+      "value": "<string>"
+    }
+  ]
+}

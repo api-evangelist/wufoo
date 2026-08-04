@@ -1,0 +1,30 @@
+{
+  "provider": "wufoo",
+  "sources": [
+    "wufoo-comments-api-openapi.yml",
+    "wufoo-entries-api-openapi.yml",
+    "wufoo-fields-api-openapi.yml",
+    "wufoo-forms-api-openapi.yml",
+    "wufoo-login-api-openapi.yml",
+    "wufoo-reports-api-openapi.yml",
+    "wufoo-users-api-openapi.yml",
+    "wufoo-webhooks-api-openapi.yml",
+    "wufoo-widgets-api-openapi.yml"
+  ],
+  "outputs": [
+    "wufoo-comments-api-openapi.yml",
+    "wufoo-entries-api-openapi.yml",
+    "wufoo-fields-api-openapi.yml",
+    "wufoo-forms-api-openapi.yml",
+    "wufoo-login-api-openapi.yml",
+    "wufoo-reports-api-openapi.yml",
+    "wufoo-users-api-openapi.yml",
+    "wufoo-webhooks-api-openapi.yml",
+    "wufoo-widgets-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
