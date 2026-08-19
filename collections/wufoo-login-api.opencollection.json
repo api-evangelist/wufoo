@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wufoo REST Comments Login API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Login",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Exchange Credentials For API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.wufoo.com/api/v3/login.:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "email",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "value": ""
+                },
+                {
+                  "name": "integrationKey",
+                  "value": ""
+                },
+                {
+                  "name": "subdomain",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Builders integrating Wufoo for third-party customers can exchange a user's\nemail/password for that user's API key.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

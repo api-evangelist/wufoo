@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wufoo REST Comments Users API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Account Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/users.:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all users in the account, including sub-users (each holds their own API key)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

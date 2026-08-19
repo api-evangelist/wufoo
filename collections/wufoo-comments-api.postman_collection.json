@@ -1,0 +1,335 @@
+{
+  "item": [
+    {
+      "id": "d00f6cfa-3129-4662-a2ab-cdadf5044dca",
+      "name": "Comments",
+      "description": {
+        "content": "Read comments attached to entries.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "836d8095-0837-4903-8c35-156c6f088f90",
+          "name": "List Form Comments",
+          "request": {
+            "name": "List Form Comments",
+            "description": {
+              "content": "Returns comments left on entries for a form.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "forms",
+                ":identifier",
+                "comments.{{format}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "entryId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageStart",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) Form or report hash (preferred) or its title."
+                },
+                {
+                  "description": "Your Wufoo account subdomain.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01006483-935b-41c9-96c1-cef20ee77fbd",
+              "name": "Comment list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forms",
+                    ":identifier",
+                    "comments.{{format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entryId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageStart",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Form or report hash (preferred) or its title."
+                    },
+                    {
+                      "description": "Your Wufoo account subdomain.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Comments\": [\n    {\n      \"CommentId\": \"string\",\n      \"EntryId\": \"string\",\n      \"Text\": \"string\",\n      \"CommentedBy\": \"string\",\n      \"DateCreated\": \"1979-06-09T02:46:03.689Z\"\n    },\n    {\n      \"CommentId\": \"string\",\n      \"EntryId\": \"string\",\n      \"Text\": \"string\",\n      \"CommentedBy\": \"string\",\n      \"DateCreated\": \"1991-10-17T14:51:54.385Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd34e8b5-535f-4275-b891-cd15f79b1032",
+          "name": "Count Form Comments",
+          "request": {
+            "name": "Count Form Comments",
+            "description": {
+              "content": "Returns the count of comments for a form.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "forms",
+                ":identifier",
+                "comments",
+                "count.{{format}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) Form or report hash (preferred) or its title."
+                },
+                {
+                  "description": "Your Wufoo account subdomain.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25d334bb-b4b6-4b52-9a37-64aee9497344",
+              "name": "Comment count.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forms",
+                    ":identifier",
+                    "comments",
+                    "count.{{format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Form or report hash (preferred) or its title."
+                    },
+                    {
+                      "description": "Your Wufoo account subdomain.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Count\": 1605\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Wufoo account subdomain.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "account",
+      "key": "subdomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{subdomain}}.wufoo.com/api/v3",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Response serialization format.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "json",
+      "key": "format"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6aeecef9-43ac-4a60-817e-bd6a19c86390",
+    "name": "Wufoo REST Comments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Wufoo REST API v3 provides programmatic read and write access to a Wufoo\naccount: Forms, Fields, Entries, Reports, Widgets, Comments, Users, and\nWebhooks. Every request is per-subdomain and authenticates with the account\nAPI key over HTTP Basic Auth. Endpoints support `.json` or `.xml` response\nformats by appending the extension to the URL.\n\n\nContact Support:\n Name: Wufoo Support",
+      "type": "text/plain"
+    }
+  }
+}

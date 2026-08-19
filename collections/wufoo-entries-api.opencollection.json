@@ -1,0 +1,211 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wufoo REST Comments Entries API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Form Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/forms/:identifier/entries.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "system",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field ID to sort by."
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "match",
+                "value": "",
+                "type": "query",
+                "description": "AND or OR when combining multiple Filter parameters."
+              }
+            ]
+          },
+          "docs": "Returns entries (submissions) for a form, with filtering and paging."
+        },
+        {
+          "info": {
+            "name": "Submit Form Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.wufoo.com/api/v3/forms/:identifier/entries.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Submits a new entry to the form. Body is form-encoded `Field{N}=value` pairs."
+        },
+        {
+          "info": {
+            "name": "Count Form Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/forms/:identifier/entries/count.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the number of entries for a form."
+        },
+        {
+          "info": {
+            "name": "List Report Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/reports/:identifier/entries.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "system",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns entries filtered by report criteria."
+        },
+        {
+          "info": {
+            "name": "Count Report Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/reports/:identifier/entries/count.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the number of entries in the report."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

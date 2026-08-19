@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wufoo REST Comments Webhooks API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add Form Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{subdomain}.wufoo.com/api/v3/webhooks/:identifier.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "url",
+                  "value": ""
+                },
+                {
+                  "name": "handshakeKey",
+                  "value": ""
+                },
+                {
+                  "name": "metadata",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Subscribes a URL to receive webhook POSTs when the form is submitted. Up to 10 per form."
+        },
+        {
+          "info": {
+            "name": "Delete Form Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{subdomain}.wufoo.com/api/v3/webhooks/:identifier/:hash.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "Webhook hash returned at creation time."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              }
+            ]
+          },
+          "docs": "Unsubscribes a previously created webhook."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

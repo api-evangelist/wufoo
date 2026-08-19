@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wufoo REST Comments Fields API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Form Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/forms/:identifier/fields.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "system",
+                "value": "",
+                "type": "query",
+                "description": "Include system fields (IP, LastPage, CompleteSubmission, Status, PurchaseTotal, Currency, TransactionId, MerchantType)."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the field structure for the given form."
+        },
+        {
+          "info": {
+            "name": "List Report Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.wufoo.com/api/v3/reports/:identifier/fields.:format",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Form or report hash (preferred) or its title."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response serialization format."
+              },
+              {
+                "name": "system",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the field structure of the underlying report."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

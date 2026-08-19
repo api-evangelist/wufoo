@@ -1,0 +1,185 @@
+{
+  "item": [
+    {
+      "id": "b81c1a1f-7bda-4698-b829-abd24fae4957",
+      "name": "Widgets",
+      "description": {
+        "content": "Read widgets inside reports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c7a4e59a-031b-488e-8ace-f7bf04437171",
+          "name": "List Report Widgets",
+          "request": {
+            "name": "List Report Widgets",
+            "description": {
+              "content": "Returns the widgets that compose a report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                ":identifier",
+                "widgets.{{format}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) Form or report hash (preferred) or its title."
+                },
+                {
+                  "description": "Your Wufoo account subdomain.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "929cc9a6-ef9b-40ef-9a31-90ffb369d552",
+              "name": "Widget list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":identifier",
+                    "widgets.{{format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) Form or report hash (preferred) or its title."
+                    },
+                    {
+                      "description": "Your Wufoo account subdomain.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Widgets\": [\n    {\n      \"Hash\": \"string\",\n      \"Name\": \"string\",\n      \"Size\": \"string\",\n      \"Type\": \"string\",\n      \"TypeDesc\": \"string\",\n      \"Report\": \"string\"\n    },\n    {\n      \"Hash\": \"string\",\n      \"Name\": \"string\",\n      \"Size\": \"string\",\n      \"Type\": \"string\",\n      \"TypeDesc\": \"string\",\n      \"Report\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Wufoo account subdomain.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "account",
+      "key": "subdomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{subdomain}}.wufoo.com/api/v3",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Response serialization format.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "json",
+      "key": "format"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "876dc52d-6548-4d61-a1c6-da11001252ba",
+    "name": "Wufoo REST Comments Widgets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Wufoo REST API v3 provides programmatic read and write access to a Wufoo\naccount: Forms, Fields, Entries, Reports, Widgets, Comments, Users, and\nWebhooks. Every request is per-subdomain and authenticates with the account\nAPI key over HTTP Basic Auth. Endpoints support `.json` or `.xml` response\nformats by appending the extension to the URL.\n\n\nContact Support:\n Name: Wufoo Support",
+      "type": "text/plain"
+    }
+  }
+}

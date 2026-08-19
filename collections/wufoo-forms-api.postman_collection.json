@@ -1,0 +1,318 @@
+{
+  "item": [
+    {
+      "id": "f5be59d6-43a7-471f-983f-8324553f8025",
+      "name": "Forms",
+      "description": {
+        "content": "Read forms and their metadata.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "78dd630e-5d09-4353-81da-88d49ef779e3",
+          "name": "List All Forms",
+          "request": {
+            "name": "List All Forms",
+            "description": {
+              "content": "Returns all forms accessible to the authenticated API key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "forms.{{format}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeTodayCount",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Wufoo account subdomain.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27bf11c3-0796-4a8f-a33d-027535244262",
+              "name": "A list of forms.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forms.{{format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "includeTodayCount",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Wufoo account subdomain.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Forms\": [\n    {\n      \"Name\": \"string\",\n      \"Description\": \"string\",\n      \"RedirectMessage\": \"string\",\n      \"Url\": \"string\",\n      \"Email\": \"string\",\n      \"IsPublic\": \"string\",\n      \"Language\": \"string\",\n      \"StartDate\": \"string\",\n      \"EndDate\": \"string\",\n      \"EntryLimit\": \"string\",\n      \"DateCreated\": \"2017-03-17T14:56:53.766Z\",\n      \"DateUpdated\": \"1999-06-16T00:29:26.846Z\",\n      \"Hash\": \"string\",\n      \"LinkFields\": \"http://DYfdJWKhvVyVQUutlK.elcC6C9PyanaZkNXXPR9BhGWX+cv\",\n      \"LinkEntries\": \"https://wemdrGqfDXvJUCKvpNXj.jnvLNHYUkv,gg7kFLz02o1toynvxNhWyLab1Gu+cT2-IoYjPL5ppFaLZTkA,32C3bW\",\n      \"LinkEntriesCount\": \"http://VNxAvteYYOJGIk.phuQkCieg,VvOITf6bHlyoxfa.RTp+OsqhjIxq49Y\"\n    },\n    {\n      \"Name\": \"string\",\n      \"Description\": \"string\",\n      \"RedirectMessage\": \"string\",\n      \"Url\": \"string\",\n      \"Email\": \"string\",\n      \"IsPublic\": \"string\",\n      \"Language\": \"string\",\n      \"StartDate\": \"string\",\n      \"EndDate\": \"string\",\n      \"EntryLimit\": \"string\",\n      \"DateCreated\": \"1967-03-19T11:24:37.820Z\",\n      \"DateUpdated\": \"1973-11-04T00:50:53.467Z\",\n      \"Hash\": \"string\",\n      \"LinkFields\": \"http://vzoUUTBHSPN.ivD\",\n      \"LinkEntries\": \"https://y.jbttamOVxLLyH9ykEx8mnaN.bnEzaRqm5o7,a6K+aoe9Hf4-t.LH8-2A\",\n      \"LinkEntriesCount\": \"https://KzYQwdP.vlzH1CNPJNhWcbvTB0Vzg4z-+uy9\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ee61d24-c56e-4b3c-9d63-c9c10987a339",
+          "name": "Get Single Form",
+          "request": {
+            "name": "Get Single Form",
+            "description": {
+              "content": "Returns one form by its hash or title.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "forms",
+                "{{identifier}}.{{format}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeTodayCount",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Wufoo account subdomain.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "af8a9364-761f-4aa2-8dfc-5946023d6a85",
+              "name": "The requested form.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forms",
+                    "{{identifier}}.{{format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeTodayCount",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "pretty",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Wufoo account subdomain.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Forms\": [\n    {\n      \"Name\": \"string\",\n      \"Description\": \"string\",\n      \"RedirectMessage\": \"string\",\n      \"Url\": \"string\",\n      \"Email\": \"string\",\n      \"IsPublic\": \"string\",\n      \"Language\": \"string\",\n      \"StartDate\": \"string\",\n      \"EndDate\": \"string\",\n      \"EntryLimit\": \"string\",\n      \"DateCreated\": \"2017-03-17T14:56:53.766Z\",\n      \"DateUpdated\": \"1999-06-16T00:29:26.846Z\",\n      \"Hash\": \"string\",\n      \"LinkFields\": \"http://DYfdJWKhvVyVQUutlK.elcC6C9PyanaZkNXXPR9BhGWX+cv\",\n      \"LinkEntries\": \"https://wemdrGqfDXvJUCKvpNXj.jnvLNHYUkv,gg7kFLz02o1toynvxNhWyLab1Gu+cT2-IoYjPL5ppFaLZTkA,32C3bW\",\n      \"LinkEntriesCount\": \"http://VNxAvteYYOJGIk.phuQkCieg,VvOITf6bHlyoxfa.RTp+OsqhjIxq49Y\"\n    },\n    {\n      \"Name\": \"string\",\n      \"Description\": \"string\",\n      \"RedirectMessage\": \"string\",\n      \"Url\": \"string\",\n      \"Email\": \"string\",\n      \"IsPublic\": \"string\",\n      \"Language\": \"string\",\n      \"StartDate\": \"string\",\n      \"EndDate\": \"string\",\n      \"EntryLimit\": \"string\",\n      \"DateCreated\": \"1967-03-19T11:24:37.820Z\",\n      \"DateUpdated\": \"1973-11-04T00:50:53.467Z\",\n      \"Hash\": \"string\",\n      \"LinkFields\": \"http://vzoUUTBHSPN.ivD\",\n      \"LinkEntries\": \"https://y.jbttamOVxLLyH9ykEx8mnaN.bnEzaRqm5o7,a6K+aoe9Hf4-t.LH8-2A\",\n      \"LinkEntriesCount\": \"https://KzYQwdP.vlzH1CNPJNhWcbvTB0Vzg4z-+uy9\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Wufoo account subdomain.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "account",
+      "key": "subdomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{subdomain}}.wufoo.com/api/v3",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Response serialization format.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "json",
+      "key": "format"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Form or report hash (preferred) or its title.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "identifier"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bf03d60b-8094-4e08-8022-8c4928faa5e9",
+    "name": "Wufoo REST Comments Forms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Wufoo REST API v3 provides programmatic read and write access to a Wufoo\naccount: Forms, Fields, Entries, Reports, Widgets, Comments, Users, and\nWebhooks. Every request is per-subdomain and authenticates with the account\nAPI key over HTTP Basic Auth. Endpoints support `.json` or `.xml` response\nformats by appending the extension to the URL.\n\n\nContact Support:\n Name: Wufoo Support",
+      "type": "text/plain"
+    }
+  }
+}

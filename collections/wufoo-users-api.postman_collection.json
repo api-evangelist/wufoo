@@ -1,0 +1,167 @@
+{
+  "item": [
+    {
+      "id": "b7b32c2d-e4ed-40e8-8a74-40d3c6086224",
+      "name": "Users",
+      "description": {
+        "content": "Read account user information.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd8fbaed-3b51-436a-855a-882d8e1a23fc",
+          "name": "List Account Users",
+          "request": {
+            "name": "List Account Users",
+            "description": {
+              "content": "Returns all users in the account, including sub-users (each holds their own API key).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users.{{format}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Wufoo account subdomain.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c1ecc54-c132-4742-b688-ec978b03302e",
+              "name": "User list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users.{{format}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Wufoo account subdomain.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Users\": [\n    {\n      \"User\": \"string\",\n      \"Email\": \"string\",\n      \"FirstName\": \"string\",\n      \"LastName\": \"string\",\n      \"Company\": \"string\",\n      \"TimeZone\": \"string\",\n      \"SubdomainPrefix\": \"string\",\n      \"Hash\": \"string\",\n      \"IsAccountOwner\": \"string\",\n      \"ApiKey\": \"string\",\n      \"LinkForms\": \"https://QomGfAX.laRwU,zJzRJ4XtOmjlN79u6jHdOVbeRohYs8WFRlNxz\",\n      \"LinkReports\": \"http://QdonZsdLm.wsrISE.sGZ7Cuq7HcflAa1qbsaK7CY76TIo7SlXYwIB5IREJH7eaUXvlDF\"\n    },\n    {\n      \"User\": \"string\",\n      \"Email\": \"string\",\n      \"FirstName\": \"string\",\n      \"LastName\": \"string\",\n      \"Company\": \"string\",\n      \"TimeZone\": \"string\",\n      \"SubdomainPrefix\": \"string\",\n      \"Hash\": \"string\",\n      \"IsAccountOwner\": \"string\",\n      \"ApiKey\": \"string\",\n      \"LinkForms\": \"http://SptBnlZ.sbySW1tsdkVLTsmQLI71.5Q3uHByUQfUsHZlEEH2UriheN7B3ryO\",\n      \"LinkReports\": \"https://WxYQCjWGcFRVrBfUXpYApbNRFfD.voiZVS5PsqzjemmUuK-AlypOhpSbbMA6nHS.v\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Wufoo account subdomain.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "account",
+      "key": "subdomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{subdomain}}.wufoo.com/api/v3",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Response serialization format.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "json",
+      "key": "format"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "91bca866-88e4-443c-ab30-8bd4cbe59b5a",
+    "name": "Wufoo REST Comments Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Wufoo REST API v3 provides programmatic read and write access to a Wufoo\naccount: Forms, Fields, Entries, Reports, Widgets, Comments, Users, and\nWebhooks. Every request is per-subdomain and authenticates with the account\nAPI key over HTTP Basic Auth. Endpoints support `.json` or `.xml` response\nformats by appending the extension to the URL.\n\n\nContact Support:\n Name: Wufoo Support",
+      "type": "text/plain"
+    }
+  }
+}
