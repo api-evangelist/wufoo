@@ -28,6 +28,14 @@ tags:
   - Form Builder
   - Surveys
   - Data Collection
+  - Webhook
+  - Payments
+  - SurveyMonkey
+tags_raw:
+  - Forms
+  - Form Builder
+  - Surveys
+  - Data Collection
   - Webhooks
   - Payments
   - SurveyMonkey
@@ -49,6 +57,10 @@ apis:
   humanURL: https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/
   baseURL: https://{subscriber}/
   tags:
+  - Webhook
+  - Event
+  - Form Submissions
+  tags_raw:
   - Webhooks
   - Events
   - Form Submissions
@@ -343,6 +355,8 @@ apis:
   humanURL: https://wufoo.github.io/docs/
   baseURL: https://{subdomain}.wufoo.com/api/v3
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -389,6 +403,8 @@ apis:
   humanURL: https://wufoo.github.io/docs/
   baseURL: https://{subdomain}.wufoo.com/api/v3
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
