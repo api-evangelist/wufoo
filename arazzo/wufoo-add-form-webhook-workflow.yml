@@ -12,8 +12,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: wufooApi
-  url: ../openapi/wufoo-rest-v3-openapi.yml
+- name: formsApi
+  url: ../openapi/wufoo-forms-api-openapi.yml
+  type: openapi
+- name: webhooksApi
+  url: ../openapi/wufoo-webhooks-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: add-form-webhook

@@ -11,8 +11,11 @@ info:
     executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: wufooApi
-  url: ../openapi/wufoo-rest-v3-openapi.yml
+- name: commentsApi
+  url: ../openapi/wufoo-comments-api-openapi.yml
+  type: openapi
+- name: formsApi
+  url: ../openapi/wufoo-forms-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: moderate-form-comments

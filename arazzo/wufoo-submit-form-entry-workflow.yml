@@ -12,8 +12,14 @@ info:
     and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: wufooApi
-  url: ../openapi/wufoo-rest-v3-openapi.yml
+- name: entriesApi
+  url: ../openapi/wufoo-entries-api-openapi.yml
+  type: openapi
+- name: fieldsApi
+  url: ../openapi/wufoo-fields-api-openapi.yml
+  type: openapi
+- name: formsApi
+  url: ../openapi/wufoo-forms-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: submit-form-entry

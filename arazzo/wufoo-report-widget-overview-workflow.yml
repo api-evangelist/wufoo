@@ -11,8 +11,14 @@ info:
     read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: wufooApi
-  url: ../openapi/wufoo-rest-v3-openapi.yml
+- name: fieldsApi
+  url: ../openapi/wufoo-fields-api-openapi.yml
+  type: openapi
+- name: reportsApi
+  url: ../openapi/wufoo-reports-api-openapi.yml
+  type: openapi
+- name: widgetsApi
+  url: ../openapi/wufoo-widgets-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: report-widget-overview

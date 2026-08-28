@@ -12,8 +12,11 @@ info:
     read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: wufooApi
-  url: ../openapi/wufoo-rest-v3-openapi.yml
+- name: formsApi
+  url: ../openapi/wufoo-forms-api-openapi.yml
+  type: openapi
+- name: loginApi
+  url: ../openapi/wufoo-login-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: provision-builder-user-forms

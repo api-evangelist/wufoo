@@ -11,8 +11,11 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: wufooApi
-  url: ../openapi/wufoo-rest-v3-openapi.yml
+- name: entriesApi
+  url: ../openapi/wufoo-entries-api-openapi.yml
+  type: openapi
+- name: reportsApi
+  url: ../openapi/wufoo-reports-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: report-entry-stats
