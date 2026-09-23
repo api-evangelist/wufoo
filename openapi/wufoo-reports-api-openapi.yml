@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Wufoo REST Comments Reports API
+  title: Wufoo REST Reports API
   description: 'The Wufoo REST API v3 provides programmatic read and write access to a Wufoo
 
     account: Forms, Fields, Entries, Reports, Widgets, Comments, Users, and
@@ -9,9 +9,7 @@ info:
 
     API key over HTTP Basic Auth. Endpoints support `.json` or `.xml` response
 
-    formats by appending the extension to the URL.
-
-    '
+    formats by appending the extension to the URL.'
   version: '3.0'
   contact:
     name: Wufoo Support
@@ -169,13 +167,6 @@ paths:
                       $ref: '#/components/schemas/Field'
 components:
   parameters:
-    Identifier:
-      name: identifier
-      in: path
-      required: true
-      description: Form or report hash (preferred) or its title.
-      schema:
-        type: string
     Format:
       name: format
       in: path
@@ -187,7 +178,55 @@ components:
         - json
         - xml
         default: json
+    Identifier:
+      name: identifier
+      in: path
+      required: true
+      description: Form or report hash (preferred) or its title.
+      schema:
+        type: string
   schemas:
+    Field:
+      type: object
+      properties:
+        Title:
+          type: string
+        Instructions:
+          type: string
+        IsRequired:
+          type: string
+        ClassNames:
+          type: string
+        DefaultVal:
+          type: string
+        Page:
+          type: integer
+        Type:
+          type: string
+        ID:
+          type: string
+        SubFields:
+          type: array
+          items:
+            type: object
+            properties:
+              DefaultVal:
+                type: string
+              Label:
+                type: string
+              ID:
+                type: string
+        Choices:
+          type: array
+          items:
+            type: object
+            properties:
+              Label:
+                type: string
+              Score:
+                type: integer
+        HasOtherField:
+          type: boolean
     Report:
       type: object
       properties:
@@ -236,47 +275,6 @@ components:
           format: date-time
         UpdatedBy:
           type: string
-    Field:
-      type: object
-      properties:
-        Title:
-          type: string
-        Instructions:
-          type: string
-        IsRequired:
-          type: string
-        ClassNames:
-          type: string
-        DefaultVal:
-          type: string
-        Page:
-          type: integer
-        Type:
-          type: string
-        ID:
-          type: string
-        SubFields:
-          type: array
-          items:
-            type: object
-            properties:
-              DefaultVal:
-                type: string
-              Label:
-                type: string
-              ID:
-                type: string
-        Choices:
-          type: array
-          items:
-            type: object
-            properties:
-              Label:
-                type: string
-              Score:
-                type: integer
-        HasOtherField:
-          type: boolean
   securitySchemes:
     basicAuth:
       type: http

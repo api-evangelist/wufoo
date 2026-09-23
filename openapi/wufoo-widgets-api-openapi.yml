@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Wufoo REST Comments Widgets API
+  title: Wufoo REST Widgets API
   description: 'The Wufoo REST API v3 provides programmatic read and write access to a Wufoo
 
     account: Forms, Fields, Entries, Reports, Widgets, Comments, Users, and
@@ -9,9 +9,7 @@ info:
 
     API key over HTTP Basic Auth. Endpoints support `.json` or `.xml` response
 
-    formats by appending the extension to the URL.
-
-    '
+    formats by appending the extension to the URL.'
   version: '3.0'
   contact:
     name: Wufoo Support
@@ -59,22 +57,6 @@ paths:
                     items:
                       $ref: '#/components/schemas/Widget'
 components:
-  schemas:
-    Widget:
-      type: object
-      properties:
-        Hash:
-          type: string
-        Name:
-          type: string
-        Size:
-          type: string
-        Type:
-          type: string
-        TypeDesc:
-          type: string
-        Report:
-          type: string
   parameters:
     Format:
       name: format
@@ -94,6 +76,22 @@ components:
       description: Form or report hash (preferred) or its title.
       schema:
         type: string
+  schemas:
+    Widget:
+      type: object
+      properties:
+        Hash:
+          type: string
+        Name:
+          type: string
+        Size:
+          type: string
+        Type:
+          type: string
+        TypeDesc:
+          type: string
+        Report:
+          type: string
   securitySchemes:
     basicAuth:
       type: http

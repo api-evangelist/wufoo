@@ -1,15 +1,7 @@
 {
   "provider": "wufoo",
   "sources": [
-    "wufoo-comments-api-openapi.yml",
-    "wufoo-entries-api-openapi.yml",
-    "wufoo-fields-api-openapi.yml",
-    "wufoo-forms-api-openapi.yml",
-    "wufoo-login-api-openapi.yml",
-    "wufoo-reports-api-openapi.yml",
-    "wufoo-users-api-openapi.yml",
-    "wufoo-webhooks-api-openapi.yml",
-    "wufoo-widgets-api-openapi.yml"
+    "_original/wufoo-rest-v3-openapi.yml"
   ],
   "outputs": [
     "wufoo-comments-api-openapi.yml",
@@ -25,6 +17,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "wufoo-rest-v3-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "wufoo-comments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wufoo-entries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wufoo-fields-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wufoo-forms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wufoo-login-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wufoo-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wufoo-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wufoo-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wufoo-widgets-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
