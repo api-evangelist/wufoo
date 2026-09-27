@@ -56,6 +56,18 @@ paths:
                     items:
                       $ref: '#/components/schemas/User'
 components:
+  parameters:
+    Format:
+      name: format
+      in: path
+      required: true
+      description: Response serialization format.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
   schemas:
     User:
       type: object
@@ -86,18 +98,6 @@ components:
         LinkReports:
           type: string
           format: uri
-  parameters:
-    Format:
-      name: format
-      in: path
-      required: true
-      description: Response serialization format.
-      schema:
-        type: string
-        enum:
-        - json
-        - xml
-        default: json
   securitySchemes:
     basicAuth:
       type: http

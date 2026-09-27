@@ -97,13 +97,6 @@ paths:
                     type: integer
 components:
   parameters:
-    Identifier:
-      name: identifier
-      in: path
-      required: true
-      description: Form or report hash (preferred) or its title.
-      schema:
-        type: string
     Format:
       name: format
       in: path
@@ -115,6 +108,13 @@ components:
         - json
         - xml
         default: json
+    Identifier:
+      name: identifier
+      in: path
+      required: true
+      description: Form or report hash (preferred) or its title.
+      schema:
+        type: string
   schemas:
     Comment:
       type: object

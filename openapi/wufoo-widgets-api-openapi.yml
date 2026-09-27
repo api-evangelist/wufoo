@@ -57,25 +57,6 @@ paths:
                     items:
                       $ref: '#/components/schemas/Widget'
 components:
-  parameters:
-    Format:
-      name: format
-      in: path
-      required: true
-      description: Response serialization format.
-      schema:
-        type: string
-        enum:
-        - json
-        - xml
-        default: json
-    Identifier:
-      name: identifier
-      in: path
-      required: true
-      description: Form or report hash (preferred) or its title.
-      schema:
-        type: string
   schemas:
     Widget:
       type: object
@@ -92,6 +73,25 @@ components:
           type: string
         Report:
           type: string
+  parameters:
+    Identifier:
+      name: identifier
+      in: path
+      required: true
+      description: Form or report hash (preferred) or its title.
+      schema:
+        type: string
+    Format:
+      name: format
+      in: path
+      required: true
+      description: Response serialization format.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
   securitySchemes:
     basicAuth:
       type: http
