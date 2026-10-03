@@ -201,23 +201,6 @@ paths:
                     type: string
 components:
   schemas:
-    Entry:
-      type: object
-      description: Submission keyed by `Field{ID}` plus audit fields.
-      additionalProperties: true
-      properties:
-        EntryId:
-          type: string
-        DateCreated:
-          type: string
-          format: date-time
-        CreatedBy:
-          type: string
-        DateUpdated:
-          type: string
-          format: date-time
-        UpdatedBy:
-          type: string
     SubmitResult:
       type: object
       properties:
@@ -245,6 +228,23 @@ components:
                 type: string
               ErrorText:
                 type: string
+    Entry:
+      type: object
+      description: Submission keyed by `Field{ID}` plus audit fields.
+      additionalProperties: true
+      properties:
+        EntryId:
+          type: string
+        DateCreated:
+          type: string
+          format: date-time
+        CreatedBy:
+          type: string
+        DateUpdated:
+          type: string
+          format: date-time
+        UpdatedBy:
+          type: string
   parameters:
     Identifier:
       name: identifier

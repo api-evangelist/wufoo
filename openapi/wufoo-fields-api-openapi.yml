@@ -92,25 +92,6 @@ paths:
                     items:
                       $ref: '#/components/schemas/Field'
 components:
-  parameters:
-    Identifier:
-      name: identifier
-      in: path
-      required: true
-      description: Form or report hash (preferred) or its title.
-      schema:
-        type: string
-    Format:
-      name: format
-      in: path
-      required: true
-      description: Response serialization format.
-      schema:
-        type: string
-        enum:
-        - json
-        - xml
-        default: json
   schemas:
     Field:
       type: object
@@ -153,6 +134,25 @@ components:
                 type: integer
         HasOtherField:
           type: boolean
+  parameters:
+    Identifier:
+      name: identifier
+      in: path
+      required: true
+      description: Form or report hash (preferred) or its title.
+      schema:
+        type: string
+    Format:
+      name: format
+      in: path
+      required: true
+      description: Response serialization format.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
   securitySchemes:
     basicAuth:
       type: http

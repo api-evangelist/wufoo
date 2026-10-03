@@ -96,25 +96,6 @@ paths:
                   Count:
                     type: integer
 components:
-  parameters:
-    Format:
-      name: format
-      in: path
-      required: true
-      description: Response serialization format.
-      schema:
-        type: string
-        enum:
-        - json
-        - xml
-        default: json
-    Identifier:
-      name: identifier
-      in: path
-      required: true
-      description: Form or report hash (preferred) or its title.
-      schema:
-        type: string
   schemas:
     Comment:
       type: object
@@ -130,6 +111,25 @@ components:
         DateCreated:
           type: string
           format: date-time
+  parameters:
+    Identifier:
+      name: identifier
+      in: path
+      required: true
+      description: Form or report hash (preferred) or its title.
+      schema:
+        type: string
+    Format:
+      name: format
+      in: path
+      required: true
+      description: Response serialization format.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
   securitySchemes:
     basicAuth:
       type: http
