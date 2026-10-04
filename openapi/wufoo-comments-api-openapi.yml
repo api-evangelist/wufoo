@@ -96,21 +96,6 @@ paths:
                   Count:
                     type: integer
 components:
-  schemas:
-    Comment:
-      type: object
-      properties:
-        CommentId:
-          type: string
-        EntryId:
-          type: string
-        Text:
-          type: string
-        CommentedBy:
-          type: string
-        DateCreated:
-          type: string
-          format: date-time
   parameters:
     Identifier:
       name: identifier
@@ -130,6 +115,21 @@ components:
         - json
         - xml
         default: json
+  schemas:
+    Comment:
+      type: object
+      properties:
+        CommentId:
+          type: string
+        EntryId:
+          type: string
+        Text:
+          type: string
+        CommentedBy:
+          type: string
+        DateCreated:
+          type: string
+          format: date-time
   securitySchemes:
     basicAuth:
       type: http

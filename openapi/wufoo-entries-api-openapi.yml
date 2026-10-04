@@ -200,7 +200,43 @@ paths:
                   EntryCount:
                     type: string
 components:
+  parameters:
+    Identifier:
+      name: identifier
+      in: path
+      required: true
+      description: Form or report hash (preferred) or its title.
+      schema:
+        type: string
+    Format:
+      name: format
+      in: path
+      required: true
+      description: Response serialization format.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
   schemas:
+    Entry:
+      type: object
+      description: Submission keyed by `Field{ID}` plus audit fields.
+      additionalProperties: true
+      properties:
+        EntryId:
+          type: string
+        DateCreated:
+          type: string
+          format: date-time
+        CreatedBy:
+          type: string
+        DateUpdated:
+          type: string
+          format: date-time
+        UpdatedBy:
+          type: string
     SubmitResult:
       type: object
       properties:
@@ -228,42 +264,6 @@ components:
                 type: string
               ErrorText:
                 type: string
-    Entry:
-      type: object
-      description: Submission keyed by `Field{ID}` plus audit fields.
-      additionalProperties: true
-      properties:
-        EntryId:
-          type: string
-        DateCreated:
-          type: string
-          format: date-time
-        CreatedBy:
-          type: string
-        DateUpdated:
-          type: string
-          format: date-time
-        UpdatedBy:
-          type: string
-  parameters:
-    Identifier:
-      name: identifier
-      in: path
-      required: true
-      description: Form or report hash (preferred) or its title.
-      schema:
-        type: string
-    Format:
-      name: format
-      in: path
-      required: true
-      description: Response serialization format.
-      schema:
-        type: string
-        enum:
-        - json
-        - xml
-        default: json
   securitySchemes:
     basicAuth:
       type: http
