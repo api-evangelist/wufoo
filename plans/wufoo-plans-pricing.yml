@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 apiCommonsPlans: '0.1'
 provider:
   name: Wufoo
@@ -88,3 +92,41 @@ plans:
       - Highest resource limits
 sources:
   - https://www.wufoo.com/pricing/
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units: []
+  plans:
+  - name: Free
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Starter
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Professional
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Advanced
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Ultimate
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
