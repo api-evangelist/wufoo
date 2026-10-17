@@ -57,6 +57,22 @@ paths:
                     items:
                       $ref: '#/components/schemas/Widget'
 components:
+  schemas:
+    Widget:
+      type: object
+      properties:
+        Hash:
+          type: string
+        Name:
+          type: string
+        Size:
+          type: string
+        Type:
+          type: string
+        TypeDesc:
+          type: string
+        Report:
+          type: string
   parameters:
     Identifier:
       name: identifier
@@ -76,22 +92,6 @@ components:
         - json
         - xml
         default: json
-  schemas:
-    Widget:
-      type: object
-      properties:
-        Hash:
-          type: string
-        Name:
-          type: string
-        Size:
-          type: string
-        Type:
-          type: string
-        TypeDesc:
-          type: string
-        Report:
-          type: string
   securitySchemes:
     basicAuth:
       type: http
