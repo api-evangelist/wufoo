@@ -1,4 +1,4 @@
-# Wufoo (wufoo:wufoo)
+# Wufoo
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -71,135 +71,226 @@ Wufoo exposes a v3 REST API (Basic Auth, JSON/XML) over Forms, Entries, Fields,
 Users, Reports, Widgets, Comments, and Webhooks, plus push webhooks that POST
 form data to subscriber URLs at submission time.
 
-**APIs.json:** [https://github.com/api-evangelist/wufoo](https://github.com/api-evangelist/wufoo)
+**Areas:** Forms · Form Builder · Surveys · Data Collection · Webhook · Payments · SurveyMonkey
 
-## Scope
+## Wufoo on APIs.io
 
-- **Type:** Index
-- **Access:** 3rd-Party
+Everything profiled for Wufoo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/wufoo/](https://apis.io/providers/wufoo/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (10)
 
-- Forms
-- Form Builder
-- Surveys
-- Data Collection
-- Webhooks
-- Payments
-- SurveyMonkey
+- [Wufoo Webhooks](https://apis.io/apis/wufoo/wufoo-webhooks/) — Wufoo webhooks POST form-submission payloads to a subscriber URL at the moment an entry is created. Up to 10 webhooks per form, with optional handshake key…
+- [Wufoo Comments API](https://apis.io/apis/wufoo/wufoo-comments-api/) — Read comments attached to entries.
+- [Wufoo Entries API](https://apis.io/apis/wufoo/wufoo-entries-api/) — Read and create form submissions.
+- [Wufoo Fields API](https://apis.io/apis/wufoo/wufoo-fields-api/) — Read the field structure of a form or report.
+- [Wufoo Forms API](https://apis.io/apis/wufoo/wufoo-forms-api/) — Read forms and their metadata.
+- [Wufoo Login API](https://apis.io/apis/wufoo/wufoo-login-api/) — Exchange credentials for an API key.
+- [Wufoo Reports API](https://apis.io/apis/wufoo/wufoo-reports-api/) — Read reports built on top of forms.
+- [Wufoo Users API](https://apis.io/apis/wufoo/wufoo-users-api/) — Read account user information.
+- [Wufoo Webhooks API](https://apis.io/apis/wufoo/wufoo-webhooks-api/) — Subscribe to and unsubscribe from form submission webhooks.
+- [Wufoo Widgets API](https://apis.io/apis/wufoo/wufoo-widgets-api/) — Read widgets inside reports.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-23
-- **Modified:** 2026-05-23
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Arazzo workflows (9)
 
-### Wufoo REST API v3
+Multi-step workflows that chain operations into a business task.
 
-The Wufoo v3 REST API gives programmatic access to forms, form fields, entries,
-reports, widgets, comments, users, and webhooks for a Wufoo account. Endpoints
-are per-subdomain (https://{subdomain}.wufoo.com/api/v3/) and authenticate via
-HTTP Basic Auth with the account API key as username. Responses are JSON or XML
-depending on the .json/.xml extension on the request URL.
+- [Wufoo Add a Form Webhook](https://apis.io/arazzos/wufoo/wufoo-add-form-webhook-workflow/)
+- [Wufoo Browse Form Entries](https://apis.io/arazzos/wufoo/wufoo-browse-form-entries-workflow/)
+- [Wufoo Moderate Form Comments](https://apis.io/arazzos/wufoo/wufoo-moderate-form-comments-workflow/)
+- [Wufoo Provision Builder User Forms](https://apis.io/arazzos/wufoo/wufoo-provision-builder-user-forms-workflow/)
+- [Wufoo Export Report Entries](https://apis.io/arazzos/wufoo/wufoo-report-entries-export-workflow/)
+- [Wufoo Report Entry Stats](https://apis.io/arazzos/wufoo/wufoo-report-entry-stats-workflow/)
+- [Wufoo Report Widget Overview](https://apis.io/arazzos/wufoo/wufoo-report-widget-overview-workflow/)
+- [Wufoo Rotate a Form Webhook](https://apis.io/arazzos/wufoo/wufoo-rotate-form-webhook-workflow/)
+- [Wufoo Submit a Form Entry](https://apis.io/arazzos/wufoo/wufoo-submit-form-entry-workflow/)
 
-- **Human URL:** [https://wufoo.github.io/docs/](https://wufoo.github.io/docs/)
-- **Base URL:** `https://{subdomain}.wufoo.com/api/v3`
+#### AsyncAPI (1)
 
-#### Tags
+Event-driven and webhook contracts.
 
-- Forms
-- Entries
-- Fields
-- Reports
-- Widgets
-- Comments
-- Users
-- Webhooks
+- [Wufoo Webhooks](https://apis.io/asyncapis/wufoo/wufoo-webhooks-asyncapi/)
 
-#### Properties
+#### Event channels (1)
 
+Individual events and webhooks the provider emits.
+
+- [form.entry.created](https://apis.io/channels/wufoo/form-entry-created/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Wufoo Agentic Access](https://apis.io/agentic-access/wufoo/wufoo-agentic-access/)
+
+#### JSON Schema (6)
+
+The data models the API reads and writes.
+
+- [Wufoo Entry](https://apis.io/schemas/wufoo/wufoo-entry/)
+- [Wufoo Field](https://apis.io/schemas/wufoo/wufoo-field/)
+- [Wufoo Form](https://apis.io/schemas/wufoo/wufoo-form/)
+- [Wufoo Report](https://apis.io/schemas/wufoo/wufoo-report/)
+- [Wufoo User](https://apis.io/schemas/wufoo/wufoo-user/)
+- [Wufoo Webhook Payload](https://apis.io/schemas/wufoo/wufoo-webhook-payload/)
+
+#### JSON Structure (2)
+
+Data models expressed in JSON Structure.
+
+- [Wufoo Entry Structure](https://apis.io/json-structure/wufoo/wufoo-entry-structure/)
+- [Wufoo Form Structure](https://apis.io/json-structure/wufoo/wufoo-form-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Wufoo Context](https://apis.io/jsonld/wufoo/wufoo-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Wufoo Vocabulary](https://apis.io/vocabularies/wufoo/wufoo-vocabulary/)
+
+#### Examples (6)
+
+Example requests and responses.
+
+- [Wufoo Rest V3 List Entries Example](https://apis.io/examples/wufoo/wufoo-rest-v3-list-entries-example/)
+- [Wufoo Rest V3 List Form Fields Example](https://apis.io/examples/wufoo/wufoo-rest-v3-list-form-fields-example/)
+- [Wufoo Rest V3 List Forms Example](https://apis.io/examples/wufoo/wufoo-rest-v3-list-forms-example/)
+- [Wufoo Rest V3 Put Webhook Example](https://apis.io/examples/wufoo/wufoo-rest-v3-put-webhook-example/)
+- [Wufoo Rest V3 Submit Entry Example](https://apis.io/examples/wufoo/wufoo-rest-v3-submit-entry-example/)
+- [Wufoo Webhooks Form Submission Example](https://apis.io/examples/wufoo/wufoo-webhooks-form-submission-example/)
+
+#### Collections (19)
+
+Postman and Open Collection request collections.
+
+- [Wufoo REST Comments API](https://apis.io/collections/wufoo/open-wufoo-comments-api/)
+- [Wufoo REST Comments Entries API](https://apis.io/collections/wufoo/open-wufoo-entries-api/)
+- [Wufoo REST Comments Fields API](https://apis.io/collections/wufoo/open-wufoo-fields-api/)
+- [Wufoo REST Comments Forms API](https://apis.io/collections/wufoo/open-wufoo-forms-api/)
+- [Wufoo REST Comments Login API](https://apis.io/collections/wufoo/open-wufoo-login-api/)
+- [Wufoo REST Comments Reports API](https://apis.io/collections/wufoo/open-wufoo-reports-api/)
+- [Wufoo REST API](https://apis.io/collections/wufoo/open-wufoo-rest-v3/)
+- [Wufoo REST Comments Users API](https://apis.io/collections/wufoo/open-wufoo-users-api/)
+- [Wufoo REST Comments Webhooks API](https://apis.io/collections/wufoo/open-wufoo-webhooks-api/)
+- [Wufoo REST Comments Widgets API](https://apis.io/collections/wufoo/open-wufoo-widgets-api/)
+- [Wufoo REST Comments API](https://apis.io/collections/wufoo/postman-wufoo-comments-api/)
+- [Wufoo REST Comments Entries API](https://apis.io/collections/wufoo/postman-wufoo-entries-api/)
+- [Wufoo REST Comments Fields API](https://apis.io/collections/wufoo/postman-wufoo-fields-api/)
+- [Wufoo REST Comments Forms API](https://apis.io/collections/wufoo/postman-wufoo-forms-api/)
+- [Wufoo REST Comments Login API](https://apis.io/collections/wufoo/postman-wufoo-login-api/)
+- [Wufoo REST Comments Reports API](https://apis.io/collections/wufoo/postman-wufoo-reports-api/)
+- [Wufoo REST Comments Users API](https://apis.io/collections/wufoo/postman-wufoo-users-api/)
+- [Wufoo REST Comments Webhooks API](https://apis.io/collections/wufoo/postman-wufoo-webhooks-api/)
+- [Wufoo REST Comments Widgets API](https://apis.io/collections/wufoo/postman-wufoo-widgets-api/)
+
+#### Governance rules (3)
+
+Spectral rulesets for the provider's contracts.
+
+- [Wufoo — asyncapi rules](https://apis.io/rules/wufoo/wufoo-asyncapi-spectral-rules/)
+- [Wufoo — jsonschema rules](https://apis.io/rules/wufoo/wufoo-jsonschema-spectral-rules/)
+- [Wufoo — rest v3 rules](https://apis.io/rules/wufoo/wufoo-rest-v3-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Wufoo Authentication](https://apis.io/security/wufoo/wufoo-authentication/)
+- [Wufoo Domain Security](https://apis.io/security/wufoo/wufoo-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Wufoo Plans Pricing](https://apis.io/plans/wufoo/wufoo-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Wufoo Rate Limits](https://apis.io/rate-limits/wufoo/wufoo-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Wufoo Finops](https://apis.io/finops/wufoo/wufoo-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.wufoo.com/)
 - [Documentation](https://wufoo.github.io/docs/)
-- [API Reference](https://wufoo.github.io/docs/)
-- [OpenAPI](openapi/wufoo-rest-v3-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/wufoo-rest-v3.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/wufoo-rest-v3.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Authentication](https://wufoo.github.io/docs/#authentication)
-- [Rate Limits](rate-limits/wufoo-rate-limits.yml)
-- [Getting Started](https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/)
-- [Spectral Rules](rules/wufoo-rest-v3-rules.yml)
-- [JSON Schema](json-schema/wufoo-form-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/wufoo-field-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/wufoo-entry-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/wufoo-report-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/wufoo-user-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/wufoo-form-structure.json)
-- [JSON Structure](json-structure/wufoo-entry-structure.json)
-- [Example](examples/wufoo-rest-v3-list-forms-example.json)
-- [Example](examples/wufoo-rest-v3-list-form-fields-example.json)
-- [Example](examples/wufoo-rest-v3-list-entries-example.json)
-- [Example](examples/wufoo-rest-v3-submit-entry-example.json)
-- [Example](examples/wufoo-rest-v3-put-webhook-example.json)
-
-### Wufoo Webhooks
-
-Wufoo webhooks POST form-submission payloads to a subscriber URL at the moment
-an entry is created. Up to 10 webhooks per form, with optional handshake key
-for verification and optional metadata for richer form/field structure.
-
-- **Human URL:** [https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/](https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/)
-- **Base URL:** `https://{subscriber}/`
-
-#### Tags
-
-- Webhooks
-- Events
-- Form Submissions
-
-#### Properties
-
-- [Documentation](https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/)
-- [AsyncAPI](asyncapi/wufoo-webhooks-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [JSON Schema](json-schema/wufoo-webhook-payload-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Example](examples/wufoo-webhooks-form-submission-example.json)
-- [Postman Collection](collections/wufoo-rest-v3.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/wufoo-rest-v3.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Portal](https://www.wufoo.com)
-- [Developer Portal](https://wufoo.github.io/docs/)
-- [Documentation](https://wufoo.github.io/docs/)
-- [API Reference](https://wufoo.github.io/docs/)
-- [Getting Started](https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/)
-- [Sign Up](https://www.wufoo.com/signup/)
-- [Login](https://www.wufoo.com/login/)
+- [Getting started](https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/)
+- [API reference](https://wufoo.github.io/docs/)
 - [Pricing](https://www.wufoo.com/pricing/)
-- [Plans](plans/wufoo-plans-pricing.yml)
-- [Rate Limits](rate-limits/wufoo-rate-limits.yml)
-- [Features](https://www.wufoo.com/features/)
-- [Integrations](https://www.wufoo.com/partners/)
-- [Blog](https://www.wufoo.com/blog/)
-- [R S S](https://www.wufoo.com/blog/feed/)
 - [Support](https://help.surveymonkey.com/wufoo/)
-- [Status Page](https://status.wufoo.com/)
-- [Status R S S](https://status.wufoo.com/history.rss)
-- [Status Atom](https://status.wufoo.com/history.atom)
-- [Terms of Service](https://www.wufoo.com/terms-of-use/)
-- [Privacy Policy](https://www.wufoo.com/privacy/)
-- [GitHub Organization](https://github.com/wufoo)
-- [Vocabulary](vocabulary/wufoo-vocabulary.yml)
-- [JSON-LD](json-ld/wufoo-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Fin Ops](finops/wufoo-finops.yml)
-- [SDK](https://github.com/wufoo/Wufoo-PHP-API-Wrapper)
-- [SDK](https://github.com/wufoo/pyfoo)
-- [SDK](https://github.com/wufoo/wuparty)
-- [SDK](https://github.com/wufoo/j-woo)
-- [SDK](https://github.com/wufoo/Wufoo-jQuery-API-Wrapper)
+- [Blog](https://www.wufoo.com/blog/)
+- [Terms of service](https://www.wufoo.com/terms-of-use/)
+- [Privacy policy](https://www.wufoo.com/privacy/)
+- [GitHub](https://github.com/wufoo)
+- [Status](https://status.wufoo.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** API Evangelist
-**Email:** info@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 50.4** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 67.3 |
+| Contract governance | 27.3 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 75.0 |
+| Access clarity | 35.5 |
+
+**Agent readiness 22.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 18.8** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/wufoo/](https://apis.io/providers/wufoo/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Wufoo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/wufoo/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
